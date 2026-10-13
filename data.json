@@ -1,0 +1,339 @@
+{
+  "content": {
+    "fronts": [
+      {
+        "id": "planos",
+        "name": "Planos",
+        "note": "Apartado de planos dentro del Investor Portal, organizado por proyecto y por pisos, con menú desplegable.",
+        "sub": "Primer frente · se trabaja con Alex Castillo",
+        "tasks": [
+          {
+            "id": "p1",
+            "text": "Reunión con Alex Castillo para definir el alcance del apartado"
+          },
+          {
+            "id": "tmun57wixlqb8",
+            "text": "respuesta por parte de Jairo , para la entrega de los planos "
+          },
+          {
+            "id": "p2",
+            "text": "Recopilar los planos vigentes de cada proyecto"
+          },
+          {
+            "id": "p3",
+            "text": "Organizar los planos por pisos"
+          },
+          {
+            "id": "p4",
+            "text": "Armar el cuadro de organización: proyecto, torre, piso, unidad y tipología"
+          },
+          {
+            "id": "p5",
+            "text": "Diseñar el apartado de planos con menú desplegable"
+          },
+          {
+            "id": "p6",
+            "text": "Cargar los planos al portal"
+          },
+          {
+            "id": "p7",
+            "text": "Revisar con Alex y hacer ajustes"
+          },
+          {
+            "id": "p8",
+            "text": "Publicar el apartado de planos"
+          }
+        ]
+      },
+      {
+        "id": "negocios",
+        "name": "Actualización de negocios",
+        "note": "Que el inversionista vea sus negocios al día. Punto de partida: el Excel que se usa hoy.",
+        "sub": "Segundo frente · se trabaja con Nancy",
+        "tasks": [
+          {
+            "id": "n1",
+            "text": "Conversación con Nancy sobre el proceso actual de actualización"
+          },
+          {
+            "id": "n2",
+            "text": "Revisar la estructura del Excel de negocios"
+          },
+          {
+            "id": "n3",
+            "text": "Definir qué datos verá el inversionista en el portal"
+          },
+          {
+            "id": "n4",
+            "text": "Evaluar cómo actualizar desde el Excel: carga manual, plantilla o sincronización"
+          },
+          {
+            "id": "n5",
+            "text": "Construir la actualización de negocios en el portal"
+          },
+          {
+            "id": "n6",
+            "text": "Prueba piloto con negocios reales"
+          },
+          {
+            "id": "n7",
+            "text": "Publicar la actualización de negocios"
+          }
+        ]
+      },
+      {
+        "id": "auto",
+        "name": "Automatizaciones",
+        "note": "Usar HubSpot para automatizar procesos del portal. Primero verificar de qué forma se puede hacer.",
+        "sub": "Tercer frente · con HubSpot",
+        "tasks": [
+          {
+            "id": "a1",
+            "text": "Listar los procesos que hoy se hacen a mano"
+          },
+          {
+            "id": "a2",
+            "text": "Verificar qué permite HubSpot: flujos de trabajo, integraciones y API"
+          },
+          {
+            "id": "a3",
+            "text": "Definir de qué forma se conecta HubSpot con el portal"
+          },
+          {
+            "id": "a4",
+            "text": "Priorizar qué automatizar primero"
+          },
+          {
+            "id": "a5",
+            "text": "Implementar las automatizaciones"
+          },
+          {
+            "id": "a6",
+            "text": "Probar y monitorear las automatizaciones"
+          }
+        ]
+      },
+      {
+        "id": "apps",
+        "name": "App en Google Play y App Store",
+        "note": "Publicar el Investor Portal como app para Android y iOS.",
+        "sub": "Entrega de la plataforma",
+        "tasks": [
+          {
+            "id": "s1",
+            "text": "Crear o verificar cuentas de desarrollador de Google Play y Apple"
+          },
+          {
+            "id": "s2",
+            "text": "Preparar la versión Android"
+          },
+          {
+            "id": "s3",
+            "text": "Preparar la versión iOS"
+          },
+          {
+            "id": "s4",
+            "text": "Fichas de tienda: capturas, descripción y política de privacidad"
+          },
+          {
+            "id": "s5",
+            "text": "Enviar a revisión de Google y Apple"
+          },
+          {
+            "id": "s6",
+            "text": "App publicada en Google Play y App Store"
+          }
+        ]
+      }
+    ],
+    "phases": [
+      {
+        "end": "2026-10-02",
+        "id": "planos",
+        "name": "Planos",
+        "start": "2026-09-29"
+      },
+      {
+        "end": "2026-10-23",
+        "id": "negocios",
+        "name": "Actualización de negocios",
+        "start": "2026-10-05"
+      },
+      {
+        "end": "2026-11-13",
+        "id": "auto",
+        "name": "Automatizaciones HubSpot",
+        "start": "2026-10-19"
+      },
+      {
+        "end": "2026-12-11",
+        "id": "apps",
+        "name": "App Google Play y App Store",
+        "start": "2026-10-26"
+      }
+    ],
+    "steps": [
+      {
+        "blocks": [
+          {
+            "heading": "Visión",
+            "text": "Que el Investor Portal sea el lugar donde cada inversionista de Inciti vea sus planos, el estado de sus negocios y reciba información al día, sin procesos manuales de por medio.",
+            "type": "text"
+          },
+          {
+            "heading": "Estrategia: mejorar tres procesos",
+            "items": [
+              {
+                "text": "Apartado con planos por proyecto y por pisos, en menú desplegable.",
+                "title": "1. Planos"
+              },
+              {
+                "text": "Negocios al día en el portal, partiendo del Excel actual.",
+                "title": "2. Actualización de negocios"
+              },
+              {
+                "text": "Procesos automáticos con HubSpot.",
+                "title": "3. Automatización"
+              }
+            ],
+            "type": "cards"
+          },
+          {
+            "heading": "Resultado final",
+            "text": "Plataforma mejorada y publicada como app en Google Play y App Store.",
+            "type": "text"
+          }
+        ],
+        "sub": "Hacia dónde llevamos el Investor Portal",
+        "title": "Visión y estrategia"
+      },
+      {
+        "blocks": [
+          {
+            "heading": "",
+            "text": "Se trabaja en este orden. Abre cada frente para ver y marcar sus tareas.",
+            "type": "text"
+          },
+          {
+            "heading": "",
+            "ids": [
+              "planos",
+              "negocios",
+              "auto"
+            ],
+            "type": "fronts"
+          }
+        ],
+        "sub": "Tareas por frente, en orden",
+        "title": "Metas y objetivos"
+      },
+      {
+        "blocks": [
+          {
+            "heading": "Mejoras en el Investor Portal",
+            "items": [
+              {
+                "text": "publicado, con planos por proyecto y por pisos, y su cuadro de organización.",
+                "title": "Apartado de planos"
+              },
+              {
+                "text": "funcionando a partir del Excel, validada con Nancy.",
+                "title": "Actualización de negocios"
+              },
+              {
+                "text": "activas para los procesos priorizados.",
+                "title": "Automatizaciones en HubSpot"
+              }
+            ],
+            "type": "list"
+          },
+          {
+            "heading": "Plataforma en tiendas",
+            "ids": [
+              "apps"
+            ],
+            "type": "fronts"
+          }
+        ],
+        "sub": "Qué se entrega al final",
+        "title": "Entregables"
+      },
+      {
+        "blocks": [
+          {
+            "text": "Cambia las fechas cuando lo necesiten; el cronograma se actualiza para todos.",
+            "type": "gantt"
+          }
+        ],
+        "sub": "Propuesta inicial, se puede ajustar",
+        "title": "Cronograma"
+      },
+      {
+        "blocks": [
+          {
+            "type": "metrics"
+          }
+        ],
+        "sub": "Se llenan al marcar cada tarea",
+        "title": "Métricas de avance"
+      },
+      {
+        "blocks": [
+          {
+            "heading": "Riesgos principales",
+            "items": [
+              {
+                "text": "Mitigación: publicar primero un proyecto completo y sumar los demás después.",
+                "title": "Plazo corto para planos (esta semana)."
+              },
+              {
+                "text": "Mitigación: reuniones fijas y cortas, con decisiones y responsables por escrito.",
+                "title": "Agenda de Alex Castillo y Nancy."
+              },
+              {
+                "text": "Mitigación: que Alex valide la versión vigente antes de cargarla y mostrar la fecha de actualización en el portal.",
+                "title": "Planos incompletos o en versiones viejas."
+              },
+              {
+                "text": "Mitigación: una plantilla única con validaciones y un solo responsable de actualizarla.",
+                "title": "Excel con formatos distintos o errores manuales."
+              },
+              {
+                "text": "Mitigación: verificar qué incluye el plan antes de diseñar; si no alcanza, evaluar Zapier o Make, o una integración propia.",
+                "title": "Límites de HubSpot según el plan contratado."
+              },
+              {
+                "text": "Mitigación: que la app no sea solo una página web envuelta, publicar política de privacidad, permitir eliminar la cuenta desde la app y dar a los revisores un usuario de prueba.",
+                "title": "Rechazo en App Store o Google Play."
+              },
+              {
+                "text": "Mitigación: accesos por rol y cumplimiento de la Ley 1581 de 2012 de protección de datos.",
+                "title": "Datos personales de inversionistas."
+              }
+            ],
+            "type": "list"
+          }
+        ],
+        "sub": "Qué puede frenar el avance",
+        "title": "Riesgos y mitigación"
+      }
+    ]
+  },
+  "tasks": {
+    "p1": {
+      "done": true,
+      "doneAt": "2026-09-29T20:42:38.426Z"
+    },
+    "p7": {
+      "done": false
+    },
+    "p8": {
+      "done": false
+    },
+    "tmun57wixlqb8": {
+      "done": false
+    }
+  },
+  "schedule": {},
+  "updatedAt": "2026-09-29T21:00:00Z"
+}

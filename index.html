@@ -1,0 +1,1174 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Roadmap Inciti</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Roboto:wght@500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --navy: #142139;
+    --blue: #4A72B0;
+    --grad-blue: #1A73E8;
+    --brand: linear-gradient(145deg, #142139, #1A73E8);
+    --white: #FFFFFF;
+    --page: #F4F4F4;
+    --ink: #1B2B44;
+    --muted: #6B7C93;
+    --line: rgba(20, 33, 57, 0.08);
+    --hover: #EEF3FA;
+    --hover-2: #EEF3F8;
+    --card: #F7FAFC;
+    --online: #22C55E;
+    --danger: #B42318;
+    --error: #EF4444;
+    --ui: 'Reboto-medium', -apple-system, BlinkMacSystemFont, sans-serif;
+    --body: Roboto, "Helvetica Neue", sans-serif;
+    --mono: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+    color-scheme: light;
+    box-sizing: border-box;
+    padding-top: env(safe-area-inset-top, 0px);
+    padding-bottom: env(safe-area-inset-bottom, 0px);
+  }
+  html { scroll-padding-top: env(safe-area-inset-top, 0px); }
+  *, *::before, *::after { box-sizing: border-box; }
+  body {
+    margin: 0; background: var(--page); color: var(--ink);
+    font-family: var(--body); font-weight: 500;
+    font-size: 14px; letter-spacing: -0.01em; line-height: 1.55;
+    -webkit-font-smoothing: antialiased;
+  }
+  button, input, summary, .ui { font-family: var(--ui); }
+  .wrap { max-width: 1200px; margin: 0 auto; padding: clamp(1.5rem, 4vw, 3rem) clamp(1rem, 4vw, 2.5rem); }
+
+  /* Encabezado */
+  header { display: grid; grid-template-columns: 1fr auto; gap: 2rem; align-items: end; }
+  .brand { display: inline-flex; align-items: center; gap: .55rem; margin-bottom: 1.25rem; font-family: var(--ui); font-size: 15px; font-weight: 500; letter-spacing: 0.01em; line-height: 1.2; color: var(--navy); }
+  .brand-mark { display: grid; place-items: center; width: 32px; height: 32px; border-radius: 9px; background: var(--brand); color: var(--white); }
+  .brand-mark svg { width: 18px; height: 18px; }
+  .eyebrow { display: block; font-family: var(--ui); font-size: 11px; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase; color: var(--muted); margin-bottom: .5rem; }
+  h1 { font-family: var(--ui); font-weight: 700; font-size: 32px; line-height: 1.15; color: var(--navy); margin: 0 0 .75rem; letter-spacing: -0.01em; }
+  .lead { color: var(--muted); font-size: 14px; font-weight: 500; max-width: 38rem; margin: 0; }
+  .hint { display: inline-flex; align-items: center; gap: .5rem; margin-top: 1rem; font-family: var(--ui); font-size: 12px; font-weight: 600; color: var(--muted); }
+  .hint span { display: inline-grid; place-items: center; width: 22px; height: 22px; border-radius: 6px; background: var(--brand); color: var(--white); font-weight: 700; font-size: 11px; }
+
+  .overall { min-width: 240px; padding: 1rem 1.15rem; border-radius: 14px; background: var(--white); border: 1px solid var(--line); }
+  .overall .eyebrow { margin-bottom: .35rem; }
+  .overall b { display: block; font-family: var(--ui); font-weight: 700; font-size: 32px; line-height: 1; color: var(--navy); }
+  .overall small { display: block; margin-top: .3rem; color: var(--muted); font-size: 12px; font-weight: 600; }
+  .bar { height: 8px; border-radius: 8px; background: var(--hover); overflow: hidden; margin: .7rem 0 .5rem; }
+  .bar i { display: block; height: 100%; width: 0; background: var(--blue); border-radius: 8px; transition: width .4s ease; }
+  .sync { display: flex; align-items: center; gap: .4rem; font-family: var(--ui); font-size: 12px; font-weight: 600; color: var(--muted); }
+  .sync::before { content: ""; width: 8px; height: 8px; border-radius: 50%; background: var(--muted); }
+  .sync.shared::before { background: var(--online); }
+
+  /* Mapa PC */
+  .map { position: relative; width: 100%; aspect-ratio: 1200 / 520; margin-top: clamp(2.5rem, 6vw, 4rem); }
+  .map svg.river { position: absolute; inset: 0; width: 100%; height: 100%; overflow: visible; }
+  .river .bank { fill: none; stroke: var(--hover); stroke-width: 34; stroke-linecap: round; stroke-linejoin: round; }
+  .river .water { fill: none; stroke: var(--blue); stroke-width: 14; stroke-linecap: round; stroke-linejoin: round; }
+  .river .flow { fill: none; stroke: var(--white); stroke-opacity: .8; stroke-width: 3; stroke-dasharray: 2 22; stroke-linecap: round; animation: flow 2.8s linear infinite; }
+  @keyframes flow { to { stroke-dashoffset: -48; } }
+  .node {
+    position: absolute; transform: translate(-50%, -50%);
+    width: clamp(44px, 5vw, 56px); height: clamp(44px, 5vw, 56px);
+    border: 4px solid var(--page); border-radius: 14px; background: var(--brand); color: var(--white);
+    font-family: var(--ui); font-weight: 700; font-size: clamp(16px, 1.6vw, 20px);
+    cursor: pointer; transition: transform .2s ease; z-index: 2;
+  }
+  .node:hover, .node[aria-expanded="true"] { background: var(--blue); transform: translate(-50%, -50%) scale(1.1); }
+  .node:focus-visible, .step-btn:focus-visible, .sheet button:focus-visible, .sheet summary:focus-visible, .sheet input:focus-visible { outline: 3px solid var(--grad-blue); outline-offset: 3px; }
+  .label { position: absolute; width: 13rem; text-align: center; pointer-events: none; }
+  .label strong { display: block; font-family: var(--ui); font-weight: 600; font-size: 16px; line-height: 1.25; color: var(--navy); }
+  .label small { display: block; color: var(--muted); font-family: var(--ui); font-size: 12px; font-weight: 600; margin-top: .2rem; }
+  .label.up { transform: translate(-50%, calc(-100% - clamp(34px, 4vw, 44px))); }
+  .label.down { transform: translate(-50%, clamp(34px, 4vw, 44px)); }
+
+  /* Lista celular */
+  .steps { display: none; list-style: none; margin: 2rem 0 0; padding: 0; position: relative; }
+  .steps::before { content: ""; position: absolute; left: 23px; top: 10px; bottom: 10px; width: 10px; border-radius: 10px; background: var(--blue); box-shadow: 0 0 0 8px var(--hover); }
+  .steps li { position: relative; padding: 0 0 1.5rem; }
+  .step-btn { display: grid; grid-template-columns: 56px 1fr; align-items: center; gap: 1rem; width: 100%; padding: 0; border: 0; background: none; color: inherit; text-align: left; cursor: pointer; }
+  .step-btn .num { position: relative; z-index: 1; display: grid; place-items: center; width: 56px; height: 56px; border-radius: 14px; background: var(--brand); color: var(--white); border: 4px solid var(--page); font-weight: 700; font-size: 18px; }
+  .step-btn:active .num { background: var(--blue); }
+  .step-btn strong { display: block; font-family: var(--ui); font-weight: 600; font-size: 16px; line-height: 1.25; color: var(--navy); }
+  .step-btn small { color: var(--muted); font-size: 12px; font-weight: 600; }
+  @media (max-width: 900px) { h1 { font-size: 24px; } }
+  @media (max-width: 760px) {
+    header { grid-template-columns: 1fr; gap: 1.25rem; }
+    .map { display: none; }
+    .steps { display: block; }
+  }
+  @media (max-width: 576px) { h1 { font-size: 22px; } }
+
+  /* Vista detalle */
+  .overlay { position: fixed; inset: 0; z-index: 10; background: rgba(20, 33, 57, .5); display: flex; align-items: center; justify-content: center; padding: 1.5rem; opacity: 0; visibility: hidden; transition: opacity .25s ease, visibility .25s; }
+  .overlay.open { opacity: 1; visibility: visible; }
+  .sheet { position: relative; width: 100%; max-width: 720px; max-height: min(88vh, 800px); overflow-y: auto; background: var(--white); color: var(--ink); border-radius: 18px; box-shadow: 0 24px 60px rgba(20, 33, 57, .25); transform: translateY(16px) scale(.98); transition: transform .3s cubic-bezier(.2, .8, .2, 1); }
+  .overlay.open .sheet { transform: none; }
+  .sheet-head { display: flex; gap: .9rem; align-items: center; padding: 1.25rem 1.5rem; border-bottom: 1px solid var(--line); position: sticky; top: 0; background: var(--white); z-index: 2; }
+  .sheet-num { flex: none; display: grid; place-items: center; width: 44px; height: 44px; border-radius: 12px; background: var(--brand); color: var(--white); font-family: var(--ui); font-weight: 700; font-size: 18px; }
+  .sheet-head h2 { font-family: var(--ui); font-weight: 700; font-size: 16px; line-height: 1.25; color: var(--navy); margin: 0 0 .15rem; }
+  .sheet-head p { margin: 0; color: var(--muted); font-size: 12px; font-weight: 600; }
+  .close { margin-left: auto; flex: none; width: 36px; height: 36px; border-radius: 50%; border: 1px solid var(--line); background: transparent; color: var(--ink); font-size: 18px; line-height: 1; cursor: pointer; }
+  .close:hover { background: var(--hover); }
+  .sheet-body { padding: 1.25rem 1.5rem 1.5rem; }
+  .sheet-body h3 { font-family: var(--ui); font-size: 11px; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase; color: var(--muted); margin: 1.4rem 0 .6rem; }
+  .sheet-body h3:first-child { margin-top: 0; }
+  .sheet-body p { margin: 0 0 .75rem; }
+  .items { list-style: none; margin: 0; padding: 0; display: grid; gap: .6rem; }
+  .items li { display: grid; grid-template-columns: 1.1rem 1fr; gap: .55rem; }
+  .items li::before { content: ""; width: 8px; height: 8px; margin-top: .5rem; border-radius: 2px; background: var(--blue); }
+  .items b { font-weight: 600; color: var(--navy); }
+  .pillars { display: grid; grid-template-columns: repeat(auto-fit, minmax(170px, 1fr)); gap: .75rem; }
+  .pillar { padding: 1rem; border-radius: 12px; background: var(--card); border: 1px solid var(--line); }
+  .pillar b { display: block; font-family: var(--ui); font-size: 16px; font-weight: 600; color: var(--navy); margin-bottom: .25rem; }
+  .pillar span { color: var(--muted); }
+
+  /* Desplegables con tareas */
+  details.front { border: 1px solid var(--line); border-radius: 12px; margin-bottom: .75rem; overflow: hidden; background: var(--white); }
+  details.front summary { list-style: none; cursor: pointer; display: grid; grid-template-columns: auto 1fr auto auto; gap: .75rem; align-items: center; padding: .8rem 1rem; }
+  details.front summary::-webkit-details-marker { display: none; }
+  details.front summary::after { content: "+"; font-size: 18px; font-weight: 600; line-height: 1; color: var(--muted); }
+  details.front[open] summary::after { content: "−"; }
+  details.front summary:hover { background: var(--hover); }
+  details.front[open] summary { border-bottom: 1px solid var(--line); background: var(--card); }
+  .order { display: grid; place-items: center; width: 28px; height: 28px; border-radius: 8px; background: var(--brand); color: var(--white); font-weight: 700; font-size: 13px; }
+  .front-title strong { display: block; font-family: var(--ui); font-size: 14px; font-weight: 600; color: var(--navy); line-height: 1.3; }
+  .front-title small { color: var(--muted); font-size: 12px; font-weight: 600; }
+  .front-count { font-family: var(--ui); font-size: 10px; font-weight: 700; color: var(--blue); white-space: nowrap; }
+  .front p.note { padding: .9rem 1rem 0; margin: 0; color: var(--muted); }
+  .tasks { list-style: none; margin: 0; padding: .5rem .5rem .75rem; }
+  .tasks label { display: grid; grid-template-columns: 20px 1fr; gap: .7rem; align-items: start; padding: .55rem .5rem; border-radius: 10px; cursor: pointer; font-family: var(--body); }
+  .tasks label:hover { background: var(--hover-2); }
+  .tasks input { width: 18px; height: 18px; margin: .1rem 0 0; accent-color: var(--blue); cursor: pointer; }
+  .tasks .t { display: block; font-size: 14px; font-weight: 500; }
+  .tasks .d { display: flex; align-items: center; gap: .35rem; font-family: var(--ui); font-size: 12px; font-weight: 600; color: var(--muted); margin-top: .15rem; }
+  .tasks .d:not(:empty)::before { content: ""; width: 7px; height: 7px; border-radius: 50%; background: var(--online); }
+  .tasks input:checked + span .t { color: var(--muted); text-decoration: line-through; }
+
+  /* Cronograma */
+  .gantt { display: grid; gap: 1rem; }
+  .row { display: grid; gap: .45rem; padding: .9rem 1rem; border-radius: 12px; background: var(--card); border: 1px solid var(--line); }
+  .row-head { display: flex; justify-content: space-between; gap: 1rem; align-items: baseline; flex-wrap: wrap; }
+  .row-head strong { font-family: var(--ui); font-size: 14px; font-weight: 600; color: var(--navy); }
+  .row-head span { font-family: var(--ui); font-size: 12px; font-weight: 600; color: var(--muted); }
+  .track { position: relative; height: 12px; border-radius: 8px; background: var(--hover); }
+  .track i { position: absolute; top: 0; bottom: 0; border-radius: 8px; background: var(--blue); }
+  .track .today { position: absolute; top: -5px; bottom: -5px; width: 2px; background: var(--navy); }
+  .dates { display: flex; gap: .6rem; flex-wrap: wrap; }
+  .dates label { display: flex; align-items: center; gap: .4rem; font-family: var(--ui); font-size: 12px; font-weight: 600; color: var(--muted); }
+  .dates input { font-size: 13px; font-weight: 600; color: var(--ink); background: var(--white); border: 1px solid var(--line); border-radius: 8px; padding: .3rem .45rem; }
+  .dates input:hover { background: var(--hover); }
+  .legend { display: flex; align-items: center; gap: .5rem; font-family: var(--ui); font-size: 12px; font-weight: 600; color: var(--muted); margin-top: 1rem; }
+  .legend::before { content: ""; width: 2px; height: 14px; background: var(--navy); }
+
+  /* Métricas */
+  .kpis { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: .75rem; }
+  .kpi { padding: .9rem 1rem; border-radius: 12px; background: var(--card); border: 1px solid var(--line); }
+  .kpi span { display: block; font-family: var(--ui); font-size: 13px; font-weight: 600; color: var(--navy); }
+  .kpi .bar-row { display: flex; align-items: center; gap: .5rem; margin-top: .6rem; }
+  .kpi .bar { flex: 1; margin: 0; }
+  .kpi em { font-style: normal; font-family: var(--ui); font-size: 10px; font-weight: 700; color: var(--blue); min-width: 2.2rem; text-align: right; }
+  .kpi small { display: block; margin-top: .35rem; font-size: 12px; font-weight: 600; color: var(--muted); }
+  .log { list-style: none; margin: 0; padding: 0; }
+  .log li { display: grid; grid-template-columns: 7rem 1fr; gap: .75rem; padding: .6rem 0; border-bottom: 1px solid var(--line); }
+  .log time { font-family: var(--ui); font-size: 12px; font-weight: 600; color: var(--muted); display: flex; align-items: center; gap: .35rem; }
+  .log time::before { content: ""; width: 7px; height: 7px; border-radius: 50%; background: var(--online); flex: none; }
+  .log small { display: block; color: var(--muted); font-size: 12px; font-weight: 600; }
+  .empty { padding: 1rem; border-radius: 12px; background: var(--card); color: var(--muted); }
+
+  .sheet-foot { display: flex; justify-content: space-between; gap: .75rem; padding: 1rem 1.5rem 1.25rem; border-top: 1px solid var(--line); }
+  .sheet-foot button { flex: 1; padding: .7rem 1rem; border-radius: 10px; border: 1px solid var(--line); background: var(--white); color: var(--ink); font-size: 14px; font-weight: 600; cursor: pointer; }
+  .sheet-foot button:hover:not(:disabled) { background: var(--hover); }
+  .sheet-foot button.primary { background: var(--blue); color: var(--white); border-color: var(--blue); }
+  .sheet-foot button.primary:hover { background: var(--blue); opacity: .92; }
+  .sheet-foot button:disabled { opacity: .35; cursor: default; }
+
+  @media (max-width: 760px) {
+    .overlay { align-items: flex-end; padding: 0; }
+    .sheet { max-width: none; max-height: 92vh; border-radius: 18px 18px 0 0; transform: translateY(100%); padding-bottom: env(safe-area-inset-bottom, 0px); }
+    .sheet::before { content: ""; display: block; width: 44px; height: 5px; border-radius: 5px; background: var(--line); margin: .6rem auto 0; }
+    .sheet-head { padding: .9rem 1.15rem; }
+    .sheet-body { padding: 1rem 1.15rem 1.25rem; }
+    .sheet-foot { padding: .9rem 1.15rem 1.15rem; position: sticky; bottom: 0; background: var(--white); }
+    .log li { grid-template-columns: 1fr; gap: .1rem; }
+  }
+  footer { margin-top: clamp(2rem, 5vw, 3rem); color: var(--muted); font-family: var(--ui); font-size: 12px; font-weight: 600; }
+  body.locked { overflow: hidden; }
+  @media (prefers-reduced-motion: reduce) {
+    .river .flow { animation: none; }
+    .overlay, .sheet, .node, .bar i { transition: none; }
+  }
+
+  /* ---------- Formas redondeadas ---------- */
+  .node, .step-btn .num { border-radius: 50%; }
+  .sheet-num { border-radius: 50%; }
+  .order { border-radius: 50%; }
+  .hint span { border-radius: 50%; }
+  .sheet { border-radius: 24px; }
+  details.front, .row, .kpi, .pillar, .empty { border-radius: 16px; }
+  .sheet-foot button { border-radius: 999px; }
+  .dates input { border-radius: 999px; padding: .35rem .75rem; }
+
+  /* Casillas redondas tipo iPhone */
+  .tasks input[type="checkbox"] {
+    -webkit-appearance: none; appearance: none;
+    width: 22px; height: 22px; margin: 0; border-radius: 50%;
+    border: 1.5px solid rgba(20, 33, 57, 0.22); background: var(--white);
+    cursor: pointer; transition: background .15s ease, border-color .15s ease;
+  }
+  .tasks input[type="checkbox"]:hover { border-color: var(--blue); }
+  .tasks input[type="checkbox"]:checked {
+    background: var(--blue) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 12 10'%3E%3Cpath d='M1.2 5.2l3.2 3.1L10.8 1.6' fill='none' stroke='white' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E") center / 12px no-repeat;
+    border-color: var(--blue);
+  }
+  .tasks label { grid-template-columns: 22px 1fr; align-items: center; }
+
+  /* Barra de desplazamiento discreta */
+  .sheet, body { scrollbar-width: thin; scrollbar-color: rgba(20, 33, 57, 0.18) transparent; }
+  .sheet::-webkit-scrollbar, body::-webkit-scrollbar { width: 6px; }
+  .sheet::-webkit-scrollbar-track, body::-webkit-scrollbar-track { background: transparent; margin: 18px 0; }
+  .sheet::-webkit-scrollbar-thumb, body::-webkit-scrollbar-thumb { background: rgba(20, 33, 57, 0.18); border-radius: 999px; }
+  .sheet::-webkit-scrollbar-thumb:hover { background: rgba(20, 33, 57, 0.3); }
+  .sheet::-webkit-scrollbar-button, body::-webkit-scrollbar-button { display: none; height: 0; }
+
+  /* ---------- Encabezado de la vista ---------- */
+  .head-actions { margin-left: auto; display: flex; align-items: center; gap: .5rem; flex: none; }
+  .pill {
+    height: 36px; padding: 0 16px; border-radius: 999px; border: 0; cursor: pointer;
+    background: var(--hover); color: var(--blue); font-size: 13px; font-weight: 600;
+  }
+  .pill:hover { background: var(--hover-2); }
+  .pill.primary { background: var(--blue); color: var(--white); font-weight: 700; }
+  .pill.primary:hover { opacity: .92; }
+  .pill.ghost { background: transparent; color: var(--muted); }
+  .pill.ghost:hover { background: var(--hover); }
+  .head-actions .close { margin-left: 0; }
+  .sheet.editing .sheet-foot { display: none; }
+  .text-block { white-space: pre-line; }
+
+  /* ---------- Modo edición ---------- */
+  .edit-banner { display: flex; align-items: center; gap: .5rem; padding: .6rem .9rem; margin-bottom: 1rem; border-radius: 999px; background: var(--hover); color: var(--blue); font-family: var(--ui); font-size: 12px; font-weight: 600; }
+  .elabel { display: block; font-family: var(--ui); font-size: 11px; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase; color: var(--muted); margin: .25rem 0 .4rem .25rem; }
+  .egroup, .eblock { background: var(--card); border: 1px solid var(--line); border-radius: 18px; padding: .9rem; margin-bottom: .9rem; display: grid; gap: .5rem; }
+  .ehead { display: flex; align-items: center; gap: .6rem; }
+  .ehead .etype { font-family: var(--ui); font-size: 14px; font-weight: 600; color: var(--navy); }
+  .ef {
+    width: 100%; border: 1px solid var(--line); background: var(--white); color: var(--ink);
+    border-radius: 12px; padding: .6rem .8rem; font-family: var(--body); font-size: 14px; font-weight: 500; letter-spacing: -0.01em; line-height: 1.45;
+  }
+  textarea.ef { resize: none; overflow: hidden; min-height: 2.6rem; display: block; }
+  .ef:focus { outline: none; border-color: var(--blue); box-shadow: 0 0 0 3px var(--hover); }
+  .ef-h { font-family: var(--ui); font-weight: 600; color: var(--navy); }
+  .erow { display: grid; grid-template-columns: 24px 1fr; gap: .6rem; align-items: start; }
+  .erow > .minus { margin-top: .55rem; }
+  .estack { display: grid; gap: .4rem; }
+  .efront { background: var(--white); border: 1px solid var(--line); border-radius: 16px; padding: .75rem; display: grid; gap: .6rem; }
+  .etasks { display: grid; gap: .4rem; padding-left: 2.1rem; }
+  .minus {
+    width: 22px; height: 22px; flex: none; border-radius: 50%; border: 0; padding: 0; cursor: pointer;
+    background: var(--danger); position: relative;
+  }
+  .minus::after { content: ""; position: absolute; left: 6px; right: 6px; top: 50%; height: 2px; margin-top: -1px; border-radius: 2px; background: var(--white); }
+  .plus {
+    display: inline-flex; align-items: center; gap: .5rem; justify-self: start;
+    border: 0; background: transparent; padding: .35rem .25rem; cursor: pointer;
+    color: var(--blue); font-size: 14px; font-weight: 600; border-radius: 999px;
+  }
+  .plus::before {
+    content: "+"; display: grid; place-items: center; width: 22px; height: 22px; border-radius: 50%;
+    background: var(--blue); color: var(--white); font-size: 16px; font-weight: 700; line-height: 1;
+  }
+  .plus:hover { background: var(--hover); }
+  .add-sections { display: flex; flex-wrap: wrap; gap: .5rem; align-items: center; margin-top: .25rem; }
+  .add-sections .pill { height: 32px; font-size: 13px; }
+  .edate { display: grid; grid-template-columns: 1fr auto; gap: .75rem; align-items: center; padding: .5rem 0; border-bottom: 1px solid var(--line); }
+  .edate input { font-family: var(--ui); font-size: 13px; font-weight: 600; color: var(--ink); border: 1px solid var(--line); border-radius: 999px; padding: .3rem .7rem; background: var(--white); }
+  .emeta { color: var(--muted); font-size: 12px; font-weight: 600; font-family: var(--ui); }
+  @media (max-width: 760px) {
+    .sheet-head h2 { font-size: 15px; }
+    .pill { padding: 0 13px; }
+    .etasks { padding-left: 0; }
+  }
+
+  /* Avance general desplegable */
+  details.overall { padding: 0; min-width: 260px; align-self: start; }
+  details.overall summary { list-style: none; cursor: pointer; display: flex; align-items: center; justify-content: space-between; gap: 1rem; padding: .85rem 1.15rem; border-radius: 16px; }
+  details.overall summary::-webkit-details-marker { display: none; }
+  details.overall summary:hover { background: var(--hover); }
+  details.overall summary .eyebrow { margin: 0; }
+  .ov-sum { display: flex; align-items: center; gap: .6rem; }
+  details.overall .ov-sum b { font-size: 20px; margin: 0; }
+  .chev { width: 28px; height: 28px; border-radius: 50%; background: var(--hover); position: relative; transition: transform .2s ease; }
+  .chev::after { content: ""; position: absolute; left: 50%; top: 45%; width: 7px; height: 7px; border-right: 2px solid var(--blue); border-bottom: 2px solid var(--blue); transform: translate(-50%, -50%) rotate(45deg); }
+  details.overall[open] .chev { transform: rotate(180deg); }
+  .ov-body { padding: 0 1.15rem 1rem; }
+  .ov-body small { margin-top: 0; }
+  header { align-items: start; }
+  header > div:first-child { padding-top: .25rem; }
+
+  /* Río en zigzag para celular */
+  .map-m { display: none; position: relative; width: 100%; aspect-ratio: 360 / 840; margin-top: 2rem; }
+  .map-m svg.river { position: absolute; inset: 0; width: 100%; height: 100%; overflow: visible; }
+  .map-m .river .bank { stroke-width: 30; }
+  .map-m .river .water { stroke-width: 12; }
+  .map-m .node { width: 52px; height: 52px; font-size: 18px; }
+  .m-label { position: absolute; transform: translateY(-50%); width: 56%; pointer-events: none; }
+  .m-label.left { left: calc(19.4% + 36px); text-align: left; }
+  .m-label.right { right: calc(19.4% + 36px); text-align: right; }
+  .m-label strong { display: block; font-family: var(--ui); font-weight: 600; font-size: 16px; line-height: 1.25; color: var(--navy); }
+  .m-label small { display: block; margin-top: .15rem; color: var(--muted); font-family: var(--ui); font-size: 12px; font-weight: 600; }
+  @media (max-width: 760px) {
+    .map-m { display: block; }
+    details.overall { min-width: 0; width: 100%; }
+  }
+
+  /* Logo + palabra roadmap con el trazo del logotipo */
+  h1.lockup { display: flex; flex-direction: column; align-items: flex-start; gap: clamp(28px, 4vw, 44px); margin: 0 0 1.25rem; }
+  .logo { display: block; width: 72px; height: auto; }
+  .wordmark { display: block; width: clamp(150px, 15vw, 190px); height: auto; color: var(--blue); overflow: visible; }
+  @media (max-width: 760px) {
+    .logo { width: 56px; }
+    .wordmark { width: 150px; }
+  }
+  .sr-only { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; border: 0; }
+
+  /* Cajas redondeadas */
+  .box { background: var(--white); border: 1px solid var(--line); border-radius: 28px; box-shadow: 0 2px 6px rgba(74, 114, 176, 0.08), 0 14px 40px rgba(74, 114, 176, 0.16); }
+  header.box { padding: clamp(1.25rem, 3vw, 2.25rem); }
+  .road { margin-top: clamp(1rem, 2vw, 1.5rem); padding: clamp(5.5rem, 8vw, 7rem) clamp(1.5rem, 3vw, 2.5rem) clamp(4.5rem, 7vw, 6rem); }
+  .road .map { margin-top: 0; }
+  .road .node { border-color: var(--white); }
+  details.overall { background: var(--card); }
+  @media (max-width: 760px) {
+    header.box { border-radius: 24px; }
+    .road { border-radius: 24px; padding: 1.5rem 1rem; }
+    .road .map-m { margin-top: 0; }
+  }
+
+  .road { padding-top: clamp(1.25rem, 2.5vw, 1.75rem); }
+  .road-hint { margin: 0; }
+  .road .map { margin-top: clamp(6rem, 9vw, 7.5rem); }
+  @media (max-width: 760px) {
+    .road { padding-top: 1.25rem; }
+    .road .map-m { margin-top: 1.25rem; }
+  }
+
+  /* Indicación centrada */
+  .road-hint { display: flex; width: fit-content; max-width: 100%; margin: 0 auto; justify-content: center; align-items: center; gap: .6rem; padding: .55rem 1rem .55rem .6rem; border-radius: 999px; background: var(--hover); text-align: left; }
+  .road-hint span { flex: none; }
+
+  /* Burbujas de las etapas */
+  .label, .m-label {
+    background: var(--card); border: 1px solid var(--line); border-radius: 16px;
+    padding: .6rem .9rem; box-shadow: 0 6px 18px rgba(74, 114, 176, 0.12);
+  }
+  .label { width: max-content; max-width: 13rem; }
+  .m-label { width: fit-content; max-width: 58%; padding: .55rem .8rem; }
+  .label small, .m-label small { margin-top: .15rem; }
+  @media (max-width: 760px) {
+    .road-hint { border-radius: 16px; padding: .6rem .8rem; }
+  }
+  @media (max-width: 760px) { .road .map-m { margin-top: 2rem; } }
+  svg.logo { color: var(--blue); shape-rendering: geometricPrecision; }
+
+  /* Introducción editable */
+  .intro { display: grid; gap: .75rem; max-width: 44rem; }
+  .intro .lead { max-width: none; }
+  .intro-input { width: 100%; }
+  .intro-actions { display: flex; gap: .5rem; }
+  .intro-actions .pill { height: 32px; }
+  [hidden] { display: none !important; }
+
+  /* Botón Editar al lado de "roadmap" */
+  svg.logo { display: block; margin-bottom: clamp(28px, 4vw, 44px); }
+  .title-row { display: flex; align-items: center; gap: 1rem; flex-wrap: wrap; margin-bottom: 1.25rem; }
+  .title-row h1.lockup { margin: 0; }
+  .title-row .intro-actions { margin-top: 6px; }
+
+  /* Viñetas circulares */
+  .items li { grid-template-columns: 1.25rem 1fr; }
+  .items li::before {
+    width: 8px; height: 8px; margin: .42rem 0 0 3px; border-radius: 50%;
+    background: var(--blue); box-shadow: 0 0 0 4px var(--hover);
+  }
+
+  /* Reordenar arrastrando */
+  .erow.drag { grid-template-columns: 24px 1fr 28px; }
+  .ehead .ef-h, .ehead .etype { flex: 1; }
+  .grip {
+    width: 28px; height: 38px; flex: none; border: 0; background: transparent; border-radius: 10px;
+    display: grid; align-content: center; justify-items: center; gap: 3px; cursor: grab; touch-action: none; padding: 0;
+  }
+  .grip i { display: block; width: 14px; height: 2px; border-radius: 2px; background: var(--muted); opacity: .6; }
+  .grip:hover { background: var(--hover); }
+  .grip:hover i { opacity: 1; }
+  .erow.drag > .grip { margin-top: .1rem; }
+  .sortable { display: grid; gap: .5rem; }
+  [data-drag-item] { position: relative; transition: box-shadow .15s ease; }
+  .eblock[data-drag-item] { margin-bottom: 0; }
+  .sortable:has(> .eblock) { gap: .9rem; margin-bottom: .9rem; }
+  .dragging { z-index: 5; cursor: grabbing; box-shadow: 0 12px 30px rgba(74, 114, 176, 0.25); border-radius: 14px; background: var(--white); }
+  .dragging .grip { cursor: grabbing; }
+  body.no-select, body.no-select * { user-select: none; -webkit-user-select: none; }
+
+  /* Conexión con GitHub */
+  .sync.err::before { background: var(--error); }
+  .gh { display: grid; gap: .5rem; margin-top: .75rem; }
+  .gh-form { display: grid; gap: .5rem; }
+  .gh .pill { height: 32px; justify-self: start; }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header class="box">
+    <div>
+      <svg class="logo" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Inciti" viewBox="0 0 1600.000000 683.000000"><g transform="translate(0.000000,683.000000) scale(0.100000,-0.100000)" fill="currentColor"><path d="M3456 6809 c-349 -87 -482 -532 -242 -805 214 -243 609 -210 786 65 163 256 52 602 -230 717 -73 30 -239 42 -314 23z M7825 6806 c-290 -70 -446 -413 -313 -686 220 -452 904 -321 935 180 21 339 -285 588 -622 506z M12181 6804 c-351 -94 -469 -539 -215 -813 264 -285 762 -143 834 238 70 373 -253 674 -619 575z M3515 4640 c-208 -33 -352 -155 -400 -337 -13 -50 -16 -171 -16 -833 0 -819 -5 -932 -43 -1115 -179 -841 -823 -1375 -1661 -1375 -243 0 -387 28 -625 120 -346 134 -584 69 -710 -196 -168 -351 18 -623 530 -778 834 -251 1678 -114 2366 385 675 490 1043 1126 1104 1908 17 222 13 1790 -5 1874 -28 134 -112 236 -248 301 -101 49 -188 62 -292 46z M12285 4640 c-189 -39 -324 -162 -369 -337 -14 -53 -16 -164 -16 -851 0 -808 -4 -908 -41 -1106 -113 -607 -580 -1132 -1154 -1298 -487 -141 -1061 -52 -1479 230 -274 185 -573 619 -641 929 -7 36 -25 45 -25 13 0 -36 -87 -363 -125 -465 -65 -182 -149 -339 -334 -632 -39 -61 -39 -60 52 -166 622 -724 1570 -1074 2486 -917 1130 194 2027 1075 2203 2165 25 149 41 1932 19 2071 -39 252 -304 419 -576 364z M7829 4621 c-162 -52 -278 -168 -321 -323 -8 -31 -13 -291 -18 -953 -6 -893 -6 -912 -28 -1010 -169 -759 -704 -1253 -1451 -1340 -849 -100 -1595 383 -1827 1181 -18 62 -28 59 -39 -11 -51 -312 -225 -724 -433 -1019 -56 -79 -55 -83 37 -190 1145 -1329 3172 -1254 4229 157 286 382 432 753 478 1217 23 234 22 1882 -2 1972 -65 254 -360 404 -625 319z M12957 2203 c-2 -4 -12 -44 -22 -88 -75 -348 -220 -684 -420 -965 -57 -81 -55 -90 33 -188 580 -649 1233 -947 2072 -947 452 0 774 71 1120 245 333 168 340 655 11 854 -145 88 -275 86 -502 -9 -596 -251 -1353 -117 -1819 322 -176 166 -350 444 -426 683 -28 88 -38 108 -47 93z"/></g></svg>
+      <div class="title-row">
+      <h1 class="lockup">
+        <svg class="wordmark" viewBox="0 0 832 202" role="img" aria-label="roadmap">
+          <g fill="none" stroke="currentColor" stroke-width="16" stroke-linecap="butt" stroke-linejoin="round">
+            <path d="M8 150V50M8 100A42 42 0 0 1 50 58H60"/>
+            <circle cx="130" cy="100" r="42"/>
+            <circle cx="248" cy="100" r="42"/><path d="M290 50V150"/>
+            <circle cx="366" cy="100" r="42"/><path d="M408 0V150"/>
+            <path d="M442 150V50M442 100A36 36 0 0 1 514 100V150M514 100A36 36 0 0 1 586 100V150"/>
+            <circle cx="662" cy="100" r="42"/><path d="M704 50V150"/>
+            <path d="M738 202V50"/><circle cx="780" cy="100" r="42"/>
+          </g>
+        </svg>
+        <span class="sr-only">Roadmap Inciti</span>
+      </h1>
+        <div class="intro-actions">
+          <button class="pill ghost" id="introCancel" hidden>Cancelar</button>
+          <button class="pill" id="introEditBtn">Editar</button>
+        </div>
+      </div>
+      <div class="intro">
+        <p class="lead text-block" id="introText"></p>
+        <textarea class="ef intro-input" id="introInput" rows="4" hidden aria-label="Texto de introducción"></textarea>
+      </div>
+    </div>
+    <details class="overall" id="overall">
+      <summary>
+        <span class="eyebrow">Avance general</span>
+        <span class="ov-sum"><b id="overallPct">0%</b><span class="chev" aria-hidden="true"></span></span>
+      </summary>
+      <div class="ov-body" aria-live="polite">
+        <small id="overallTxt">0 de 0 tareas completadas</small>
+        <div class="bar"><i id="overallBar"></i></div>
+        <div class="sync" id="sync">Conectando…</div>
+        <div class="gh">
+          <div class="gh-form" id="ghForm" hidden>
+            <input class="ef" id="ghToken" type="password" autocomplete="off" placeholder="Pega aquí tu token de GitHub">
+            <button class="pill primary" id="ghConnect">Conectar</button>
+          </div>
+          <button class="pill" id="ghToggle">Conectar para editar</button>
+        </div>
+      </div>
+    </details>
+  </header>
+
+  <section class="box road" aria-label="Etapas del roadmap">
+    <p class="hint road-hint"><span aria-hidden="true">!</span> Toca un número para abrir cada etapa. Usa Editar para cambiar o añadir contenido.</p>
+  <div class="map" id="map">
+    <svg class="river" viewBox="0 0 1200 520" preserveAspectRatio="none" aria-hidden="true">
+      <defs><path id="riverPath" d="M0 220 H150 Q200 220 200 270 V350 Q200 400 250 400 H350 Q400 400 400 350 V140 Q400 90 450 90 H540 Q590 90 590 140 V280 Q590 330 640 330 H740 Q790 330 790 280 V220 Q790 170 840 170 H930 Q980 170 980 220 V330 Q980 380 1030 380 H1200"/></defs>
+      <use href="#riverPath" class="bank"/>
+      <use href="#riverPath" class="water"/>
+      <use href="#riverPath" class="flow"/>
+    </svg>
+    <div id="mapNodes"></div>
+  </div>
+  <div class="map-m" id="mapM">
+    <svg class="river" id="riverM" viewBox="0 0 360 840" preserveAspectRatio="none" aria-hidden="true"></svg>
+    <div id="mapMNodes"></div>
+  </div>
+  </section>
+
+</div>
+
+<div class="overlay" id="overlay" aria-hidden="true">
+  <div class="sheet" id="sheet" role="dialog" aria-modal="true" aria-labelledby="sheetTitle">
+    <div class="sheet-head">
+      <div class="sheet-num" id="sheetNum">1</div>
+      <div><h2 id="sheetTitle"></h2><p id="sheetSub"></p></div>
+      <div class="head-actions">
+        <button class="pill ghost" id="cancelBtn" hidden>Cancelar</button>
+        <button class="pill" id="editBtn">Editar</button>
+        <button class="close" id="closeBtn" aria-label="Cerrar">×</button>
+      </div>
+    </div>
+    <div class="sheet-body" id="sheetBody"></div>
+    <div class="sheet-foot">
+      <button id="prevBtn">Anterior</button>
+      <button id="nextBtn" class="primary">Siguiente</button>
+    </div>
+  </div>
+</div>
+
+<script>
+/* =========================================================
+   CONTENIDO (editable desde la página con el botón Editar)
+   ========================================================= */
+const DEFAULT_CONTENT = {
+  intro: "Este roadmap reúne en un solo lugar el plan para mejorar el Investor Portal: qué vamos a hacer, en qué orden, en qué fechas y cómo vamos avanzando.\n\nPrimero terminaremos el apartado de planos con Alex Castillo. Luego llevaremos la actualización de negocios al portal a partir del Excel, junto con Nancy. Después automatizaremos procesos con HubSpot y, al final, publicaremos la app en Google Play y App Store. Cada tarea que se marca queda registrada con su fecha, para que todo el equipo vea el avance en tiempo real.",
+  fronts: [
+    { id: "planos", name: "Planos", sub: "Primer frente · se trabaja con Alex Castillo",
+      note: "Apartado de planos dentro del Investor Portal, organizado por proyecto y por pisos, con menú desplegable.",
+      tasks: [
+        { id: "p1", text: "Reunión con Alex Castillo para definir el alcance del apartado" },
+        { id: "p2", text: "Recopilar los planos vigentes de cada proyecto" },
+        { id: "p3", text: "Organizar los planos por pisos" },
+        { id: "p4", text: "Armar el cuadro de organización: proyecto, torre, piso, unidad y tipología" },
+        { id: "p5", text: "Diseñar el apartado de planos con menú desplegable" },
+        { id: "p6", text: "Cargar los planos al portal" },
+        { id: "p7", text: "Revisar con Alex y hacer ajustes" },
+        { id: "p8", text: "Publicar el apartado de planos" } ] },
+    { id: "negocios", name: "Actualización de negocios", sub: "Segundo frente · se trabaja con Nancy",
+      note: "Que el inversionista vea sus negocios al día. Punto de partida: el Excel que se usa hoy.",
+      tasks: [
+        { id: "n1", text: "Conversación con Nancy sobre el proceso actual de actualización" },
+        { id: "n2", text: "Revisar la estructura del Excel de negocios" },
+        { id: "n3", text: "Definir qué datos verá el inversionista en el portal" },
+        { id: "n4", text: "Evaluar cómo actualizar desde el Excel: carga manual, plantilla o sincronización" },
+        { id: "n5", text: "Construir la actualización de negocios en el portal" },
+        { id: "n6", text: "Prueba piloto con negocios reales" },
+        { id: "n7", text: "Publicar la actualización de negocios" } ] },
+    { id: "auto", name: "Automatizaciones", sub: "Tercer frente · con HubSpot",
+      note: "Usar HubSpot para automatizar procesos del portal. Primero verificar de qué forma se puede hacer.",
+      tasks: [
+        { id: "a1", text: "Listar los procesos que hoy se hacen a mano" },
+        { id: "a2", text: "Verificar qué permite HubSpot: flujos de trabajo, integraciones y API" },
+        { id: "a3", text: "Definir de qué forma se conecta HubSpot con el portal" },
+        { id: "a4", text: "Priorizar qué automatizar primero" },
+        { id: "a5", text: "Implementar las automatizaciones" },
+        { id: "a6", text: "Probar y monitorear las automatizaciones" } ] },
+    { id: "apps", name: "App en Google Play y App Store", sub: "Entrega de la plataforma",
+      note: "Publicar el Investor Portal como app para Android y iOS.",
+      tasks: [
+        { id: "s1", text: "Crear o verificar cuentas de desarrollador de Google Play y Apple" },
+        { id: "s2", text: "Preparar la versión Android" },
+        { id: "s3", text: "Preparar la versión iOS" },
+        { id: "s4", text: "Fichas de tienda: capturas, descripción y política de privacidad" },
+        { id: "s5", text: "Enviar a revisión de Google y Apple" },
+        { id: "s6", text: "App publicada en Google Play y App Store" } ] }
+  ],
+  phases: [
+    { id: "planos",   name: "Planos",                      start: "2026-09-29", end: "2026-10-02" },
+    { id: "negocios", name: "Actualización de negocios",   start: "2026-10-05", end: "2026-10-23" },
+    { id: "auto",     name: "Automatizaciones HubSpot",    start: "2026-10-19", end: "2026-11-13" },
+    { id: "apps",     name: "App Google Play y App Store", start: "2026-10-26", end: "2026-12-11" }
+  ],
+  steps: [
+    { title: "Visión y estrategia", sub: "Hacia dónde llevamos el Investor Portal", blocks: [
+      { type: "text", heading: "Visión", text: "Que el Investor Portal sea el lugar donde cada inversionista de Inciti vea sus planos, el estado de sus negocios y reciba información al día, sin procesos manuales de por medio." },
+      { type: "cards", heading: "Estrategia: mejorar tres procesos", items: [
+        { title: "1. Planos", text: "Apartado con planos por proyecto y por pisos, en menú desplegable." },
+        { title: "2. Actualización de negocios", text: "Negocios al día en el portal, partiendo del Excel actual." },
+        { title: "3. Automatización", text: "Procesos automáticos con HubSpot." } ] },
+      { type: "text", heading: "Resultado final", text: "Plataforma mejorada y publicada como app en Google Play y App Store." } ] },
+    { title: "Metas y objetivos", sub: "Tareas por frente, en orden", blocks: [
+      { type: "text", heading: "", text: "Se trabaja en este orden. Abre cada frente para ver y marcar sus tareas." },
+      { type: "fronts", heading: "", ids: ["planos", "negocios", "auto"] } ] },
+    { title: "Entregables", sub: "Qué se entrega al final", blocks: [
+      { type: "list", heading: "Mejoras en el Investor Portal", items: [
+        { title: "Apartado de planos", text: "publicado, con planos por proyecto y por pisos, y su cuadro de organización." },
+        { title: "Actualización de negocios", text: "funcionando a partir del Excel, validada con Nancy." },
+        { title: "Automatizaciones en HubSpot", text: "activas para los procesos priorizados." } ] },
+      { type: "fronts", heading: "Plataforma en tiendas", ids: ["apps"] } ] },
+    { title: "Cronograma", sub: "Propuesta inicial, se puede ajustar", blocks: [
+      { type: "gantt", text: "Cambia las fechas cuando lo necesiten; el cronograma se actualiza para todos." } ] },
+    { title: "Métricas de avance", sub: "Se llenan al marcar cada tarea", blocks: [
+      { type: "metrics" } ] },
+    { title: "Riesgos y mitigación", sub: "Qué puede frenar el avance", blocks: [
+      { type: "list", heading: "Riesgos principales", items: [
+        { title: "Plazo corto para planos (esta semana).", text: "Mitigación: publicar primero un proyecto completo y sumar los demás después." },
+        { title: "Agenda de Alex Castillo y Nancy.", text: "Mitigación: reuniones fijas y cortas, con decisiones y responsables por escrito." },
+        { title: "Planos incompletos o en versiones viejas.", text: "Mitigación: que Alex valide la versión vigente antes de cargarla y mostrar la fecha de actualización en el portal." },
+        { title: "Excel con formatos distintos o errores manuales.", text: "Mitigación: una plantilla única con validaciones y un solo responsable de actualizarla." },
+        { title: "Límites de HubSpot según el plan contratado.", text: "Mitigación: verificar qué incluye el plan antes de diseñar; si no alcanza, evaluar Zapier o Make, o una integración propia." },
+        { title: "Rechazo en App Store o Google Play.", text: "Mitigación: que la app no sea solo una página web envuelta, publicar política de privacidad, permitir eliminar la cuenta desde la app y dar a los revisores un usuario de prueba." },
+        { title: "Datos personales de inversionistas.", text: "Mitigación: accesos por rol y cumplimiento de la Ley 1581 de 2012 de protección de datos." } ] } ] }
+  ]
+};
+const POS = [ [100,220,"up"], [300,400,"down"], [490,90,"up"], [690,330,"down"], [880,170,"up"], [1090,380,"down"] ];
+
+/* =========================================================
+   ESTADO
+   ========================================================= */
+const clone = o => JSON.parse(JSON.stringify(o));
+let content = clone(DEFAULT_CONTENT);
+const state = { tasks: {}, schedule: {} };
+let draft = null, editing = false, current = 0, opener = null;
+const openFronts = new Set(["planos", "apps"]);
+const LS_KEY = "inciti-roadmap-v2";
+
+function validContent(c) { return c && Array.isArray(c.steps) && c.steps.length === 6 && Array.isArray(c.fronts) && Array.isArray(c.phases); }
+function loadLocal() {
+  try {
+    const s = JSON.parse(localStorage.getItem(LS_KEY) || "{}");
+    state.tasks = s.tasks || {}; state.schedule = s.schedule || {};
+    if (validContent(s.content)) content = s.content;
+  } catch (e) {}
+}
+function saveLocal() { try { localStorage.setItem(LS_KEY, JSON.stringify({ ...state, content })); } catch (e) {} }
+
+/* =========================================================
+   UTILIDADES
+   ========================================================= */
+const $ = id => document.getElementById(id);
+const fmt = new Intl.DateTimeFormat("es-CO", { day: "numeric", month: "short", year: "numeric" });
+function fDate(iso) { if (!iso) return ""; const d = new Date(iso.length === 10 ? iso + "T12:00:00" : iso); return isNaN(d) ? "" : fmt.format(d).replace(".", ""); }
+function isoDay(d) { return d.getFullYear() + "-" + String(d.getMonth() + 1).padStart(2, "0") + "-" + String(d.getDate()).padStart(2, "0"); }
+function uid(p) { return p + Date.now().toString(36) + Math.random().toString(36).slice(2, 6); }
+function esc(s) { return String(s ?? "").replace(/[&<>"]/g, c => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c])); }
+function getAt(obj, path) { return path.split(".").reduce((o, k) => o == null ? o : o[k], obj); }
+function setAt(obj, path, val) { const ks = path.split("."); const last = ks.pop(); getAt(obj, ks.join("."))[last] = val; }
+function allTasks() { const m = {}; content.fronts.forEach(f => f.tasks.forEach(t => m[t.id] = { text: t.text, front: f.name })); return m; }
+function frontStats(f) { const done = f.tasks.filter(t => state.tasks[t.id]?.done).length; const total = f.tasks.length; return { done, total, pct: total ? Math.round(done / total * 100) : 0 }; }
+function phase(p) { const o = state.schedule[p.id] || {}; return { ...p, start: o.start || p.start, end: o.end || p.end }; }
+
+/* =========================================================
+   MAPA (PC) Y LISTA (CELULAR)
+   ========================================================= */
+const MPOS = [0,1,2,3,4,5].map(i => [i % 2 ? 290 : 70, 70 + i * 140]);
+(function drawMobileRiver() {
+  const r = 30; let d = `M${MPOS[0][0]} 0 V${MPOS[0][1]}`;
+  for (let i = 0; i < MPOS.length - 1; i++) {
+    const [xa, ya] = MPOS[i], [xb] = MPOS[i + 1], mid = ya + 70, dir = xb > xa ? 1 : -1;
+    d += ` V${mid - r} Q${xa} ${mid} ${xa + dir * r} ${mid} H${xb - dir * r} Q${xb} ${mid} ${xb} ${mid + r} V${MPOS[i + 1][1]}`;
+  }
+  d += " V840";
+  $("riverM").innerHTML = `<defs><path id="riverPathM" d="${d}"/></defs><use href="#riverPathM" class="bank"/><use href="#riverPathM" class="water"/><use href="#riverPathM" class="flow"/>`;
+})();
+function buildMap() {
+  renderIntro();
+  const nodes = $("mapNodes"); nodes.innerHTML = ""; $("mapMNodes").innerHTML = "";
+  content.steps.forEach((s, i) => {
+    const [x, y, pos] = POS[i];
+    const btn = document.createElement("button");
+    btn.className = "node"; btn.textContent = i + 1;
+    btn.style.left = (x / 1200 * 100) + "%"; btn.style.top = (y / 520 * 100) + "%";
+    btn.setAttribute("aria-label", `Paso ${i + 1}: ${s.title}`);
+    btn.setAttribute("aria-expanded", overlay.classList.contains("open") && i === current ? "true" : "false");
+    btn.addEventListener("click", () => openStep(i, btn));
+    nodes.appendChild(btn);
+    const label = document.createElement("div");
+    label.className = "label " + pos; label.style.left = btn.style.left; label.style.top = btn.style.top;
+    label.innerHTML = `<strong>${esc(s.title)}</strong><small>${esc(s.sub)}</small>`;
+    nodes.appendChild(label);
+    const [mx, my] = MPOS[i];
+    const mb = document.createElement("button");
+    mb.className = "node"; mb.textContent = i + 1;
+    mb.style.left = (mx / 360 * 100) + "%"; mb.style.top = (my / 840 * 100) + "%";
+    mb.setAttribute("aria-label", `Paso ${i + 1}: ${s.title}`);
+    mb.addEventListener("click", () => openStep(i, mb));
+    $("mapMNodes").appendChild(mb);
+    const ml = document.createElement("div");
+    ml.className = "m-label " + (i % 2 ? "right" : "left"); ml.style.top = mb.style.top;
+    ml.innerHTML = `<strong>${esc(s.title)}</strong><small>${esc(s.sub)}</small>`;
+    $("mapMNodes").appendChild(ml);
+  });
+}
+
+/* =========================================================
+   VISTA NORMAL
+   ========================================================= */
+function frontBlock(f) {
+  const n = content.fronts.indexOf(f) + 1;
+  return `<details class="front" data-front="${esc(f.id)}" ${openFronts.has(f.id) ? "open" : ""}>
+    <summary><span class="order">${n}</span><span class="front-title"><strong>${esc(f.name)}</strong><small>${esc(f.sub)}</small></span><span class="front-count" data-count="${esc(f.id)}"></span></summary>
+    ${f.note ? `<p class="note">${esc(f.note)}</p>` : ""}
+    <ul class="tasks">${f.tasks.map(t => `
+      <li><label><input type="checkbox" data-task="${esc(t.id)}"><span><span class="t">${esc(t.text)}</span><span class="d" data-date="${esc(t.id)}"></span></span></label></li>`).join("")}</ul>
+    ${f.tasks.length ? "" : `<p class="note" style="padding-bottom:1rem">Sin tareas todavía. Usa Editar para añadirlas.</p>`}
+  </details>`;
+}
+function viewBlock(b) {
+  const h = b.heading ? `<h3>${esc(b.heading)}</h3>` : "";
+  switch (b.type) {
+    case "text": return h + `<p class="text-block">${esc(b.text)}</p>`;
+    case "cards": return h + `<div class="pillars">${b.items.map(it => `<div class="pillar"><b>${esc(it.title)}</b><span>${esc(it.text)}</span></div>`).join("")}</div>`;
+    case "list": return h + `<ul class="items">${b.items.map(it => `<li><div>${it.title ? `<b>${esc(it.title)}</b> ` : ""}${esc(it.text)}</div></li>`).join("")}</ul>`;
+    case "fronts": return h + b.ids.map(id => content.fronts.find(f => f.id === id)).filter(Boolean).map(frontBlock).join("");
+    case "gantt": return (b.text ? `<p class="text-block">${esc(b.text)}</p>` : "") + `<div class="gantt" id="gantt">${content.phases.map(p => `
+        <div class="row">
+          <div class="row-head"><strong>${esc(p.name)}</strong><span data-range="${esc(p.id)}"></span></div>
+          <div class="track" data-track="${esc(p.id)}"><i></i><span class="today"></span></div>
+          <div class="dates">
+            <label>Inicio <input type="date" data-phase="${esc(p.id)}" data-field="start"></label>
+            <label>Fin <input type="date" data-phase="${esc(p.id)}" data-field="end"></label>
+          </div>
+        </div>`).join("")}</div><div class="legend">Línea navy: hoy</div>`;
+    case "metrics": return `<h3>Avance por frente</h3><div class="kpis" id="kpis"></div><h3>Historial de tareas completadas</h3><div id="log"></div>`;
+  }
+  return "";
+}
+
+/* =========================================================
+   MODO EDICIÓN (tipo iPhone)
+   ========================================================= */
+function ta(bind, val, ph) { return `<textarea class="ef" rows="1" data-bind="${bind}" placeholder="${ph || ""}">${esc(val)}</textarea>`; }
+function inp(bind, val, ph, cls) { return `<input class="ef ${cls || ""}" data-bind="${bind}" value="${esc(val)}" placeholder="${ph || ""}">`; }
+function minus(attrs, label) { return `<button class="minus" ${attrs} aria-label="${label}"></button>`; }
+
+const GRIP = `<button type="button" class="grip" data-grip aria-label="Mantén presionado y arrastra para mover"><i></i><i></i><i></i></button>`;
+function sortable(arrPath, rows) { return `<div class="sortable" data-arr="${arrPath}">${rows}</div>`; }
+
+function editBlock(b, p, bi) {
+  const names = { text: "Texto", cards: "Tarjetas", list: "Lista", fronts: "Frentes con tareas", gantt: "Cronograma", metrics: "Métricas" };
+  const canDelete = !["gantt", "metrics"].includes(b.type);
+  const hasHeading = ["text", "cards", "list", "fronts"].includes(b.type);
+  let head = `<div class="ehead">${canDelete ? minus(`data-act="del" data-path="${p}"`, "Eliminar sección") : ""}${hasHeading ? inp(p + ".heading", b.heading, "Título de la sección (opcional)", "ef-h") : `<span class="etype">${names[b.type]}</span>`}${GRIP}</div>`;
+  let body = "";
+  if (b.type === "text") body = ta(p + ".text", b.text, "Escribe el texto");
+  if (b.type === "cards" || b.type === "list") {
+    body = sortable(p + ".items", b.items.map((it, i) => `<div class="erow drag" data-drag-item data-idx="${i}">${minus(`data-act="del" data-path="${p}.items.${i}"`, "Eliminar elemento")}<div class="estack">${inp(`${p}.items.${i}.title`, it.title, "Título", "ef-h")}${ta(`${p}.items.${i}.text`, it.text, "Detalle")}</div>${GRIP}</div>`).join(""))
+      + `<button class="plus" data-act="add" data-path="${p}.items" data-tpl="item">Añadir elemento</button>`;
+  }
+  if (b.type === "fronts") {
+    body = sortable(p + ".ids", b.ids.map((id, idx) => {
+      const fi = draft.fronts.findIndex(f => f.id === id); if (fi < 0) return "";
+      const f = draft.fronts[fi], fp = "fronts." + fi;
+      return `<div class="efront" data-drag-item data-idx="${idx}">
+        <div class="erow drag">${minus(`data-act="delfront" data-id="${esc(id)}"`, "Eliminar frente")}<div class="estack">${inp(fp + ".name", f.name, "Nombre del frente", "ef-h")}${inp(fp + ".sub", f.sub, "Subtítulo")}${ta(fp + ".note", f.note, "Descripción")}</div>${GRIP}</div>
+        <div class="etasks"><span class="elabel">Tareas</span>
+          ${sortable(fp + ".tasks", f.tasks.map((t, ti) => `<div class="erow drag" data-drag-item data-idx="${ti}">${minus(`data-act="del" data-path="${fp}.tasks.${ti}"`, "Eliminar tarea")}${ta(`${fp}.tasks.${ti}.text`, t.text, "Describe la tarea")}${GRIP}</div>`).join(""))}
+          <button class="plus" data-act="add" data-path="${fp}.tasks" data-tpl="task">Añadir tarea</button>
+        </div></div>`;
+    }).join("")) + `<button class="plus" data-act="addfront" data-path="${p}.ids">Añadir frente</button>`;
+  }
+  if (b.type === "gantt") {
+    body = ta(p + ".text", b.text, "Texto de introducción")
+      + `<span class="elabel">Fases</span>`
+      + sortable("phases", draft.phases.map((ph, i) => `<div class="erow drag" data-drag-item data-idx="${i}">${minus(`data-act="del" data-path="phases.${i}"`, "Eliminar fase")}${inp(`phases.${i}.name`, ph.name, "Nombre de la fase", "ef-h")}${GRIP}</div>`).join(""))
+      + `<button class="plus" data-act="add" data-path="phases" data-tpl="phase">Añadir fase</button>
+         <span class="emeta">Las fechas de cada fase se cambian desde la vista normal.</span>`;
+  }
+  if (b.type === "metrics") {
+    const at = allTasks();
+    const done = Object.entries(state.tasks).filter(([id, t]) => t?.done && at[id]).sort((a, b) => (b[1].doneAt || "").localeCompare(a[1].doneAt || ""));
+    body = `<span class="emeta">Las métricas se calculan solas al marcar tareas. Aquí puedes corregir la fecha en que se completó cada una.</span>`
+      + (done.length ? done.map(([id, t]) => `<div class="edate"><span>${esc(at[id].text)}<br><span class="emeta">${esc(at[id].front)}</span></span><input type="date" data-done="${esc(id)}" value="${esc((t.doneAt || "").slice(0, 10))}"></div>`).join("")
+        : `<div class="empty">Aún no hay tareas completadas.</div>`);
+  }
+  return `<div class="eblock" data-drag-item data-idx="${bi}">${head}${body}</div>`;
+}
+
+/* ---------- Arrastrar para reordenar (ratón y dedo) ---------- */
+let drag = null;
+document.addEventListener("pointerdown", e => {
+  const g = e.target.closest("[data-grip]"); if (!g || !editing) return;
+  const item = g.closest("[data-drag-item]"), list = item && item.parentElement;
+  if (!list || !list.matches(".sortable")) return;
+  e.preventDefault();
+  const r = item.getBoundingClientRect();
+  drag = { item, list, startY: e.clientY, offset: 0, pid: e.pointerId, g };
+  g.setPointerCapture(e.pointerId);
+  item.classList.add("dragging"); list.classList.add("sorting"); document.body.classList.add("no-select");
+});
+document.addEventListener("pointermove", e => {
+  if (!drag || e.pointerId !== drag.pid) return;
+  const { item, list } = drag;
+  // desplazamiento automático cerca de los bordes
+  const sheet = $("sheet"), sr = sheet.getBoundingClientRect();
+  if (e.clientY < sr.top + 80) sheet.scrollTop -= 10; else if (e.clientY > sr.bottom - 80) sheet.scrollTop += 10;
+  const sibs = [...list.children].filter(el => el !== item && el.matches("[data-drag-item]"));
+  let before = null;
+  for (const s of sibs) { const b = s.getBoundingClientRect(); if (e.clientY < b.top + b.height / 2) { before = s; break; } }
+  const prevTop = item.getBoundingClientRect().top;
+  if (before) { if (item.nextElementSibling !== before) list.insertBefore(item, before); }
+  else if (list.lastElementChild !== item) list.appendChild(item);
+  const nowTop = item.getBoundingClientRect().top;
+  drag.startY += nowTop - prevTop;
+  item.style.transform = `translateY(${e.clientY - drag.startY}px)`;
+});
+function endDrag() {
+  if (!drag) return;
+  const { item, list } = drag; drag = null;
+  item.classList.remove("dragging"); item.style.transform = ""; list.classList.remove("sorting"); document.body.classList.remove("no-select");
+  const order = [...list.children].filter(el => el.matches("[data-drag-item]")).map(el => +el.dataset.idx);
+  if (order.every((v, i) => v === i)) return;
+  const arr = getAt(draft, list.dataset.arr);
+  const next = order.map(i => arr[i]);
+  arr.splice(0, arr.length, ...next);
+  renderEdit();
+}
+document.addEventListener("pointerup", endDrag);
+document.addEventListener("pointercancel", endDrag);
+
+function editView() {
+  const s = draft.steps[current], P = "steps." + current;
+  return `<div class="edit-banner">Editando. Arrastra las tres rayas ≡ para mover elementos y toca Listo para guardar para todo el equipo.</div>
+    <div class="egroup"><span class="elabel">Título de la etapa</span>${inp(P + ".title", s.title, "Título", "ef-h")}
+      <span class="elabel">Subtítulo</span>${inp(P + ".sub", s.sub, "Subtítulo")}</div>
+    ${sortable(P + ".blocks", s.blocks.map((b, i) => editBlock(b, `${P}.blocks.${i}`, i)).join(""))}
+    <div class="egroup"><span class="elabel">Añadir sección</span>
+      <div class="add-sections">
+        <button class="pill" data-act="addblock" data-type="text">Texto</button>
+        <button class="pill" data-act="addblock" data-type="list">Lista</button>
+        <button class="pill" data-act="addblock" data-type="cards">Tarjetas</button>
+        <button class="pill" data-act="addblock" data-type="fronts">Frente con tareas</button>
+      </div></div>`;
+}
+
+function autosize(el) { el.style.height = "auto"; el.style.height = el.scrollHeight + "px"; }
+function renderEdit(focusSel) {
+  const sheet = $("sheet"), top = sheet.scrollTop;
+  $("sheetBody").innerHTML = editView();
+  $("sheetBody").querySelectorAll("textarea.ef").forEach(autosize);
+  sheet.scrollTop = top;
+  if (focusSel) { const el = $("sheetBody").querySelector(focusSel); if (el) { el.focus(); el.scrollIntoView({ block: "nearest" }); } }
+}
+
+function startEdit() {
+  draft = clone(content); editing = true;
+  $("sheet").classList.add("editing");
+  $("editBtn").textContent = "Listo"; $("editBtn").classList.add("primary");
+  $("cancelBtn").hidden = false; $("closeBtn").hidden = true;
+  renderEdit();
+}
+function endEdit() {
+  editing = false; draft = null;
+  $("sheet").classList.remove("editing");
+  $("editBtn").textContent = "Editar"; $("editBtn").classList.remove("primary");
+  $("cancelBtn").hidden = true; $("closeBtn").hidden = false;
+}
+async function saveEdit() {
+  // limpiar vacíos
+  draft.fronts.forEach(f => f.tasks = f.tasks.filter(t => t.text.trim()));
+  draft.steps.forEach(s => s.blocks.forEach(b => { if (b.items) b.items = b.items.filter(it => (it.title + it.text).trim()); }));
+  draft.phases = draft.phases.filter(p => p.name.trim());
+  draft.intro = content.intro;
+  content = draft; endEdit(); saveLocal(); buildMap(); render();
+  dirty.content = true; queueSave();
+}
+function cancelEdit() { endEdit(); render(); }
+
+$("sheetBody").addEventListener("input", e => {
+  const t = e.target;
+  if (editing && t.dataset.bind) { setAt(draft, t.dataset.bind, t.value); if (t.tagName === "TEXTAREA") autosize(t); }
+});
+$("sheetBody").addEventListener("click", e => {
+  const b = e.target.closest("[data-act]"); if (!b || !editing) return;
+  const act = b.dataset.act, path = b.dataset.path;
+  let focus = null;
+  if (act === "del") { const ks = path.split("."); const idx = +ks.pop(); getAt(draft, ks.join(".")).splice(idx, 1); }
+  if (act === "add") {
+    const arr = getAt(draft, path); const tpl = b.dataset.tpl;
+    if (tpl === "item") arr.push({ title: "", text: "" });
+    if (tpl === "task") arr.push({ id: uid("t"), text: "" });
+    if (tpl === "phase") { const d = new Date(); const e2 = new Date(d); e2.setDate(d.getDate() + 14); arr.push({ id: uid("f"), name: "Nueva fase", start: isoDay(d), end: isoDay(e2) }); }
+    focus = `[data-bind^="${path}.${arr.length - 1}"]`;
+  }
+  if (act === "addfront") {
+    const f = { id: uid("fr"), name: "Nuevo frente", sub: "", note: "", tasks: [] };
+    draft.fronts.push(f); getAt(draft, path).push(f.id); openFronts.add(f.id);
+    focus = `[data-bind="fronts.${draft.fronts.length - 1}.name"]`;
+  }
+  if (act === "delfront") {
+    const id = b.dataset.id;
+    draft.fronts = draft.fronts.filter(f => f.id !== id);
+    draft.steps.forEach(s => s.blocks.forEach(bl => { if (bl.ids) bl.ids = bl.ids.filter(x => x !== id); }));
+  }
+  if (act === "addblock") {
+    const type = b.dataset.type, blocks = draft.steps[current].blocks;
+    const nb = { type, heading: "" };
+    if (type === "text") nb.text = "";
+    if (type === "list" || type === "cards") nb.items = [{ title: "", text: "" }];
+    if (type === "fronts") { const f = { id: uid("fr"), name: "Nuevo frente", sub: "", note: "", tasks: [] }; draft.fronts.push(f); nb.ids = [f.id]; openFronts.add(f.id); }
+    blocks.push(nb);
+    focus = `[data-bind="steps.${current}.blocks.${blocks.length - 1}.heading"]`;
+  }
+  renderEdit(focus);
+});
+
+/* =========================================================
+   RENDER Y ACTUALIZACIÓN
+   ========================================================= */
+const overlay = $("overlay");
+function render() {
+  const s = content.steps[current];
+  $("sheetNum").textContent = current + 1; $("sheetTitle").textContent = s.title; $("sheetSub").textContent = s.sub;
+  if (editing) { renderEdit(); return; }
+  $("sheetBody").innerHTML = s.blocks.map(viewBlock).join("");
+  $("prevBtn").disabled = current === 0;
+  $("nextBtn").textContent = current === content.steps.length - 1 ? "Cerrar" : "Siguiente";
+  document.querySelectorAll("#mapNodes .node").forEach((n, i) => n.setAttribute("aria-expanded", i === current ? "true" : "false"));
+  $("sheet").scrollTop = 0;
+  refresh();
+}
+
+function refresh() {
+  const at = allTasks(); const ids = Object.keys(at);
+  const done = ids.filter(id => state.tasks[id]?.done).length;
+  const pct = ids.length ? Math.round(done / ids.length * 100) : 0;
+  $("overallPct").textContent = pct + "%"; $("overallTxt").textContent = `${done} de ${ids.length} tareas completadas`; $("overallBar").style.width = pct + "%";
+  if (editing) return;
+  const body = $("sheetBody");
+  body.querySelectorAll("input[data-task]").forEach(cb => {
+    const t = state.tasks[cb.dataset.task]; cb.checked = !!t?.done;
+    const d = body.querySelector(`[data-date="${cb.dataset.task}"]`);
+    if (d) d.textContent = t?.done ? "Completada el " + fDate(t.doneAt) : "";
+  });
+  body.querySelectorAll("[data-count]").forEach(el => {
+    const f = content.fronts.find(x => x.id === el.dataset.count); if (!f) return;
+    const st = frontStats(f); el.textContent = `${st.done}/${st.total}`;
+  });
+  const gantt = body.querySelector("#gantt");
+  if (gantt && content.phases.length) {
+    const ps = content.phases.map(phase);
+    const min = Math.min(...ps.map(p => +new Date(p.start + "T00:00:00")));
+    const max = Math.max(...ps.map(p => +new Date(p.end + "T23:59:59")));
+    const span = Math.max(max - min, 1), now = Date.now();
+    ps.forEach(p => {
+      const s = +new Date(p.start + "T00:00:00"), e = +new Date(p.end + "T23:59:59");
+      const tr = gantt.querySelector(`[data-track="${p.id}"]`); if (!tr) return;
+      tr.querySelector("i").style.left = ((s - min) / span * 100) + "%";
+      tr.querySelector("i").style.width = Math.max((e - s) / span * 100, 2) + "%";
+      const td = tr.querySelector(".today"); td.style.display = (now >= min && now <= max) ? "block" : "none"; td.style.left = ((now - min) / span * 100) + "%";
+      gantt.querySelector(`[data-range="${p.id}"]`).textContent = `${fDate(p.start)} – ${fDate(p.end)}`;
+      gantt.querySelectorAll(`input[data-phase="${p.id}"]`).forEach(inp => { if (document.activeElement !== inp) inp.value = p[inp.dataset.field]; });
+    });
+  }
+  const kpis = body.querySelector("#kpis");
+  if (kpis) {
+    kpis.innerHTML = content.fronts.map(f => { const st = frontStats(f);
+      return `<div class="kpi"><span>${esc(f.name)}</span><div class="bar-row"><div class="bar"><i style="width:${st.pct}%"></i></div><em>${st.pct}%</em></div><small>${st.done} de ${st.total} tareas</small></div>`; }).join("");
+    const list = Object.entries(state.tasks).filter(([id, t]) => t?.done && at[id]).sort((a, b) => (b[1].doneAt || "").localeCompare(a[1].doneAt || ""));
+    body.querySelector("#log").innerHTML = list.length
+      ? `<ul class="log">${list.map(([id, t]) => `<li><time>${fDate(t.doneAt)}</time><span>${esc(at[id].text)}<small>${esc(at[id].front)}</small></span></li>`).join("")}</ul>`
+      : `<div class="empty">Aún no hay tareas completadas. Márcalas en las etapas 2 y 3 y aquí aparecerán con su fecha.</div>`;
+  }
+}
+
+/* =========================================================
+   ESCRITURAS (tareas y fechas)
+   ========================================================= */
+async function setTask(id, val) {
+  if (!canWrite()) { refresh(); askToken(); return; }
+  state.tasks[id] = val; saveLocal(); refresh();
+  dirty.tasks.add(id); queueSave();
+}
+async function setPhase(id, field, value) {
+  if (!canWrite()) { refresh(); askToken(); return; }
+  const base = content.phases.find(p => p.id === id); if (!base || !value) return;
+  const cur = phase(base); const next = { start: cur.start, end: cur.end, [field]: value };
+  if (next.end < next.start) { if (field === "start") next.end = next.start; else next.start = next.end; }
+  state.schedule[id] = next; saveLocal(); refresh();
+  dirty.schedule.add(id); queueSave();
+}
+$("sheetBody").addEventListener("change", e => {
+  const t = e.target;
+  if (t.matches("input[data-task]")) setTask(t.dataset.task, t.checked ? { done: true, doneAt: new Date().toISOString() } : { done: false });
+  if (t.matches("input[data-phase]")) setPhase(t.dataset.phase, t.dataset.field, t.value);
+  if (t.matches("input[data-done]") && t.value) setTask(t.dataset.done, { done: true, doneAt: t.value + "T12:00:00" });
+});
+$("sheetBody").addEventListener("toggle", e => {
+  const d = e.target; if (!d.matches || !d.matches("details[data-front]")) return;
+  if (d.open) openFronts.add(d.dataset.front); else openFronts.delete(d.dataset.front);
+}, true);
+
+/* =========================================================
+   ABRIR / CERRAR
+   ========================================================= */
+function openStep(i, from) {
+  current = i; opener = from; if (editing) endEdit(); render();
+  overlay.classList.add("open"); overlay.setAttribute("aria-hidden", "false");
+  document.body.classList.add("locked"); $("editBtn").focus();
+}
+function closeSheet() {
+  if (editing) endEdit();
+  overlay.classList.remove("open"); overlay.setAttribute("aria-hidden", "true");
+  document.body.classList.remove("locked");
+  document.querySelectorAll(".node").forEach(n => n.setAttribute("aria-expanded", "false"));
+  if (opener && document.body.contains(opener)) opener.focus();
+}
+$("editBtn").addEventListener("click", () => { if (!canWrite()) return askToken(); editing ? saveEdit() : startEdit(); });
+$("cancelBtn").addEventListener("click", cancelEdit);
+$("prevBtn").addEventListener("click", () => { if (current > 0) { current--; render(); } });
+$("nextBtn").addEventListener("click", () => { if (current < content.steps.length - 1) { current++; render(); } else closeSheet(); });
+$("closeBtn").addEventListener("click", closeSheet);
+overlay.addEventListener("click", e => { if (e.target === overlay && !editing) closeSheet(); });
+document.addEventListener("keydown", e => {
+  if (!overlay.classList.contains("open")) return;
+  if (e.key === "Escape") { editing ? cancelEdit() : closeSheet(); return; }
+  if (editing || (e.target.matches && e.target.matches("input, textarea"))) return;
+  if (e.key === "ArrowRight" && current < content.steps.length - 1) { current++; render(); }
+  if (e.key === "ArrowLeft" && current > 0) { current--; render(); }
+});
+
+
+/* =========================================================
+   TEXTO DE INTRODUCCIÓN (editable)
+   ========================================================= */
+let introEditing = false;
+function introValue() { return typeof content.intro === "string" ? content.intro : DEFAULT_CONTENT.intro; }
+function renderIntro() { if (!introEditing) $("introText").textContent = introValue(); }
+function setIntroEditing(on) {
+  introEditing = on;
+  $("introText").hidden = on; $("introInput").hidden = !on; $("introCancel").hidden = !on;
+  $("introEditBtn").textContent = on ? "Listo" : "Editar";
+  $("introEditBtn").classList.toggle("primary", on);
+  if (on) { const t = $("introInput"); t.value = introValue(); autosize(t); t.focus(); } else renderIntro();
+}
+$("introInput").addEventListener("input", e => autosize(e.target));
+$("introCancel").addEventListener("click", () => setIntroEditing(false));
+$("introEditBtn").addEventListener("click", async () => {
+  if (!canWrite()) return askToken();
+  if (!introEditing) { setIntroEditing(true); return; }
+  content = { ...content, intro: $("introInput").value.trim() };
+  setIntroEditing(false); saveLocal();
+  dirty.content = true; queueSave();
+});
+$("introInput").addEventListener("keydown", e => { if (e.key === "Escape") setIntroEditing(false); });
+
+/* =========================================================
+   BASE DE DATOS EN GITHUB (archivo data.json del repositorio)
+   ========================================================= */
+// Si publicas en https://USUARIO.github.io/REPO/ no hace falta tocar esto:
+// el usuario y el repositorio se detectan solos. Si usas otro dominio, llénalos.
+const GH = {
+  owner: "",          // ej. "inciti"
+  repo: "",           // ej. "roadmap-inciti"
+  branch: "main",
+  path: "data.json"
+};
+(function detectRepo() {
+  const host = location.hostname;
+  if (!GH.owner && host.endsWith(".github.io")) GH.owner = host.split(".")[0];
+  if (!GH.repo && host.endsWith(".github.io")) GH.repo = location.pathname.split("/").filter(Boolean)[0] || `${GH.owner}.github.io`;
+})();
+
+const TOKEN_KEY = "inciti-gh-token";
+let ghToken = null; try { ghToken = localStorage.getItem(TOKEN_KEY); } catch (e) {}
+let ghSha = null, saveTimer = null, saving = false;
+const dirty = { tasks: new Set(), schedule: new Set(), content: false };
+const apiUrl = () => `https://api.github.com/repos/${GH.owner}/${GH.repo}/contents/${GH.path}`;
+const hasPending = () => saving || !!saveTimer || dirty.content || dirty.tasks.size || dirty.schedule.size;
+function canWrite() { return !!ghToken; }
+
+function setStatus(text, kind) {
+  const s = $("sync"); s.textContent = text;
+  s.classList.toggle("shared", kind === "ok"); s.classList.toggle("err", kind === "err");
+}
+function applyMode() {
+  document.body.classList.toggle("readonly", !canWrite());
+  $("ghToggle").textContent = canWrite() ? "Desconectar" : "Conectar para editar";
+  if (!canWrite()) setStatus("Solo lectura · conecta tu token para editar");
+}
+function b64encode(str) {
+  const bytes = new TextEncoder().encode(str); let bin = "";
+  for (let i = 0; i < bytes.length; i += 0x8000) bin += String.fromCharCode.apply(null, bytes.subarray(i, i + 0x8000));
+  return btoa(bin);
+}
+function b64decode(b64) {
+  const bin = atob(b64.replace(/\s/g, "")); const bytes = new Uint8Array(bin.length);
+  for (let i = 0; i < bin.length; i++) bytes[i] = bin.charCodeAt(i);
+  return new TextDecoder().decode(bytes);
+}
+function snapshot() { return { content, tasks: state.tasks, schedule: state.schedule, updatedAt: new Date().toISOString() }; }
+
+async function fetchApi() {
+  const r = await fetch(`${apiUrl()}?ref=${GH.branch}&t=${Date.now()}`, {
+    headers: { Accept: "application/vnd.github+json", Authorization: `Bearer ${ghToken}` }, cache: "no-store" });
+  if (r.status === 401 || r.status === 403) throw new Error("token");
+  if (r.status === 404) return { data: null, sha: null };
+  if (!r.ok) throw new Error("http " + r.status);
+  const j = await r.json();
+  return { data: JSON.parse(b64decode(j.content)), sha: j.sha };
+}
+async function fetchPublic() {
+  const urls = [`${GH.path}?t=${Date.now()}`];
+  if (GH.owner && GH.repo) urls.push(`https://raw.githubusercontent.com/${GH.owner}/${GH.repo}/${GH.branch}/${GH.path}?t=${Date.now()}`);
+  for (const u of urls) { try { const r = await fetch(u, { cache: "no-store" }); if (r.ok) return await r.json(); } catch (e) {} }
+  throw new Error("sin datos");
+}
+function applyData(d) {
+  if (!d) return;
+  if (validContent(d.content)) content = clone(d.content);
+  state.tasks = d.tasks || {}; state.schedule = d.schedule || {};
+  afterRemote();
+}
+async function load() {
+  if (hasPending() || editing || introEditing) return;
+  try {
+    if (canWrite()) { const { data, sha } = await fetchApi(); ghSha = sha; if (!hasPending()) applyData(data); setStatus("Conectado a GitHub · puedes editar", "ok"); }
+    else { const d = await fetchPublic(); if (!hasPending()) applyData(d); setStatus("Solo lectura · conecta tu token para editar"); }
+  } catch (e) {
+    if (e.message === "token") { setStatus("El token no es válido o no tiene permiso", "err"); }
+    else setStatus("No se pudo leer data.json · se muestra la copia local", "err");
+  }
+}
+function queueSave() {
+  saveLocal();
+  if (!canWrite()) return;
+  clearTimeout(saveTimer); setStatus("Cambios pendientes…");
+  saveTimer = setTimeout(() => { saveTimer = null; save(); }, 2500);
+}
+async function save(attempt = 0) {
+  if (saving) { queueSave(); return; }
+  saving = true; setStatus("Guardando en GitHub…");
+  const sentTasks = new Set(dirty.tasks), sentSched = new Set(dirty.schedule), sentContent = dirty.content;
+  try {
+    if (!ghSha) { const cur = await fetchApi(); ghSha = cur.sha; }
+    const body = { message: `Roadmap: actualización ${new Date().toLocaleString("es-CO")}`, content: b64encode(JSON.stringify(snapshot(), null, 2)), branch: GH.branch };
+    if (ghSha) body.sha = ghSha;
+    const r = await fetch(apiUrl(), { method: "PUT", headers: { Accept: "application/vnd.github+json", Authorization: `Bearer ${ghToken}`, "Content-Type": "application/json" }, body: JSON.stringify(body) });
+    if (r.status === 409 || r.status === 422) {
+      // Alguien guardó antes: se mezclan sus cambios con los tuyos y se reintenta
+      if (attempt > 3) throw new Error("conflicto");
+      const { data, sha } = await fetchApi(); ghSha = sha;
+      if (data) {
+        const tasks = { ...(data.tasks || {}) }; dirty.tasks.forEach(id => tasks[id] = state.tasks[id]);
+        const sched = { ...(data.schedule || {}) }; dirty.schedule.forEach(id => sched[id] = state.schedule[id]);
+        state.tasks = tasks; state.schedule = sched;
+        if (!dirty.content && validContent(data.content)) content = clone(data.content);
+        afterRemote();
+      }
+      saving = false; return save(attempt + 1);
+    }
+    if (r.status === 401 || r.status === 403) throw new Error("token");
+    if (!r.ok) throw new Error("http " + r.status);
+    const j = await r.json(); ghSha = j.content.sha;
+    sentTasks.forEach(id => dirty.tasks.delete(id)); sentSched.forEach(id => dirty.schedule.delete(id)); if (sentContent) dirty.content = false;
+    setStatus("Guardado en GitHub · " + new Date().toLocaleTimeString("es-CO", { hour: "2-digit", minute: "2-digit" }), "ok");
+  } catch (e) {
+    setStatus(e.message === "token" ? "El token no es válido o no tiene permiso de escritura" : "No se pudo guardar · se reintentará", "err");
+    if (e.message !== "token") setTimeout(queueSave, 8000);
+  } finally { saving = false; }
+}
+
+
+function askToken() {
+  if (overlay.classList.contains("open")) closeSheet();
+  const d = $("overall"); d.open = true;
+  $("ghForm").hidden = false;
+  setStatus("Para editar, pega tu token de GitHub y toca Conectar", "err");
+  d.scrollIntoView({ behavior: "smooth", block: "center" });
+  setTimeout(() => $("ghToken").focus(), 300);
+}
+
+$("ghToggle").addEventListener("click", () => {
+  if (canWrite()) { ghToken = null; ghSha = null; try { localStorage.removeItem(TOKEN_KEY); } catch (e) {} applyMode(); render && overlay.classList.contains("open") && render(); load(); return; }
+  $("ghForm").hidden = !$("ghForm").hidden; if (!$("ghForm").hidden) $("ghToken").focus();
+});
+$("ghConnect").addEventListener("click", async () => {
+  const t = $("ghToken").value.trim(); if (!t) return;
+  ghToken = t; try { localStorage.setItem(TOKEN_KEY, t); } catch (e) {}
+  $("ghToken").value = ""; $("ghForm").hidden = true; applyMode(); setStatus("Conectando…"); await load();
+});
+window.addEventListener("beforeunload", e => { if (hasPending() && canWrite()) { e.preventDefault(); e.returnValue = ""; } });
+
+function afterRemote() { saveLocal(); buildMap(); if (overlay.classList.contains("open") && !editing) render(); else refresh(); }
+
+loadLocal(); buildMap(); refresh(); applyMode(); load();
+setInterval(() => { if (document.visibilityState === "visible") load(); }, 45000);
+document.addEventListener("visibilitychange", () => { if (document.visibilityState === "visible") load(); });
+</script>
+</body>
+</html>
