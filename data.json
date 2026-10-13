@@ -4,16 +4,12 @@
       {
         "id": "planos",
         "name": "Planos",
-        "note": "Apartado de planos dentro del Investor Portal, organizado por proyecto y por pisos, con menú desplegable.",
+        "note": "Apartado de planos dentro del Investor Portal, organizado por proyecto y por pisos.",
         "sub": "Primer frente · se trabaja con Alex Castillo",
         "tasks": [
           {
             "id": "p1",
             "text": "Reunión con Alex Castillo para definir el alcance del apartado"
-          },
-          {
-            "id": "tmun57wixlqb8",
-            "text": "respuesta por parte de Jairo , para la entrega de los planos "
           },
           {
             "id": "p2",
@@ -28,20 +24,8 @@
             "text": "Armar el cuadro de organización: proyecto, torre, piso, unidad y tipología"
           },
           {
-            "id": "p5",
-            "text": "Diseñar el apartado de planos con menú desplegable"
-          },
-          {
-            "id": "p6",
-            "text": "Cargar los planos al portal"
-          },
-          {
             "id": "p7",
             "text": "Revisar con Alex y hacer ajustes"
-          },
-          {
-            "id": "p8",
-            "text": "Publicar el apartado de planos"
           }
         ]
       },
@@ -56,24 +40,12 @@
             "text": "Conversación con Nancy sobre el proceso actual de actualización"
           },
           {
-            "id": "n2",
-            "text": "Revisar la estructura del Excel de negocios"
+            "id": "tmv74tiv9xfxa",
+            "text": "utilizar api key"
           },
           {
             "id": "n3",
             "text": "Definir qué datos verá el inversionista en el portal"
-          },
-          {
-            "id": "n4",
-            "text": "Evaluar cómo actualizar desde el Excel: carga manual, plantilla o sincronización"
-          },
-          {
-            "id": "n5",
-            "text": "Construir la actualización de negocios en el portal"
-          },
-          {
-            "id": "n6",
-            "text": "Prueba piloto con negocios reales"
           },
           {
             "id": "n7",
@@ -339,5 +311,5 @@
     }
   },
   "schedule": {},
-  "updatedAt": "2026-10-13T20:25:24.682Z"
+  "updatedAt": "2026-10-13T20:28:02.366Z"
 }
