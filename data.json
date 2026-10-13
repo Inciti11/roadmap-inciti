@@ -289,7 +289,8 @@
         "sub": "Qué puede frenar el avance",
         "title": "Riesgos y mitigación"
       }
-    ]
+    ],
+    "intro": "Este roadmap reúne en un solo lugar el plan para mejorar el Investor Portal: qué vamos a hacer, en qué orden, en qué fechas y cómo vamos avanzando.\n\nPrimero terminaremos el apartado de planos con Alex Castillo. \nactualización de negocios al portal a partir de la conexcion con la api key junto con Nancy. \nDespués automatizaremos procesos con HubSpot y, al final, publicaremos la app en Google Play y App Store. Cada tarea que se marca queda registrada con su fecha, para que todo el equipo vea el avance en tiempo real."
   },
   "tasks": {
     "p1": {
@@ -315,5 +316,5 @@
     }
   },
   "schedule": {},
-  "updatedAt": "2026-10-13T20:40:51.578Z"
+  "updatedAt": "2026-10-13T20:43:51.471Z"
 }
