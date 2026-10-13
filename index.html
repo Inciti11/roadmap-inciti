@@ -555,7 +555,29 @@ const DEFAULT_CONTENT = {
         { id: "s3", text: "Preparar la versión iOS" },
         { id: "s4", text: "Fichas de tienda: capturas, descripción y política de privacidad" },
         { id: "s5", text: "Enviar a revisión de Google y Apple" },
-        { id: "s6", text: "App publicada en Google Play y App Store" } ] }
+        { id: "s6", text: "App publicada en Google Play y App Store" } ] },
+    { id: "daily-inciti", name: "Inciti día a día", sub: "Operación y entregas del equipo",
+      note: "Seguimiento diario de pendientes internos, HubSpot, banca y coordinación.",
+      tasks: [
+        { id: "id01", text: "Entregar correo" },
+        { id: "id02", text: "HubSpot negocios y automatizaciones" },
+        { id: "id03", text: "Bancolombia 360" },
+        { id: "id04", text: "Entregar Andre usuarios" },
+        { id: "id05", text: "Gestión AYC HubSpot datos" },
+        { id: "id06", text: "YDN página" },
+        { id: "id07", text: "Cesar reunión" } ] },
+    { id: "woobsing", name: "Woobsing", sub: "Líneas, Dapta y HubSpot",
+      note: "Legalización de líneas, plantillas y flujo cuando no contestan.",
+      tasks: [
+        { id: "w01", text: "Legalizar líneas Trucaller" },
+        { id: "w02", text: "Cuando no contesta, enviar mensaje notificando desde Dapta" },
+        { id: "w03", text: "Cambiar estado en HubSpot, recibir evento y enviar mensaje de lo que hace Inciti (proyecto)" },
+        { id: "w04", text: "Al principio y al final, misma línea" },
+        { id: "w05", text: "Plantilla en la línea" } ] },
+    { id: "wa-agente", name: "WhatsApp agente WB Business", sub: "Catálogo y agente",
+      note: "Mantenimiento del agente de WhatsApp Business.",
+      tasks: [
+        { id: "wa1", text: "Actualizar catálogo" } ] }
   ],
   phases: [
     { id: "planos",   name: "Planos",                      start: "2026-09-29", end: "2026-10-02" },
@@ -571,30 +593,59 @@ const DEFAULT_CONTENT = {
         { title: "2. Actualización de negocios", text: "Negocios al día en el portal, partiendo del Excel actual." },
         { title: "3. Automatización", text: "Procesos automáticos con HubSpot." } ] },
       { type: "text", heading: "Resultado final", text: "Plataforma mejorada y publicada como app en Google Play y App Store." } ] },
-    { title: "Metas y objetivos", sub: "Tareas por frente, en orden", blocks: [
-      { type: "text", heading: "", text: "Se trabaja en este orden. Abre cada frente para ver y marcar sus tareas." },
-      { type: "fronts", heading: "", ids: ["planos", "negocios", "auto"] } ] },
+    { title: "Metas y objetivos", sub: "Objetivos diarios y roadmap del portal", blocks: [
+      { type: "text", heading: "", text: "Objetivos diarios arriba; abajo el roadmap del Investor Portal. Abre cada bloque para ver y marcar tareas." },
+      { type: "fronts", heading: "Objetivos diarios", ids: ["daily-inciti", "woobsing", "wa-agente"] },
+      { type: "fronts", heading: "Investor Portal", ids: ["planos", "negocios", "auto"] },
+      { type: "fronts", heading: "Plataforma en tiendas", ids: ["apps"] } ] },
     { title: "Entregables", sub: "Qué se entrega al final", blocks: [
       { type: "list", heading: "Mejoras en el Investor Portal", items: [
         { title: "Apartado de planos", text: "publicado, con planos por proyecto y por pisos, y su cuadro de organización." },
         { title: "Actualización de negocios", text: "funcionando a partir del Excel, validada con Nancy." },
-        { title: "Automatizaciones en HubSpot", text: "activas para los procesos priorizados." } ] },
-      { type: "fronts", heading: "Plataforma en tiendas", ids: ["apps"] } ] },
+        { title: "Automatizaciones en HubSpot", text: "activas para los procesos priorizados." },
+        { title: "App en Google Play y App Store", text: "publicada con política de privacidad y fichas de tienda completas." } ] } ] },
     { title: "Cronograma", sub: "Propuesta inicial, se puede ajustar", blocks: [
       { type: "gantt", text: "Cambia las fechas cuando lo necesiten; el cronograma se actualiza para todos." } ] },
     { title: "Métricas de avance", sub: "Se llenan al marcar cada tarea", blocks: [
       { type: "metrics" } ] },
     { title: "Riesgos y mitigación", sub: "Qué puede frenar el avance", blocks: [
-      { type: "list", heading: "Riesgos principales", items: [
-        { title: "Plazo corto para planos (esta semana).", text: "Mitigación: publicar primero un proyecto completo y sumar los demás después." },
-        { title: "Agenda de Alex Castillo y Nancy.", text: "Mitigación: reuniones fijas y cortas, con decisiones y responsables por escrito." },
-        { title: "Planos incompletos o en versiones viejas.", text: "Mitigación: que Alex valide la versión vigente antes de cargarla y mostrar la fecha de actualización en el portal." },
-        { title: "Excel con formatos distintos o errores manuales.", text: "Mitigación: una plantilla única con validaciones y un solo responsable de actualizarla." },
-        { title: "Límites de HubSpot según el plan contratado.", text: "Mitigación: verificar qué incluye el plan antes de diseñar; si no alcanza, evaluar Zapier o Make, o una integración propia." },
-        { title: "Rechazo en App Store o Google Play.", text: "Mitigación: que la app no sea solo una página web envuelta, publicar política de privacidad, permitir eliminar la cuenta desde la app y dar a los revisores un usuario de prueba." },
-        { title: "Datos personales de inversionistas.", text: "Mitigación: accesos por rol y cumplimiento de la Ley 1581 de 2012 de protección de datos." } ] } ] }
+      { type: "risks", heading: "Riesgos principales" } ] }
   ]
 };
+/** Riesgos sugeridos por frente (se muestran si el frente está en Metas y objetivos). */
+const FRONT_RISKS = {
+  planos: [
+    { title: "Plazo corto para planos (esta semana).", text: "Mitigación: publicar primero un proyecto completo y sumar los demás después." },
+    { title: "Agenda de Alex Castillo y Nancy.", text: "Mitigación: reuniones fijas y cortas, con decisiones y responsables por escrito." },
+    { title: "Planos incompletos o en versiones viejas.", text: "Mitigación: que Alex valide la versión vigente antes de cargarla y mostrar la fecha de actualización en el portal." }
+  ],
+  negocios: [
+    { title: "Agenda de Alex Castillo y Nancy.", text: "Mitigación: reuniones fijas y cortas, con decisiones y responsables por escrito." },
+    { title: "Excel con formatos distintos o errores manuales.", text: "Mitigación: una plantilla única con validaciones y un solo responsable de actualizarla." }
+  ],
+  auto: [
+    { title: "Límites de HubSpot según el plan contratado.", text: "Mitigación: verificar qué incluye el plan antes de diseñar; si no alcanza, evaluar Zapier o Make, o una integración propia." }
+  ],
+  apps: [
+    { title: "Rechazo en App Store o Google Play.", text: "Mitigación: que la app no sea solo una página web envuelta, publicar política de privacidad, permitir eliminar la cuenta desde la app y dar a los revisores un usuario de prueba." }
+  ],
+  "daily-inciti": [
+    { title: "Muchos frentes abiertos a la vez.", text: "Mitigación: priorizar dos o tres ítems por día y cerrarlos antes de abrir nuevos." },
+    { title: "HubSpot negocios y automatizaciones sin alcance claro.", text: "Mitigación: definir qué flujo se automatiza primero y quién valida los datos." },
+    { title: "Integración Bancolombia 360.", text: "Mitigación: confirmar requisitos técnicos y credenciales con el banco antes de desarrollar." }
+  ],
+  woobsing: [
+    { title: "Legalización de líneas Trucaller.", text: "Mitigación: seguir checklist del proveedor y documentar cada línea con responsable." },
+    { title: "Falla en el flujo Dapta ↔ HubSpot.", text: "Mitigación: probar cambio de estado y mensaje automático con un contacto de prueba antes de producción." },
+    { title: "Plantillas o líneas inconsistentes.", text: "Mitigación: usar la misma línea al inicio y al cierre del flujo y una plantilla aprobada por el equipo." }
+  ],
+  "wa-agente": [
+    { title: "Catálogo desactualizado en WhatsApp Business.", text: "Mitigación: fijar responsable y fecha de revisión del catálogo cada semana o al lanzar producto." }
+  ]
+};
+const GLOBAL_RISKS = [
+  { title: "Datos personales de inversionistas.", text: "Mitigación: accesos por rol y cumplimiento de la Ley 1581 de 2012 de protección de datos." }
+];
 const POS = [ [100,220,"up"], [300,400,"down"], [490,90,"up"], [690,330,"down"], [880,170,"up"], [1090,380,"down"] ];
 
 /* =========================================================
@@ -604,15 +655,64 @@ const clone = o => JSON.parse(JSON.stringify(o));
 let content = clone(DEFAULT_CONTENT);
 const state = { tasks: {}, schedule: {} };
 let draft = null, editing = false, current = 0, opener = null;
-const openFronts = new Set(["planos", "apps"]);
+const openFronts = new Set(["daily-inciti", "planos", "apps"]);
 const LS_KEY = "inciti-roadmap-v2";
 
 function validContent(c) { return c && Array.isArray(c.steps) && c.steps.length === 6 && Array.isArray(c.fronts) && Array.isArray(c.phases); }
+function metasStep(c) { return (c || content).steps.find(s => s.title === "Metas y objetivos"); }
+function getMetasFrontIds(c) {
+  const step = metasStep(c); if (!step) return [];
+  const ids = [];
+  step.blocks.forEach(b => { if (b.type === "fronts" && Array.isArray(b.ids)) b.ids.forEach(id => { if (id && !ids.includes(id)) ids.push(id); }); });
+  return ids;
+}
+function defaultRiskForFront(f) {
+  return { title: `Dependencias y plazos de «${f.name}».`, text: "Mitigación: definir responsables, fechas y criterios de listo con el equipo." };
+}
+function buildRiskItems(c) {
+  const ids = getMetasFrontIds(c); if (!ids.length) return [];
+  const seen = new Set(), items = [];
+  const add = it => { const k = it.title.trim(); if (!k || seen.has(k)) return; seen.add(k); items.push(it); };
+  ids.forEach(id => {
+    const f = (c || content).fronts.find(x => x.id === id);
+    (FRONT_RISKS[id] || (f ? [defaultRiskForFront(f)] : [])).forEach(add);
+  });
+  GLOBAL_RISKS.forEach(add);
+  return items;
+}
+function normalizeContent(c) {
+  if (!c?.steps) return c;
+  const metas = metasStep(c), ent = c.steps.find(s => s.title === "Entregables"), riesgos = c.steps.find(s => s.title === "Riesgos y mitigación");
+  if (metas && ent) {
+    const idx = ent.blocks.findIndex(b => b.type === "fronts" && b.ids?.includes("apps"));
+    if (idx >= 0) {
+      const block = ent.blocks.splice(idx, 1)[0];
+      if (!getMetasFrontIds(c).includes("apps")) metas.blocks.push(block);
+    }
+    const list = ent.blocks.find(b => b.type === "list" && b.heading === "Mejoras en el Investor Portal");
+    if (list && !list.items.some(it => /google play|app store/i.test(it.title + it.text))) {
+      list.items.push({ title: "App en Google Play y App Store", text: "publicada con política de privacidad y fichas de tienda completas." });
+    }
+  }
+  if (riesgos) {
+    let hasRisks = false;
+    riesgos.blocks = riesgos.blocks.map(b => {
+      if (b.type === "list" && (!b.heading || b.heading === "Riesgos principales")) {
+        hasRisks = true;
+        return { type: "risks", heading: b.heading || "Riesgos principales" };
+      }
+      if (b.type === "risks") hasRisks = true;
+      return b;
+    });
+    if (!hasRisks) riesgos.blocks.unshift({ type: "risks", heading: "Riesgos principales" });
+  }
+  return c;
+}
 function loadLocal() {
   try {
     const s = JSON.parse(localStorage.getItem(LS_KEY) || "{}");
     state.tasks = s.tasks || {}; state.schedule = s.schedule || {};
-    if (validContent(s.content)) content = s.content;
+    if (validContent(s.content)) content = normalizeContent(s.content);
   } catch (e) {}
 }
 function saveLocal() { try { localStorage.setItem(LS_KEY, JSON.stringify({ ...state, content })); } catch (e) {} }
@@ -678,8 +778,8 @@ function buildMap() {
 /* =========================================================
    VISTA NORMAL
    ========================================================= */
-function frontBlock(f) {
-  const n = content.fronts.indexOf(f) + 1;
+function frontBlock(f, n) {
+  if (n == null) n = content.fronts.indexOf(f) + 1;
   return `<details class="front" data-front="${esc(f.id)}" ${openFronts.has(f.id) ? "open" : ""}>
     <summary><span class="order">${n}</span><span class="front-title"><strong>${esc(f.name)}</strong><small>${esc(f.sub)}</small></span><span class="front-count" data-count="${esc(f.id)}"></span></summary>
     ${f.note ? `<p class="note">${esc(f.note)}</p>` : ""}
@@ -694,7 +794,12 @@ function viewBlock(b) {
     case "text": return h + `<p class="text-block">${esc(b.text)}</p>`;
     case "cards": return h + `<div class="pillars">${b.items.map(it => `<div class="pillar"><b>${esc(it.title)}</b><span>${esc(it.text)}</span></div>`).join("")}</div>`;
     case "list": return h + `<ul class="items">${b.items.map(it => `<li><div>${it.title ? `<b>${esc(it.title)}</b> ` : ""}${esc(it.text)}</div></li>`).join("")}</ul>`;
-    case "fronts": return h + b.ids.map(id => content.fronts.find(f => f.id === id)).filter(Boolean).map(frontBlock).join("");
+    case "risks": {
+      const items = buildRiskItems();
+      if (!items.length) return h + `<p class="text-block">Añade frentes en «Metas y objetivos» para ver aquí los riesgos y mitigaciones relacionados.</p>`;
+      return h + `<ul class="items">${items.map(it => `<li><div>${it.title ? `<b>${esc(it.title)}</b> ` : ""}${esc(it.text)}</div></li>`).join("")}</ul>`;
+    }
+    case "fronts": return h + b.ids.map(id => content.fronts.find(f => f.id === id)).filter(Boolean).map((f, i) => frontBlock(f, i + 1)).join("");
     case "gantt": return (b.text ? `<p class="text-block">${esc(b.text)}</p>` : "") + `<div class="gantt" id="gantt">${content.phases.map(p => `
         <div class="row">
           <div class="row-head"><strong>${esc(p.name)}</strong><span data-range="${esc(p.id)}"></span></div>
@@ -720,9 +825,9 @@ const GRIP = `<button type="button" class="grip" data-grip aria-label="Mantén p
 function sortable(arrPath, rows) { return `<div class="sortable" data-arr="${arrPath}">${rows}</div>`; }
 
 function editBlock(b, p, bi) {
-  const names = { text: "Texto", cards: "Tarjetas", list: "Lista", fronts: "Frentes con tareas", gantt: "Cronograma", metrics: "Métricas" };
-  const canDelete = !["gantt", "metrics"].includes(b.type);
-  const hasHeading = ["text", "cards", "list", "fronts"].includes(b.type);
+  const names = { text: "Texto", cards: "Tarjetas", list: "Lista", fronts: "Frentes con tareas", gantt: "Cronograma", metrics: "Métricas", risks: "Riesgos (automático)" };
+  const canDelete = !["gantt", "metrics", "risks"].includes(b.type);
+  const hasHeading = ["text", "cards", "list", "fronts", "risks"].includes(b.type);
   let head = `<div class="ehead">${canDelete ? minus(`data-act="del" data-path="${p}"`, "Eliminar sección") : ""}${hasHeading ? inp(p + ".heading", b.heading, "Título de la sección (opcional)", "ef-h") : `<span class="etype">${names[b.type]}</span>`}${GRIP}</div>`;
   let body = "";
   if (b.type === "text") body = ta(p + ".text", b.text, "Escribe el texto");
@@ -755,6 +860,13 @@ function editBlock(b, p, bi) {
     body = `<span class="emeta">Las métricas se calculan solas al marcar tareas. Aquí puedes corregir la fecha en que se completó cada una.</span>`
       + (done.length ? done.map(([id, t]) => `<div class="edate"><span>${esc(at[id].text)}<br><span class="emeta">${esc(at[id].front)}</span></span><input type="date" data-done="${esc(id)}" value="${esc((t.doneAt || "").slice(0, 10))}"></div>`).join("")
         : `<div class="empty">Aún no hay tareas completadas.</div>`);
+  }
+  if (b.type === "risks") {
+    const ids = getMetasFrontIds(draft), items = buildRiskItems(draft);
+    const frontsLabel = ids.map(id => draft.fronts.find(f => f.id === id)?.name).filter(Boolean).join(", ") || "ninguno";
+    body = `<span class="emeta">Esta lista se genera sola según los frentes en «Metas y objetivos» (${esc(frontsLabel)}). Para cambiar qué riesgos aparecen, añade o quita frentes en esa etapa.</span>`
+      + (items.length ? `<ul class="items" style="margin-top:.75rem">${items.map(it => `<li><div>${it.title ? `<b>${esc(it.title)}</b> ` : ""}${esc(it.text)}</div></li>`).join("")}</ul>`
+        : `<div class="empty">Sin frentes en metas todavía.</div>`);
   }
   return `<div class="eblock" data-drag-item data-idx="${bi}">${head}${body}</div>`;
 }
@@ -844,7 +956,7 @@ async function saveEdit() {
   draft.steps.forEach(s => s.blocks.forEach(b => { if (b.items) b.items = b.items.filter(it => (it.title + it.text).trim()); }));
   draft.phases = draft.phases.filter(p => p.name.trim());
   draft.intro = content.intro;
-  content = draft; endEdit(); saveLocal(); buildMap(); render();
+  content = normalizeContent(draft); endEdit(); saveLocal(); buildMap(); render();
   dirty.content = true; queueSave();
 }
 function cancelEdit() { endEdit(); render(); }
@@ -1090,7 +1202,7 @@ async function fetchPublic() {
 }
 function applyData(d) {
   if (!d) return;
-  if (validContent(d.content)) content = clone(d.content);
+  if (validContent(d.content)) content = normalizeContent(clone(d.content));
   state.tasks = d.tasks || {}; state.schedule = d.schedule || {};
   afterRemote();
 }
