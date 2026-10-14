@@ -123,22 +123,70 @@
         "note": "Seguimiento diario de pendientes internos, HubSpot, banca y coordinación.",
         "sub": "Operación y entregas del equipo",
         "tasks": [
-          { "id": "id01", "text": "Entregar correo" },
-          { "id": "id02", "text": "HubSpot negocios y automatizaciones" },
-          { "id": "id03", "text": "Bancolombia 360" },
-          { "id": "id04", "text": "Entregar Andre usuarios" },
-          { "id": "id05", "text": "Gestión AYC HubSpot datos" },
-          { "id": "id06", "text": "YDN página" },
-          { "id": "id07", "text": "Cesar reunión" },
-          { "id": "id08", "text": "Mora ajuste — ajustes de texto y visualización de la página web" },
-          { "id": "id09", "text": "Olvidaste tu contraseña afuera flowi" },
-          { "id": "id10", "text": "Creación de usuarios desde el bot" },
-          { "id": "id11", "text": "Referir fácilmente" },
-          { "id": "id12", "text": "Experiencia de usuario" },
-          { "id": "id13", "text": "URL de apartamentos malecón" },
-          { "id": "id14", "text": "Requisitos generales para planos y cartera" },
-          { "id": "id15", "text": "Implementar sección en PI" },
-          { "id": "id16", "text": "Sección de cada usuario" }
+          {
+            "id": "id01",
+            "text": "Entregar correo"
+          },
+          {
+            "id": "id02",
+            "text": "HubSpot negocios y automatizaciones"
+          },
+          {
+            "id": "id03",
+            "text": "Bancolombia 360"
+          },
+          {
+            "id": "id04",
+            "text": "Entregar Andre usuarios"
+          },
+          {
+            "id": "id05",
+            "text": "Gestión AYC HubSpot datos"
+          },
+          {
+            "id": "id06",
+            "text": "YDN página"
+          },
+          {
+            "id": "id07",
+            "text": "Cesar reunión"
+          },
+          {
+            "id": "id08",
+            "text": "Mora ajuste — ajustes de texto y visualización de la página web"
+          },
+          {
+            "id": "id09",
+            "text": "Olvidaste tu contraseña afuera flowi"
+          },
+          {
+            "id": "id10",
+            "text": "Creación de usuarios desde el bot"
+          },
+          {
+            "id": "id11",
+            "text": "Referir fácilmente"
+          },
+          {
+            "id": "id12",
+            "text": "Experiencia de usuario"
+          },
+          {
+            "id": "id13",
+            "text": "URL de apartamentos malecón"
+          },
+          {
+            "id": "id14",
+            "text": "Requisitos generales para planos y cartera"
+          },
+          {
+            "id": "id15",
+            "text": "Implementar sección en PI"
+          },
+          {
+            "id": "id16",
+            "text": "Sección de cada usuario"
+          }
         ]
       },
       {
@@ -147,11 +195,26 @@
         "note": "Legalización de líneas, plantillas y flujo cuando no contestan.",
         "sub": "Líneas, Dapta y HubSpot",
         "tasks": [
-          { "id": "w01", "text": "Legalizar líneas Trucaller" },
-          { "id": "w02", "text": "Cuando no contesta, enviar mensaje notificando desde Dapta" },
-          { "id": "w03", "text": "Cambiar estado en HubSpot, recibir evento y enviar mensaje de lo que hace Inciti (proyecto)" },
-          { "id": "w04", "text": "Al principio y al final, misma línea" },
-          { "id": "w05", "text": "Plantilla en la línea" }
+          {
+            "id": "w01",
+            "text": "Legalizar líneas Trucaller"
+          },
+          {
+            "id": "w02",
+            "text": "Cuando no contesta, enviar mensaje notificando desde Dapta"
+          },
+          {
+            "id": "w03",
+            "text": "Cambiar estado en HubSpot, recibir evento y enviar mensaje de lo que hace Inciti (proyecto)"
+          },
+          {
+            "id": "w04",
+            "text": "Al principio y al final, misma línea"
+          },
+          {
+            "id": "w05",
+            "text": "Plantilla en la línea"
+          }
         ]
       },
       {
@@ -160,7 +223,10 @@
         "note": "Mantenimiento del agente de WhatsApp Business.",
         "sub": "Catálogo y agente",
         "tasks": [
-          { "id": "wa1", "text": "Actualizar catálogo" }
+          {
+            "id": "wa1",
+            "text": "Actualizar catálogo"
+          }
         ]
       }
     ],
@@ -345,12 +411,27 @@
       "done": true,
       "doneAt": "2026-10-13T20:28:05.541Z"
     },
-    "id01": { "done": true, "doneAt": "2026-10-13T20:42:00.000Z" },
-    "id04": { "done": true, "doneAt": "2026-10-13T20:42:00.000Z" },
-    "id05": { "done": true, "doneAt": "2026-10-13T20:42:00.000Z" },
-    "id06": { "done": true, "doneAt": "2026-10-13T20:42:00.000Z" },
-    "id07": { "done": true, "doneAt": "2026-10-13T20:42:00.000Z" }
+    "id01": {
+      "done": true,
+      "doneAt": "2026-10-13T20:42:00.000Z"
+    },
+    "id04": {
+      "done": true,
+      "doneAt": "2026-10-13T20:42:00.000Z"
+    },
+    "id05": {
+      "done": true,
+      "doneAt": "2026-10-13T20:42:00.000Z"
+    },
+    "id06": {
+      "done": true,
+      "doneAt": "2026-10-13T20:42:00.000Z"
+    },
+    "id07": {
+      "done": true,
+      "doneAt": "2026-10-13T20:42:00.000Z"
+    }
   },
   "schedule": {},
-  "updatedAt": "2026-10-13T20:43:51.471Z"
+  "updatedAt": "2026-10-13T20:58:03.797Z"
 }
