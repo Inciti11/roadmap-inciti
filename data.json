@@ -407,9 +407,6 @@
       "footnote": "Al marcar tareas, el avance queda registrado con fecha para todo el equipo."
     }
   },
-  "hiddenSections": [
-    "metas-objetivos-diarios-0"
-  ],
   "tasks": {
     "p1": {
       "done": true,
@@ -454,5 +451,6 @@
     }
   },
   "schedule": {},
-  "updatedAt": "2026-10-13T20:58:03.797Z"
+  "hiddenSections": [],
+  "updatedAt": "2026-10-14T22:01:09.927Z"
 }
