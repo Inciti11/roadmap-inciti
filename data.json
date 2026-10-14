@@ -5,7 +5,7 @@
         "id": "planos",
         "name": "Planos",
         "note": "Apartado de planos dentro del Investor Portal, organizado por proyecto y por pisos.",
-        "sub": "Primer frente · se trabaja con Alex Castillo",
+        "sub": "Segundo frente · se trabaja con Alex Castillo",
         "tasks": [
           {
             "id": "p1",
@@ -33,7 +33,7 @@
         "id": "negocios",
         "name": "Actualización de negocios",
         "note": "Que el inversionista vea sus negocios al día. Punto de partida: el Excel que se usa hoy.",
-        "sub": "Segundo frente · se trabaja con Nancy",
+        "sub": "Primer frente · se trabaja con Nancy",
         "tasks": [
           {
             "id": "n1",
@@ -129,7 +129,16 @@
           { "id": "id04", "text": "Entregar Andre usuarios" },
           { "id": "id05", "text": "Gestión AYC HubSpot datos" },
           { "id": "id06", "text": "YDN página" },
-          { "id": "id07", "text": "Cesar reunión" }
+          { "id": "id07", "text": "Cesar reunión" },
+          { "id": "id08", "text": "Mora ajuste — ajustes de texto y visualización de la página web" },
+          { "id": "id09", "text": "Olvidaste tu contraseña afuera flowi" },
+          { "id": "id10", "text": "Creación de usuarios desde el bot" },
+          { "id": "id11", "text": "Referir fácilmente" },
+          { "id": "id12", "text": "Experiencia de usuario" },
+          { "id": "id13", "text": "URL de apartamentos malecón" },
+          { "id": "id14", "text": "Requisitos generales para planos y cartera" },
+          { "id": "id15", "text": "Implementar sección en PI" },
+          { "id": "id16", "text": "Sección de cada usuario" }
         ]
       },
       {
@@ -157,16 +166,16 @@
     ],
     "phases": [
       {
-        "end": "2026-10-02",
-        "id": "planos",
-        "name": "Planos",
-        "start": "2026-09-29"
-      },
-      {
         "end": "2026-10-23",
         "id": "negocios",
         "name": "Actualización de negocios",
         "start": "2026-10-05"
+      },
+      {
+        "end": "2026-10-02",
+        "id": "planos",
+        "name": "Planos",
+        "start": "2026-09-29"
       },
       {
         "end": "2026-11-13",
@@ -193,12 +202,12 @@
             "heading": "Estrategia: mejorar tres procesos",
             "items": [
               {
-                "text": "Apartado con planos por proyecto y por pisos, en menú desplegable.",
-                "title": "1. Planos"
+                "text": "Negocios al día en el portal, partiendo del Excel actual.",
+                "title": "1. Actualización de negocios"
               },
               {
-                "text": "Negocios al día en el portal, partiendo del Excel actual.",
-                "title": "2. Actualización de negocios"
+                "text": "Apartado con planos por proyecto y por pisos, en menú desplegable.",
+                "title": "2. Planos"
               },
               {
                 "text": "Procesos automáticos con HubSpot.",
@@ -219,11 +228,6 @@
       {
         "blocks": [
           {
-            "heading": "",
-            "text": "Objetivos diarios arriba; abajo el roadmap del Investor Portal. Abre cada bloque para ver y marcar tareas.",
-            "type": "text"
-          },
-          {
             "heading": "Objetivos diarios",
             "ids": [
               "daily-inciti",
@@ -235,8 +239,8 @@
           {
             "heading": "Investor Portal",
             "ids": [
-              "planos",
               "negocios",
+              "planos",
               "auto"
             ],
             "type": "fronts"
@@ -258,12 +262,12 @@
             "heading": "Mejoras en el Investor Portal",
             "items": [
               {
-                "text": "publicado, con planos por proyecto y por pisos, y su cuadro de organización.",
-                "title": "Apartado de planos"
-              },
-              {
                 "text": "funcionando a partir del Excel, validada con Nancy.",
                 "title": "Actualización de negocios"
+              },
+              {
+                "text": "publicado, con planos por proyecto y por pisos, y su cuadro de organización.",
+                "title": "Apartado de planos"
               },
               {
                 "text": "activas para los procesos priorizados.",
@@ -310,8 +314,15 @@
         "title": "Riesgos y mitigación"
       }
     ],
-    "intro": "Este roadmap reúne en un solo lugar el plan para mejorar el Investor Portal: qué vamos a hacer, en qué orden, en qué fechas y cómo vamos avanzando.\n\nPrimero terminaremos el apartado de planos con Alex Castillo. \nactualización de negocios al portal a partir de la conexcion con la api key junto con Nancy. \nDespués automatizaremos procesos con HubSpot y, al final, publicaremos la app en Google Play y App Store. Cada tarea que se marca queda registrada con su fecha, para que todo el equipo vea el avance en tiempo real."
+    "intro": {
+      "title": "Plan del Investor Portal",
+      "subtitle": "Objetivos diarios del equipo, en un solo lugar.",
+      "footnote": "Al marcar tareas, el avance queda registrado con fecha para todo el equipo."
+    }
   },
+  "hiddenSections": [
+    "metas-objetivos-diarios-0"
+  ],
   "tasks": {
     "p1": {
       "done": true,

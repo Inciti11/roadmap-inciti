@@ -3,7 +3,8 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>Roadmap Inciti</title>
+<title>inciti — roadmap</title>
+<link rel="icon" href="favicon.svg" type="image/svg+xml">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@500;600;700&display=swap" rel="stylesheet">
@@ -11,6 +12,7 @@
   :root {
     --navy: #142139;
     --blue: #4A72B0;
+    --ip-blue: #4E7AC7;
     --grad-blue: #1A73E8;
     --brand: linear-gradient(145deg, #142139, #1A73E8);
     --white: #FFFFFF;
@@ -41,10 +43,54 @@
     -webkit-font-smoothing: antialiased;
   }
   button, input, summary, .ui { font-family: var(--ui); }
-  .wrap { max-width: 1200px; margin: 0 auto; padding: clamp(1.5rem, 4vw, 3rem) clamp(1rem, 4vw, 2.5rem); }
+  .wrap { max-width: min(96vw, 1300px); margin: 0 auto; padding: clamp(1.5rem, 4vw, 3rem) clamp(.75rem, 2.5vw, 2rem); }
 
-  /* Encabezado */
-  header { display: grid; grid-template-columns: 1fr auto; gap: 2rem; align-items: end; }
+  /* Barra superior dentro del roadmap */
+  .road-top {
+    display: grid; grid-template-columns: 1fr auto auto; align-items: center;
+    gap: .65rem 1rem; margin-bottom: .6rem;
+  }
+  .road-top .brand-row { grid-column: 1; min-width: 0; }
+  .road-top .intro-drawer { display: contents; }
+  .road-top details.overall { display: contents; }
+  .road-drawer summary.drawer-sum,
+  details.overall > summary {
+    list-style: none; cursor: pointer; display: inline-flex; align-items: center; gap: .5rem;
+    font-family: var(--ui); font-size: 13px; font-weight: 600; color: var(--blue);
+    background: var(--hover); border: 0; border-radius: 999px; padding: 0 .55rem 0 .85rem; height: 32px;
+  }
+  .road-drawer summary.drawer-sum { grid-column: 2; justify-self: end; }
+  details.overall > summary {
+    grid-column: 3; justify-self: end; min-width: 240px; width: 100%; max-width: 320px;
+    padding: .85rem 1.15rem; height: auto; border-radius: 16px; background: var(--card); border: 1px solid var(--line);
+    display: flex; align-items: center; justify-content: space-between; gap: 1rem;
+  }
+  .road-drawer summary.drawer-sum::-webkit-details-marker,
+  details.overall > summary::-webkit-details-marker { display: none; }
+  .road-drawer summary.drawer-sum:hover { filter: brightness(.97); }
+  .road-drawer[open] summary.drawer-sum { background: var(--blue); color: var(--white); }
+  .road-drawer[open] summary.drawer-sum .chev::after { border-color: var(--white); }
+  .road-drawer .drawer-body,
+  details.overall .ov-body {
+    grid-column: 1 / -1; margin-top: .15rem; padding: .85rem 1rem 1rem;
+    border-radius: 16px; border: 1px solid var(--line); background: var(--card);
+  }
+  .drawer-actions { display: flex; flex-wrap: wrap; gap: .5rem; justify-content: flex-end; margin-top: .65rem; }
+  .connect-bubble {
+    display: inline-flex; align-items: stretch; border-radius: 999px; overflow: hidden;
+    border: 1px solid var(--line); background: var(--white); box-shadow: 0 2px 8px rgba(74, 114, 176, 0.1);
+  }
+  .connect-bubble .bubble-main {
+    border: 0; background: transparent; padding: .35rem .85rem; font-family: var(--ui);
+    font-size: 12px; font-weight: 600; color: var(--blue); cursor: pointer;
+  }
+  .connect-bubble .bubble-main:hover { background: var(--hover); }
+  .connect-bubble .bubble-x {
+    border: 0; border-left: 1px solid var(--line); background: var(--hover); width: 30px;
+    font-size: 16px; line-height: 1; color: var(--muted); cursor: pointer;
+  }
+  .connect-bubble .bubble-x:hover { color: var(--navy); background: var(--line); }
+  .connect-bubble.connected .bubble-main { color: var(--navy); }
   .brand { display: inline-flex; align-items: center; gap: .55rem; margin-bottom: 1.25rem; font-family: var(--ui); font-size: 15px; font-weight: 500; letter-spacing: 0.01em; line-height: 1.2; color: var(--navy); }
   .brand-mark { display: grid; place-items: center; width: 32px; height: 32px; border-radius: 9px; background: var(--brand); color: var(--white); }
   .brand-mark svg { width: 18px; height: 18px; }
@@ -117,6 +163,29 @@
   .sheet-body { padding: 1.25rem 1.5rem 1.5rem; }
   .sheet-body h3 { font-family: var(--ui); font-size: 11px; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase; color: var(--muted); margin: 1.4rem 0 .6rem; }
   .sheet-body h3:first-child { margin-top: 0; }
+  details.front-section { margin: 0 0 .85rem; border-radius: 12px; border: 1px solid var(--line); background: var(--white); overflow: hidden; }
+  details.front-section:first-of-type { margin-top: 0; }
+  details.front-section summary.front-section-head {
+    list-style: none; cursor: pointer; display: flex; align-items: center; justify-content: space-between;
+    gap: .75rem; padding: .75rem 1rem; flex-wrap: wrap;
+  }
+  details.front-section summary.front-section-head::-webkit-details-marker { display: none; }
+  details.front-section summary.front-section-head:hover { background: var(--hover); }
+  details.front-section[open] summary.front-section-head { border-bottom: 1px solid var(--line); background: var(--card); }
+  .front-section-head h3 { margin: 0; }
+  .front-section-actions { display: flex; align-items: center; gap: .45rem; margin-left: auto; }
+  details.front-section[open] .section-chev { transform: rotate(180deg); }
+  .front-section-body { padding: .65rem .85rem .85rem; }
+  .icon-btn {
+    flex: none; display: grid; place-items: center; width: 32px; height: 32px; padding: 0;
+    border: 1px solid var(--line); border-radius: 50%; background: var(--white); color: var(--muted);
+    cursor: pointer;
+  }
+  .icon-btn:hover { background: var(--hover); color: var(--navy); border-color: rgba(20, 33, 57, 0.18); }
+  .icon-btn svg { display: block; }
+  .section-dock { display: flex; flex-wrap: wrap; gap: .5rem; align-items: center; margin: 0 0 1rem; padding: .65rem .75rem; border-radius: 12px; background: var(--card); border: 1px dashed var(--line); }
+  .section-dock-label { font-family: var(--ui); font-size: 11px; font-weight: 700; letter-spacing: 0.04em; text-transform: uppercase; color: var(--muted); margin-right: .25rem; }
+  .section-restore.pill { height: 30px; font-size: 12px; }
   .sheet-body p { margin: 0 0 .75rem; }
   .items { list-style: none; margin: 0; padding: 0; display: grid; gap: .6rem; }
   .items li { display: grid; grid-template-columns: 1.1rem 1fr; gap: .55rem; }
@@ -295,18 +364,15 @@
   }
 
   /* Avance general desplegable */
-  details.overall { padding: 0; min-width: 260px; align-self: start; }
-  details.overall summary { list-style: none; cursor: pointer; display: flex; align-items: center; justify-content: space-between; gap: 1rem; padding: .85rem 1.15rem; border-radius: 16px; }
-  details.overall summary::-webkit-details-marker { display: none; }
-  details.overall summary:hover { background: var(--hover); }
   details.overall summary .eyebrow { margin: 0; }
-  .ov-sum { display: flex; align-items: center; gap: .6rem; }
+  .ov-sum { display: flex; align-items: center; gap: .6rem; margin-left: auto; }
   details.overall .ov-sum b { font-size: 20px; margin: 0; }
-  .chev { width: 28px; height: 28px; border-radius: 50%; background: var(--hover); position: relative; transition: transform .2s ease; }
-  .chev::after { content: ""; position: absolute; left: 50%; top: 45%; width: 7px; height: 7px; border-right: 2px solid var(--blue); border-bottom: 2px solid var(--blue); transform: translate(-50%, -50%) rotate(45deg); }
-  details.overall[open] .chev { transform: rotate(180deg); }
-  .ov-body { padding: 0 1.15rem 1rem; }
+  .chev { width: 22px; height: 22px; border-radius: 50%; background: var(--hover); position: relative; flex: none; transition: transform .2s ease; }
+  .chev::after { content: ""; position: absolute; left: 50%; top: 45%; width: 6px; height: 6px; border-right: 2px solid var(--blue); border-bottom: 2px solid var(--blue); transform: translate(-50%, -50%) rotate(45deg); }
+  details.overall[open] .chev, .road-drawer[open] .chev { transform: rotate(180deg); }
   .ov-body small { margin-top: 0; }
+  .road-drawer summary .chev { background: rgba(255, 255, 255, .25); }
+  .road-drawer:not([open]) summary .chev { background: var(--white); }
   header { align-items: start; }
   header > div:first-child { padding-top: .25rem; }
 
@@ -326,46 +392,54 @@
     details.overall { min-width: 0; width: 100%; }
   }
 
-  /* Logo + palabra roadmap con el trazo del logotipo */
-  h1.lockup { display: flex; flex-direction: column; align-items: flex-start; gap: clamp(28px, 4vw, 44px); margin: 0 0 1.25rem; }
-  .logo { display: block; width: 72px; height: auto; }
-  .wordmark { display: block; width: clamp(150px, 15vw, 190px); height: auto; color: var(--blue); overflow: visible; }
+  /* Marca Inciti en la barra */
+  .brand-row { display: flex; align-items: center; gap: clamp(.85rem, 2vw, 1.35rem); min-width: 0; }
+  .logo { display: block; width: 72px; height: auto; flex: none; }
   @media (max-width: 760px) {
     .logo { width: 56px; }
-    .wordmark { width: 150px; }
   }
   .sr-only { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; border: 0; }
 
   /* Cajas redondeadas */
   .box { background: var(--white); border: 1px solid var(--line); border-radius: 28px; box-shadow: 0 2px 6px rgba(74, 114, 176, 0.08), 0 14px 40px rgba(74, 114, 176, 0.16); }
-  header.box { padding: clamp(1.25rem, 3vw, 2.25rem); }
-  .road { margin-top: clamp(1rem, 2vw, 1.5rem); padding: clamp(5.5rem, 8vw, 7rem) clamp(1.5rem, 3vw, 2.5rem) clamp(4.5rem, 7vw, 6rem); }
-  .road .map { margin-top: 0; }
+  section.box.road { padding: clamp(1.25rem, 3vw, 2.25rem); }
+  .road { margin-top: 0; }
   .road .node { border-color: var(--white); }
-  details.overall { background: var(--card); }
   @media (max-width: 760px) {
-    header.box { border-radius: 24px; }
-    .road { border-radius: 24px; padding: 1.5rem 1rem; }
+    section.box.road { border-radius: 24px; padding: 1.25rem 1rem; }
+    .road { border-radius: 24px; }
     .road .map-m { margin-top: 0; }
   }
 
-  .road { padding-top: clamp(1.25rem, 2.5vw, 1.75rem); }
-  .road-hint { margin: 0; }
-  .road .map { margin-top: clamp(6rem, 9vw, 7.5rem); }
+  .road { padding-top: clamp(1rem, 2vw, 1.35rem); }
+  .road-intro { margin: clamp(.55rem, 1.5vw, .75rem) 0 clamp(.25rem, .8vw, .4rem); }
+  .road .intro-compact { background: var(--card); box-shadow: none; padding: .85rem 1.15rem .9rem; }
+  .road .map { margin-top: 0; transform: translateY(clamp(-6px, -1vw, -14px)); }
   @media (max-width: 760px) {
     .road { padding-top: 1.25rem; }
     .road .map-m { margin-top: 1.25rem; }
   }
 
   /* Indicación centrada */
-  .road-hint { display: flex; width: fit-content; max-width: 100%; margin: 0 auto; justify-content: center; align-items: center; gap: .6rem; padding: .55rem 1rem .55rem .6rem; border-radius: 999px; background: var(--hover); text-align: left; }
-  .road-hint span { flex: none; }
+  .road-hint {
+    display: flex; width: fit-content; max-width: min(100%, 36rem); margin: 0 auto clamp(.15rem, .6vw, .35rem);
+    justify-content: center; align-items: center; gap: .45rem;
+    padding: .38rem .7rem .38rem .45rem; border-radius: 999px; background: var(--hover); text-align: left;
+    font-size: 11px; line-height: 1.35;
+  }
+  .road-hint span { flex: none; width: 18px; height: 18px; font-size: 10px; border-radius: 5px; }
 
   /* Burbujas de las etapas */
   .label, .m-label {
     background: var(--card); border: 1px solid var(--line); border-radius: 16px;
     padding: .6rem .9rem; box-shadow: 0 6px 18px rgba(74, 114, 176, 0.12);
   }
+  .road .map .label {
+    padding: .4rem .6rem; border-radius: 12px; max-width: 10.5rem;
+    box-shadow: 0 4px 12px rgba(74, 114, 176, 0.1);
+  }
+  .road .map .label strong { font-size: 13px; line-height: 1.2; }
+  .road .map .label small { font-size: 10px; margin-top: .1rem; line-height: 1.3; }
   .label { width: max-content; max-width: 13rem; }
   .m-label { width: fit-content; max-width: 58%; padding: .55rem .8rem; }
   .label small, .m-label small { margin-top: .15rem; }
@@ -376,18 +450,35 @@
   svg.logo { color: var(--blue); shape-rendering: geometricPrecision; }
 
   /* Introducción editable */
-  .intro { display: grid; gap: .75rem; max-width: 44rem; }
-  .intro .lead { max-width: none; }
+  .intro { display: grid; gap: .5rem; width: 100%; max-width: none; }
+  .intro-panel { padding: 0; margin: 0; background: transparent; border: 0; box-shadow: none; }
+  .intro-compact {
+    width: 100%; max-width: none; text-align: center;
+    padding: 1.05rem 1.3rem 1.1rem; border-radius: 16px;
+    background: linear-gradient(145deg, var(--white) 0%, var(--card) 58%, rgba(238, 243, 250, 0.95) 100%);
+    border: 1px solid var(--line);
+    box-shadow: 0 1px 0 rgba(255, 255, 255, 0.85) inset;
+  }
+  .intro-title {
+    margin: 0;
+    font-family: var(--ui); font-weight: 700; line-height: 1.15; letter-spacing: -0.025em; color: var(--blue);
+    font-size: clamp(1.35rem, 2.6vw, 1.85rem);
+  }
+  .intro-subtitle {
+    margin: .5rem auto 0; max-width: 40rem;
+    font-size: clamp(14px, 1.45vw, 16px); font-weight: 500; color: var(--muted); line-height: 1.45;
+  }
+  .intro-edit { display: grid; gap: .65rem; }
+  .intro-edit .elabel { margin-top: .25rem; }
   .intro-input { width: 100%; }
-  .intro-actions { display: flex; gap: .5rem; }
-  .intro-actions .pill { height: 32px; }
   [hidden] { display: none !important; }
 
-  /* Botón Editar al lado de "roadmap" */
-  svg.logo { display: block; margin-bottom: clamp(28px, 4vw, 44px); }
-  .title-row { display: flex; align-items: center; gap: 1rem; flex-wrap: wrap; margin-bottom: 1.25rem; }
-  .title-row h1.lockup { margin: 0; }
-  .title-row .intro-actions { margin-top: 6px; }
+  @media (max-width: 760px) {
+    .road-top { grid-template-columns: 1fr auto; }
+    .road-top .brand-row { grid-column: 1 / -1; }
+    details.overall > summary { grid-column: 1 / -1; width: 100%; min-width: 0; }
+    .road-drawer summary.drawer-sum { grid-column: 2; }
+  }
 
   /* Viñetas circulares */
   .items li { grid-template-columns: 1.25rem 1fr; }
@@ -418,40 +509,33 @@
   /* Conexión con GitHub */
   .sync.err::before { background: var(--error); }
   .gh { display: grid; gap: .5rem; margin-top: .75rem; }
-  .gh-form { display: grid; gap: .5rem; }
+  .gh-form { display: grid; gap: .5rem; margin-top: .65rem; }
+  .gh:has(.gh-form:not([hidden])) .connect-bubble { display: none; }
   .gh .pill { height: 32px; justify-self: start; }
 </style>
 </head>
 <body>
 <div class="wrap">
-  <header class="box">
-    <div>
+  <section class="box road" aria-label="Etapas del roadmap">
+    <div class="road-top">
+      <div class="brand-row">
       <svg class="logo" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Inciti" viewBox="0 0 1600.000000 683.000000"><g transform="translate(0.000000,683.000000) scale(0.100000,-0.100000)" fill="currentColor"><path d="M3456 6809 c-349 -87 -482 -532 -242 -805 214 -243 609 -210 786 65 163 256 52 602 -230 717 -73 30 -239 42 -314 23z M7825 6806 c-290 -70 -446 -413 -313 -686 220 -452 904 -321 935 180 21 339 -285 588 -622 506z M12181 6804 c-351 -94 -469 -539 -215 -813 264 -285 762 -143 834 238 70 373 -253 674 -619 575z M3515 4640 c-208 -33 -352 -155 -400 -337 -13 -50 -16 -171 -16 -833 0 -819 -5 -932 -43 -1115 -179 -841 -823 -1375 -1661 -1375 -243 0 -387 28 -625 120 -346 134 -584 69 -710 -196 -168 -351 18 -623 530 -778 834 -251 1678 -114 2366 385 675 490 1043 1126 1104 1908 17 222 13 1790 -5 1874 -28 134 -112 236 -248 301 -101 49 -188 62 -292 46z M12285 4640 c-189 -39 -324 -162 -369 -337 -14 -53 -16 -164 -16 -851 0 -808 -4 -908 -41 -1106 -113 -607 -580 -1132 -1154 -1298 -487 -141 -1061 -52 -1479 230 -274 185 -573 619 -641 929 -7 36 -25 45 -25 13 0 -36 -87 -363 -125 -465 -65 -182 -149 -339 -334 -632 -39 -61 -39 -60 52 -166 622 -724 1570 -1074 2486 -917 1130 194 2027 1075 2203 2165 25 149 41 1932 19 2071 -39 252 -304 419 -576 364z M7829 4621 c-162 -52 -278 -168 -321 -323 -8 -31 -13 -291 -18 -953 -6 -893 -6 -912 -28 -1010 -169 -759 -704 -1253 -1451 -1340 -849 -100 -1595 383 -1827 1181 -18 62 -28 59 -39 -11 -51 -312 -225 -724 -433 -1019 -56 -79 -55 -83 37 -190 1145 -1329 3172 -1254 4229 157 286 382 432 753 478 1217 23 234 22 1882 -2 1972 -65 254 -360 404 -625 319z M12957 2203 c-2 -4 -12 -44 -22 -88 -75 -348 -220 -684 -420 -965 -57 -81 -55 -90 33 -188 580 -649 1233 -947 2072 -947 452 0 774 71 1120 245 333 168 340 655 11 854 -145 88 -275 86 -502 -9 -596 -251 -1353 -117 -1819 322 -176 166 -350 444 -426 683 -28 88 -38 108 -47 93z"/></g></svg>
-      <div class="title-row">
-      <h1 class="lockup">
-        <svg class="wordmark" viewBox="0 0 832 202" role="img" aria-label="roadmap">
-          <g fill="none" stroke="currentColor" stroke-width="16" stroke-linecap="butt" stroke-linejoin="round">
-            <path d="M8 150V50M8 100A42 42 0 0 1 50 58H60"/>
-            <circle cx="130" cy="100" r="42"/>
-            <circle cx="248" cy="100" r="42"/><path d="M290 50V150"/>
-            <circle cx="366" cy="100" r="42"/><path d="M408 0V150"/>
-            <path d="M442 150V50M442 100A36 36 0 0 1 514 100V150M514 100A36 36 0 0 1 586 100V150"/>
-            <circle cx="662" cy="100" r="42"/><path d="M704 50V150"/>
-            <path d="M738 202V50"/><circle cx="780" cy="100" r="42"/>
-          </g>
-        </svg>
-        <span class="sr-only">Roadmap Inciti</span>
-      </h1>
-        <div class="intro-actions">
-          <button class="pill ghost" id="introCancel" hidden>Cancelar</button>
-          <button class="pill" id="introEditBtn">Editar</button>
+      </div>
+      <details class="road-drawer intro-drawer" id="introEditDetails">
+        <summary class="drawer-sum"><span id="introEditLabel">Editar</span><span class="chev" aria-hidden="true"></span></summary>
+        <div class="drawer-body intro-edit" id="introEditForm">
+          <span class="elabel">Título</span>
+          <textarea class="ef intro-input" id="introTitleInput" rows="2" aria-label="Título del roadmap"></textarea>
+          <span class="elabel">Subtítulo</span>
+          <textarea class="ef intro-input" id="introSubtitleInput" rows="2" aria-label="Subtítulo del roadmap"></textarea>
+          <span class="elabel">Nota al pie (opcional, no se muestra)</span>
+          <textarea class="ef intro-input" id="introFootnoteInput" rows="2" aria-label="Nota al pie"></textarea>
+          <div class="drawer-actions">
+            <button type="button" class="pill ghost" id="introCancel">Cancelar</button>
+            <button type="button" class="pill primary" id="introSaveBtn">Guardar</button>
+          </div>
         </div>
-      </div>
-      <div class="intro">
-        <p class="lead text-block" id="introText"></p>
-        <textarea class="ef intro-input" id="introInput" rows="4" hidden aria-label="Texto de introducción"></textarea>
-      </div>
-    </div>
+      </details>
     <details class="overall" id="overall">
       <summary>
         <span class="eyebrow">Avance general</span>
@@ -462,17 +546,21 @@
         <div class="bar"><i id="overallBar"></i></div>
         <div class="sync" id="sync">Conectando…</div>
         <div class="gh">
+          <div class="connect-bubble" id="connectBubble">
+            <button type="button" class="bubble-main" id="ghToggle">Conectar</button>
+            <button type="button" class="bubble-x" id="ghBubbleClose" aria-label="Cerrar">×</button>
+          </div>
           <div class="gh-form" id="ghForm" hidden>
             <input class="ef" id="ghToken" type="password" autocomplete="off" placeholder="Pega aquí tu token de GitHub">
             <button class="pill primary" id="ghConnect">Conectar</button>
           </div>
-          <button class="pill" id="ghToggle">Conectar para editar</button>
         </div>
       </div>
     </details>
-  </header>
-
-  <section class="box road" aria-label="Etapas del roadmap">
+    </div>
+    <div class="intro road-intro">
+      <div class="intro-panel" id="introPanel" aria-live="polite"></div>
+    </div>
     <p class="hint road-hint"><span aria-hidden="true">!</span> Toca un número para abrir cada etapa. Usa Editar para cambiar o añadir contenido.</p>
   <div class="map" id="map">
     <svg class="river" viewBox="0 0 1200 520" preserveAspectRatio="none" aria-hidden="true">
@@ -498,6 +586,7 @@
       <div><h2 id="sheetTitle"></h2><p id="sheetSub"></p></div>
       <div class="head-actions">
         <button class="pill ghost" id="cancelBtn" hidden>Cancelar</button>
+        <button class="pill primary" id="saveSectionsBtn" hidden>Guardar</button>
         <button class="pill" id="editBtn">Editar</button>
         <button class="close" id="closeBtn" aria-label="Cerrar">×</button>
       </div>
@@ -515,9 +604,13 @@
    CONTENIDO (editable desde la página con el botón Editar)
    ========================================================= */
 const DEFAULT_CONTENT = {
-  intro: "Este roadmap reúne en un solo lugar el plan para mejorar el Investor Portal: qué vamos a hacer, en qué orden, en qué fechas y cómo vamos avanzando.\n\nPrimero terminaremos el apartado de planos con Alex Castillo. Luego llevaremos la actualización de negocios al portal a partir del Excel, junto con Nancy. Después automatizaremos procesos con HubSpot y, al final, publicaremos la app en Google Play y App Store. Cada tarea que se marca queda registrada con su fecha, para que todo el equipo vea el avance en tiempo real.",
+  intro: {
+    title: "Plan del Investor Portal",
+    subtitle: "Objetivos diarios del equipo, en un solo lugar.",
+    footnote: "Al marcar tareas, el avance queda registrado con fecha para todo el equipo."
+  },
   fronts: [
-    { id: "planos", name: "Planos", sub: "Primer frente · se trabaja con Alex Castillo",
+    { id: "planos", name: "Planos", sub: "Segundo frente · se trabaja con Alex Castillo",
       note: "Apartado de planos dentro del Investor Portal, organizado por proyecto y por pisos, con menú desplegable.",
       tasks: [
         { id: "p1", text: "Reunión con Alex Castillo para definir el alcance del apartado" },
@@ -528,7 +621,7 @@ const DEFAULT_CONTENT = {
         { id: "p6", text: "Cargar los planos al portal" },
         { id: "p7", text: "Revisar con Alex y hacer ajustes" },
         { id: "p8", text: "Publicar el apartado de planos" } ] },
-    { id: "negocios", name: "Actualización de negocios", sub: "Segundo frente · se trabaja con Nancy",
+    { id: "negocios", name: "Actualización de negocios", sub: "Primer frente · se trabaja con Nancy",
       note: "Que el inversionista vea sus negocios al día. Punto de partida: el Excel que se usa hoy.",
       tasks: [
         { id: "n1", text: "Conversación con Nancy sobre el proceso actual de actualización" },
@@ -565,7 +658,16 @@ const DEFAULT_CONTENT = {
         { id: "id04", text: "Entregar Andre usuarios" },
         { id: "id05", text: "Gestión AYC HubSpot datos" },
         { id: "id06", text: "YDN página" },
-        { id: "id07", text: "Cesar reunión" } ] },
+        { id: "id07", text: "Cesar reunión" },
+        { id: "id08", text: "Mora ajuste — ajustes de texto y visualización de la página web" },
+        { id: "id09", text: "Olvidaste tu contraseña afuera flowi" },
+        { id: "id10", text: "Creación de usuarios desde el bot" },
+        { id: "id11", text: "Referir fácilmente" },
+        { id: "id12", text: "Experiencia de usuario" },
+        { id: "id13", text: "URL de apartamentos malecón" },
+        { id: "id14", text: "Requisitos generales para planos y cartera" },
+        { id: "id15", text: "Implementar sección en PI" },
+        { id: "id16", text: "Sección de cada usuario" } ] },
     { id: "woobsing", name: "Woobsing", sub: "Líneas, Dapta y HubSpot",
       note: "Legalización de líneas, plantillas y flujo cuando no contestan.",
       tasks: [
@@ -580,8 +682,8 @@ const DEFAULT_CONTENT = {
         { id: "wa1", text: "Actualizar catálogo" } ] }
   ],
   phases: [
-    { id: "planos",   name: "Planos",                      start: "2026-09-29", end: "2026-10-02" },
     { id: "negocios", name: "Actualización de negocios",   start: "2026-10-05", end: "2026-10-23" },
+    { id: "planos",   name: "Planos",                      start: "2026-09-29", end: "2026-10-02" },
     { id: "auto",     name: "Automatizaciones HubSpot",    start: "2026-10-19", end: "2026-11-13" },
     { id: "apps",     name: "App Google Play y App Store", start: "2026-10-26", end: "2026-12-11" }
   ],
@@ -589,19 +691,18 @@ const DEFAULT_CONTENT = {
     { title: "Visión y estrategia", sub: "Hacia dónde llevamos el Investor Portal", blocks: [
       { type: "text", heading: "Visión", text: "Que el Investor Portal sea el lugar donde cada inversionista de Inciti vea sus planos, el estado de sus negocios y reciba información al día, sin procesos manuales de por medio." },
       { type: "cards", heading: "Estrategia: mejorar tres procesos", items: [
-        { title: "1. Planos", text: "Apartado con planos por proyecto y por pisos, en menú desplegable." },
-        { title: "2. Actualización de negocios", text: "Negocios al día en el portal, partiendo del Excel actual." },
+        { title: "1. Actualización de negocios", text: "Negocios al día en el portal, partiendo del Excel actual." },
+        { title: "2. Planos", text: "Apartado con planos por proyecto y por pisos, en menú desplegable." },
         { title: "3. Automatización", text: "Procesos automáticos con HubSpot." } ] },
       { type: "text", heading: "Resultado final", text: "Plataforma mejorada y publicada como app en Google Play y App Store." } ] },
     { title: "Metas y objetivos", sub: "Objetivos diarios y roadmap del portal", blocks: [
-      { type: "text", heading: "", text: "Objetivos diarios arriba; abajo el roadmap del Investor Portal. Abre cada bloque para ver y marcar tareas." },
       { type: "fronts", heading: "Objetivos diarios", ids: ["daily-inciti", "woobsing", "wa-agente"] },
-      { type: "fronts", heading: "Investor Portal", ids: ["planos", "negocios", "auto"] },
+      { type: "fronts", heading: "Investor Portal", ids: ["negocios", "planos", "auto"] },
       { type: "fronts", heading: "Plataforma en tiendas", ids: ["apps"] } ] },
     { title: "Entregables", sub: "Qué se entrega al final", blocks: [
       { type: "list", heading: "Mejoras en el Investor Portal", items: [
-        { title: "Apartado de planos", text: "publicado, con planos por proyecto y por pisos, y su cuadro de organización." },
         { title: "Actualización de negocios", text: "funcionando a partir del Excel, validada con Nancy." },
+        { title: "Apartado de planos", text: "publicado, con planos por proyecto y por pisos, y su cuadro de organización." },
         { title: "Automatizaciones en HubSpot", text: "activas para los procesos priorizados." },
         { title: "App en Google Play y App Store", text: "publicada con política de privacidad y fichas de tienda completas." } ] } ] },
     { title: "Cronograma", sub: "Propuesta inicial, se puede ajustar", blocks: [
@@ -653,10 +754,12 @@ const POS = [ [100,220,"up"], [300,400,"down"], [490,90,"up"], [690,330,"down"],
    ========================================================= */
 const clone = o => JSON.parse(JSON.stringify(o));
 let content = clone(DEFAULT_CONTENT);
-const state = { tasks: {}, schedule: {} };
+const state = { tasks: {}, schedule: {}, hiddenSections: [] };
 let draft = null, editing = false, current = 0, opener = null;
-const openFronts = new Set(["daily-inciti", "planos", "apps"]);
+const openFronts = new Set();
 const LS_KEY = "inciti-roadmap-v2";
+let hiddenSectionsPending = null;
+const ICON_HIDE_SECTION = `<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M5 15l7-7 7 7"/></svg>`;
 
 function validContent(c) { return c && Array.isArray(c.steps) && c.steps.length === 6 && Array.isArray(c.fronts) && Array.isArray(c.phases); }
 function metasStep(c) { return (c || content).steps.find(s => s.title === "Metas y objetivos"); }
@@ -706,13 +809,41 @@ function normalizeContent(c) {
     });
     if (!hasRisks) riesgos.blocks.unshift({ type: "risks", heading: "Riesgos principales" });
   }
+  normalizeIntro(c);
   return c;
+}
+function splitIntroSummary(summary) {
+  const s = String(summary || "").trim();
+  const m = s.match(/^(.+?\bPortal)\s+y\s+(.+)$/i);
+  if (m) return { title: m[1].trim(), subtitle: m[2].replace(/\.\s*$/, "").trim() };
+  return { title: s.replace(/\.\s*$/, ""), subtitle: "" };
+}
+function normalizeIntro(c) {
+  if (!c) return;
+  const def = DEFAULT_CONTENT.intro;
+  if (typeof c.intro === "string") {
+    const parts = c.intro.trim().split(/\n\n+/);
+    const split = splitIntroSummary(parts[0]);
+    c.intro = { ...split, footnote: parts.length > 1 ? parts[parts.length - 1] : def.footnote };
+  } else if (!c.intro || typeof c.intro !== "object") {
+    c.intro = { ...def };
+  } else {
+    let title = c.intro.title?.trim();
+    let subtitle = c.intro.subtitle?.trim();
+    if (!title && c.intro.summary) ({ title, subtitle } = splitIntroSummary(c.intro.summary));
+    c.intro = {
+      title: title || def.title,
+      subtitle: subtitle || def.subtitle,
+      footnote: c.intro.footnote?.trim() || def.footnote
+    };
+  }
 }
 function loadLocal() {
   try {
     const s = JSON.parse(localStorage.getItem(LS_KEY) || "{}");
     state.tasks = s.tasks || {}; state.schedule = s.schedule || {};
     if (validContent(s.content)) content = normalizeContent(s.content);
+    applyHiddenSections(s.hiddenSections, content);
   } catch (e) {}
 }
 function saveLocal() { try { localStorage.setItem(LS_KEY, JSON.stringify({ ...state, content })); } catch (e) {} }
@@ -750,6 +881,7 @@ function buildMap() {
   const nodes = $("mapNodes"); nodes.innerHTML = ""; $("mapMNodes").innerHTML = "";
   content.steps.forEach((s, i) => {
     const [x, y, pos] = POS[i];
+    const labelPos = y < 155 && pos === "up" ? "down" : pos;
     const btn = document.createElement("button");
     btn.className = "node"; btn.textContent = i + 1;
     btn.style.left = (x / 1200 * 100) + "%"; btn.style.top = (y / 520 * 100) + "%";
@@ -758,7 +890,7 @@ function buildMap() {
     btn.addEventListener("click", () => openStep(i, btn));
     nodes.appendChild(btn);
     const label = document.createElement("div");
-    label.className = "label " + pos; label.style.left = btn.style.left; label.style.top = btn.style.top;
+    label.className = "label " + labelPos; label.style.left = btn.style.left; label.style.top = btn.style.top;
     label.innerHTML = `<strong>${esc(s.title)}</strong><small>${esc(s.sub)}</small>`;
     nodes.appendChild(label);
     const [mx, my] = MPOS[i];
@@ -779,17 +911,99 @@ function buildMap() {
    VISTA NORMAL
    ========================================================= */
 function frontBlock(f, n) {
-  if (n == null) n = content.fronts.indexOf(f) + 1;
+  const order = typeof n === "number" ? n : 1;
   return `<details class="front" data-front="${esc(f.id)}" ${openFronts.has(f.id) ? "open" : ""}>
-    <summary><span class="order">${n}</span><span class="front-title"><strong>${esc(f.name)}</strong><small>${esc(f.sub)}</small></span><span class="front-count" data-count="${esc(f.id)}"></span></summary>
+    <summary><span class="order">${order}</span><span class="front-title"><strong>${esc(f.name)}</strong><small>${esc(f.sub)}</small></span><span class="front-count" data-count="${esc(f.id)}"></span></summary>
     ${f.note ? `<p class="note">${esc(f.note)}</p>` : ""}
     <ul class="tasks">${f.tasks.map(t => `
       <li><label><input type="checkbox" data-task="${esc(t.id)}"><span><span class="t">${esc(t.text)}</span><span class="d" data-date="${esc(t.id)}"></span></span></label></li>`).join("")}</ul>
     ${f.tasks.length ? "" : `<p class="note" style="padding-bottom:1rem">Sin tareas todavía. Usa Editar para añadirlas.</p>`}
   </details>`;
 }
-function viewBlock(b) {
-  const h = b.heading ? `<h3>${esc(b.heading)}</h3>` : "";
+function frontsSectionKey(heading, blockIndex) {
+  const slug = (heading || "frentes").trim().toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "").replace(/[^a-z0-9]+/g, "-").replace(/^-|-$/g, "") || "frentes";
+  return `metas-${slug}-${blockIndex}`;
+}
+function metasHiddenDefaults(c) {
+  const step = (c || content).steps?.find(s => s.title === "Metas y objetivos");
+  if (!step) return [];
+  const bi = step.blocks.findIndex(b => b.type === "fronts" && b.heading === "Objetivos diarios");
+  if (bi < 0) return [];
+  return [frontsSectionKey("Objetivos diarios", bi)];
+}
+function applyHiddenSections(stored, c) {
+  state.hiddenSections = Array.isArray(stored) ? stored.slice() : metasHiddenDefaults(c);
+}
+function hiddenSectionsWorking() { return hiddenSectionsPending ?? state.hiddenSections; }
+function sectionsLayoutDirty() {
+  if (hiddenSectionsPending === null) return false;
+  const cur = hiddenSectionsPending.slice().sort().join("\0");
+  const saved = state.hiddenSections.slice().sort().join("\0");
+  return cur !== saved;
+}
+function revertSectionLayout() { hiddenSectionsPending = null; }
+function discardSectionLayoutIfLeavingMetas() {
+  if (content.steps[current]?.title === "Metas y objetivos") revertSectionLayout();
+}
+function isSectionHidden(key) { return hiddenSectionsWorking().includes(key); }
+function patchSectionLayout(key, hide) {
+  if (hiddenSectionsPending === null) hiddenSectionsPending = state.hiddenSections.slice();
+  if (hide) { if (!hiddenSectionsPending.includes(key)) hiddenSectionsPending.push(key); }
+  else hiddenSectionsPending = hiddenSectionsPending.filter(k => k !== key);
+}
+function saveSectionLayout() {
+  state.hiddenSections = hiddenSectionsWorking().slice();
+  hiddenSectionsPending = null;
+  saveLocal();
+  dirty.content = true;
+  queueSave();
+  updateSaveSectionsBtn();
+  render();
+}
+function updateSaveSectionsBtn() {
+  const btn = $("saveSectionsBtn"); if (!btn) return;
+  const onMetas = content.steps[current]?.title === "Metas y objetivos";
+  btn.hidden = !(onMetas && !editing && sectionsLayoutDirty());
+}
+function renderFrontsBody(b) {
+  return b.ids.map(id => content.fronts.find(f => f.id === id)).filter(Boolean).map((f, i) => frontBlock(f, i + 1)).join("");
+}
+function renderFrontsSection(b, blockIndex) {
+  const key = frontsSectionKey(b.heading, blockIndex);
+  const inner = renderFrontsBody(b);
+  if (!b.heading) return inner;
+  if (isSectionHidden(key)) return "";
+  return `<details class="front-section" data-section="${esc(key)}">
+    <summary class="front-section-head">
+      <h3>${esc(b.heading)}</h3>
+      <span class="front-section-actions">
+        <button type="button" class="icon-btn section-hide" data-section-hide="${esc(key)}" aria-label="Ocultar sección">${ICON_HIDE_SECTION}</button>
+        <span class="chev section-chev" aria-hidden="true"></span>
+      </span>
+    </summary>
+    <div class="front-section-body">${inner}</div>
+  </details>`;
+}
+function renderMetasBlocks(blocks) {
+  const hidden = [];
+  const parts = blocks.map((b, bi) => {
+    if (b.type === "fronts" && b.heading) {
+      const key = frontsSectionKey(b.heading, bi);
+      if (isSectionHidden(key)) {
+        hidden.push(`<button type="button" class="pill section-restore" data-section-show="${esc(key)}">${esc(b.heading)}</button>`);
+        return "";
+      }
+      return renderFrontsSection(b, bi);
+    }
+    return viewBlock(b, bi);
+  });
+  const dock = hidden.length
+    ? `<div class="section-dock"><span class="section-dock-label">Secciones ocultas</span>${hidden.join("")}</div>`
+    : "";
+  return dock + parts.join("");
+}
+function viewBlock(b, blockIndex) {
+  const h = b.heading && b.type !== "fronts" ? `<h3>${esc(b.heading)}</h3>` : "";
   switch (b.type) {
     case "text": return h + `<p class="text-block">${esc(b.text)}</p>`;
     case "cards": return h + `<div class="pillars">${b.items.map(it => `<div class="pillar"><b>${esc(it.title)}</b><span>${esc(it.text)}</span></div>`).join("")}</div>`;
@@ -799,7 +1013,7 @@ function viewBlock(b) {
       if (!items.length) return h + `<p class="text-block">Añade frentes en «Metas y objetivos» para ver aquí los riesgos y mitigaciones relacionados.</p>`;
       return h + `<ul class="items">${items.map(it => `<li><div>${it.title ? `<b>${esc(it.title)}</b> ` : ""}${esc(it.text)}</div></li>`).join("")}</ul>`;
     }
-    case "fronts": return h + b.ids.map(id => content.fronts.find(f => f.id === id)).filter(Boolean).map((f, i) => frontBlock(f, i + 1)).join("");
+    case "fronts": return h + renderFrontsBody(b);
     case "gantt": return (b.text ? `<p class="text-block">${esc(b.text)}</p>` : "") + `<div class="gantt" id="gantt">${content.phases.map(p => `
         <div class="row">
           <div class="row-head"><strong>${esc(p.name)}</strong><span data-range="${esc(p.id)}"></span></div>
@@ -938,6 +1152,8 @@ function renderEdit(focusSel) {
 }
 
 function startEdit() {
+  revertSectionLayout();
+  updateSaveSectionsBtn();
   draft = clone(content); editing = true;
   $("sheet").classList.add("editing");
   $("editBtn").textContent = "Listo"; $("editBtn").classList.add("primary");
@@ -949,6 +1165,7 @@ function endEdit() {
   $("sheet").classList.remove("editing");
   $("editBtn").textContent = "Editar"; $("editBtn").classList.remove("primary");
   $("cancelBtn").hidden = true; $("closeBtn").hidden = false;
+  updateSaveSectionsBtn();
 }
 async function saveEdit() {
   // limpiar vacíos
@@ -1007,12 +1224,13 @@ function render() {
   const s = content.steps[current];
   $("sheetNum").textContent = current + 1; $("sheetTitle").textContent = s.title; $("sheetSub").textContent = s.sub;
   if (editing) { renderEdit(); return; }
-  $("sheetBody").innerHTML = s.blocks.map(viewBlock).join("");
+  $("sheetBody").innerHTML = s.title === "Metas y objetivos" ? renderMetasBlocks(s.blocks) : s.blocks.map((b, i) => viewBlock(b, i)).join("");
   $("prevBtn").disabled = current === 0;
   $("nextBtn").textContent = current === content.steps.length - 1 ? "Cerrar" : "Siguiente";
   document.querySelectorAll("#mapNodes .node").forEach((n, i) => n.setAttribute("aria-expanded", i === current ? "true" : "false"));
   $("sheet").scrollTop = 0;
   refresh();
+  updateSaveSectionsBtn();
 }
 
 function refresh() {
@@ -1056,6 +1274,7 @@ function refresh() {
       ? `<ul class="log">${list.map(([id, t]) => `<li><time>${fDate(t.doneAt)}</time><span>${esc(at[id].text)}<small>${esc(at[id].front)}</small></span></li>`).join("")}</ul>`
       : `<div class="empty">Aún no hay tareas completadas. Márcalas en las etapas 2 y 3 y aquí aparecerán con su fecha.</div>`;
   }
+  if (!introEditing) renderIntro();
 }
 
 /* =========================================================
@@ -1074,6 +1293,24 @@ async function setPhase(id, field, value) {
   state.schedule[id] = next; saveLocal(); refresh();
   dirty.schedule.add(id); queueSave();
 }
+$("sheetBody").addEventListener("click", e => {
+  const hideBtn = e.target.closest("[data-section-hide]");
+  if (hideBtn && !editing) {
+    e.preventDefault();
+    e.stopPropagation();
+    const key = hideBtn.dataset.sectionHide;
+    if (key) patchSectionLayout(key, true);
+    updateSaveSectionsBtn();
+    render(); return;
+  }
+  const showBtn = e.target.closest("[data-section-show]");
+  if (showBtn && !editing) {
+    patchSectionLayout(showBtn.dataset.sectionShow, false);
+    updateSaveSectionsBtn();
+    render(); return;
+  }
+});
+$("saveSectionsBtn").addEventListener("click", () => { if (!editing) saveSectionLayout(); });
 $("sheetBody").addEventListener("change", e => {
   const t = e.target;
   if (t.matches("input[data-task]")) setTask(t.dataset.task, t.checked ? { done: true, doneAt: new Date().toISOString() } : { done: false });
@@ -1089,12 +1326,15 @@ $("sheetBody").addEventListener("toggle", e => {
    ABRIR / CERRAR
    ========================================================= */
 function openStep(i, from) {
+  openFronts.clear();
   current = i; opener = from; if (editing) endEdit(); render();
   overlay.classList.add("open"); overlay.setAttribute("aria-hidden", "false");
   document.body.classList.add("locked"); $("editBtn").focus();
 }
 function closeSheet() {
   if (editing) endEdit();
+  revertSectionLayout();
+  updateSaveSectionsBtn();
   overlay.classList.remove("open"); overlay.setAttribute("aria-hidden", "true");
   document.body.classList.remove("locked");
   document.querySelectorAll(".node").forEach(n => n.setAttribute("aria-expanded", "false"));
@@ -1102,16 +1342,16 @@ function closeSheet() {
 }
 $("editBtn").addEventListener("click", () => { if (!canWrite()) return askToken(); editing ? saveEdit() : startEdit(); });
 $("cancelBtn").addEventListener("click", cancelEdit);
-$("prevBtn").addEventListener("click", () => { if (current > 0) { current--; render(); } });
-$("nextBtn").addEventListener("click", () => { if (current < content.steps.length - 1) { current++; render(); } else closeSheet(); });
+$("prevBtn").addEventListener("click", () => { if (current > 0) { discardSectionLayoutIfLeavingMetas(); current--; render(); } });
+$("nextBtn").addEventListener("click", () => { if (current < content.steps.length - 1) { discardSectionLayoutIfLeavingMetas(); current++; render(); } else closeSheet(); });
 $("closeBtn").addEventListener("click", closeSheet);
 overlay.addEventListener("click", e => { if (e.target === overlay && !editing) closeSheet(); });
 document.addEventListener("keydown", e => {
   if (!overlay.classList.contains("open")) return;
   if (e.key === "Escape") { editing ? cancelEdit() : closeSheet(); return; }
   if (editing || (e.target.matches && e.target.matches("input, textarea"))) return;
-  if (e.key === "ArrowRight" && current < content.steps.length - 1) { current++; render(); }
-  if (e.key === "ArrowLeft" && current > 0) { current--; render(); }
+  if (e.key === "ArrowRight" && current < content.steps.length - 1) { discardSectionLayoutIfLeavingMetas(); current++; render(); }
+  if (e.key === "ArrowLeft" && current > 0) { discardSectionLayoutIfLeavingMetas(); current--; render(); }
 });
 
 
@@ -1119,25 +1359,64 @@ document.addEventListener("keydown", e => {
    TEXTO DE INTRODUCCIÓN (editable)
    ========================================================= */
 let introEditing = false;
-function introValue() { return typeof content.intro === "string" ? content.intro : DEFAULT_CONTENT.intro; }
-function renderIntro() { if (!introEditing) $("introText").textContent = introValue(); }
+function introData() {
+  normalizeIntro(content);
+  return content.intro;
+}
+function renderIntro() {
+  if (introEditing) return;
+  const { title, subtitle } = introData();
+  $("introPanel").innerHTML = `<div class="intro-compact">
+    <h2 class="intro-title">${esc(title)}</h2>
+    ${subtitle ? `<p class="intro-subtitle">${esc(subtitle)}</p>` : ""}
+  </div>`;
+}
 function setIntroEditing(on) {
   introEditing = on;
-  $("introText").hidden = on; $("introInput").hidden = !on; $("introCancel").hidden = !on;
-  $("introEditBtn").textContent = on ? "Listo" : "Editar";
-  $("introEditBtn").classList.toggle("primary", on);
-  if (on) { const t = $("introInput"); t.value = introValue(); autosize(t); t.focus(); } else renderIntro();
+  const det = $("introEditDetails");
+  det.open = on;
+  if (on) {
+    const d = introData();
+    const a = $("introTitleInput"), b = $("introSubtitleInput"), c = $("introFootnoteInput");
+    a.value = d.title; b.value = d.subtitle; c.value = d.footnote || "";
+    autosize(a); autosize(b); autosize(c); a.focus();
+  } else renderIntro();
 }
-$("introInput").addEventListener("input", e => autosize(e.target));
-$("introCancel").addEventListener("click", () => setIntroEditing(false));
-$("introEditBtn").addEventListener("click", async () => {
-  if (!canWrite()) return askToken();
-  if (!introEditing) { setIntroEditing(true); return; }
-  content = { ...content, intro: $("introInput").value.trim() };
-  setIntroEditing(false); saveLocal();
+function saveIntroEdits() {
+  content = {
+    ...content,
+    intro: {
+      title: $("introTitleInput").value.trim(),
+      subtitle: $("introSubtitleInput").value.trim(),
+      footnote: $("introFootnoteInput").value.trim()
+    }
+  };
+  normalizeIntro(content);
+  introEditing = false;
+  $("introEditDetails").open = false;
+  renderIntro(); saveLocal();
   dirty.content = true; queueSave();
+}
+["introTitleInput", "introSubtitleInput", "introFootnoteInput"].forEach(id => {
+  $(id).addEventListener("input", e => autosize(e.target));
+  $(id).addEventListener("keydown", e => { if (e.key === "Escape") setIntroEditing(false); });
 });
-$("introInput").addEventListener("keydown", e => { if (e.key === "Escape") setIntroEditing(false); });
+$("introCancel").addEventListener("click", () => setIntroEditing(false));
+$("introSaveBtn").addEventListener("click", () => { if (!canWrite()) return askToken(); saveIntroEdits(); });
+$("introEditDetails").addEventListener("toggle", e => {
+  const det = e.target;
+  if (det.open && !canWrite()) { det.open = false; askToken(); return; }
+  if (det.open && !introEditing) {
+    introEditing = true;
+    const d = introData();
+    $("introTitleInput").value = d.title;
+    $("introSubtitleInput").value = d.subtitle;
+    $("introFootnoteInput").value = d.footnote || "";
+    ["introTitleInput", "introSubtitleInput", "introFootnoteInput"].forEach(id => autosize($(id)));
+    setTimeout(() => $("introTitleInput").focus(), 0);
+  }
+  if (!det.open && introEditing) { introEditing = false; renderIntro(); }
+});
 
 /* =========================================================
    BASE DE DATOS EN GITHUB (archivo data.json del repositorio)
@@ -1170,8 +1449,14 @@ function setStatus(text, kind) {
 }
 function applyMode() {
   document.body.classList.toggle("readonly", !canWrite());
-  $("ghToggle").textContent = canWrite() ? "Desconectar" : "Conectar para editar";
+  const bubble = $("connectBubble");
+  $("ghToggle").textContent = canWrite() ? "Conectado" : "Conectar";
+  bubble.classList.toggle("connected", canWrite());
   if (!canWrite()) setStatus("Solo lectura · conecta tu token para editar");
+}
+function closeGhForm() {
+  $("ghForm").hidden = true;
+  $("ghToken").value = "";
 }
 function b64encode(str) {
   const bytes = new TextEncoder().encode(str); let bin = "";
@@ -1183,7 +1468,7 @@ function b64decode(b64) {
   for (let i = 0; i < bin.length; i++) bytes[i] = bin.charCodeAt(i);
   return new TextDecoder().decode(bytes);
 }
-function snapshot() { return { content, tasks: state.tasks, schedule: state.schedule, updatedAt: new Date().toISOString() }; }
+function snapshot() { return { content, tasks: state.tasks, schedule: state.schedule, hiddenSections: state.hiddenSections, updatedAt: new Date().toISOString() }; }
 
 async function fetchApi() {
   const r = await fetch(`${apiUrl()}?ref=${GH.branch}&t=${Date.now()}`, {
@@ -1204,6 +1489,7 @@ function applyData(d) {
   if (!d) return;
   if (validContent(d.content)) content = normalizeContent(clone(d.content));
   state.tasks = d.tasks || {}; state.schedule = d.schedule || {};
+  applyHiddenSections(d.hiddenSections, content);
   afterRemote();
 }
 async function load() {
@@ -1266,13 +1552,25 @@ function askToken() {
 }
 
 $("ghToggle").addEventListener("click", () => {
-  if (canWrite()) { ghToken = null; ghSha = null; try { localStorage.removeItem(TOKEN_KEY); } catch (e) {} applyMode(); render && overlay.classList.contains("open") && render(); load(); return; }
-  $("ghForm").hidden = !$("ghForm").hidden; if (!$("ghForm").hidden) $("ghToken").focus();
+  if (canWrite()) return;
+  $("ghForm").hidden = false;
+  $("ghToken").focus();
+});
+$("ghBubbleClose").addEventListener("click", () => {
+  if (canWrite()) {
+    ghToken = null; ghSha = null;
+    try { localStorage.removeItem(TOKEN_KEY); } catch (e) {}
+    closeGhForm(); applyMode();
+    render && overlay.classList.contains("open") && render();
+    load();
+    return;
+  }
+  closeGhForm();
 });
 $("ghConnect").addEventListener("click", async () => {
   const t = $("ghToken").value.trim(); if (!t) return;
   ghToken = t; try { localStorage.setItem(TOKEN_KEY, t); } catch (e) {}
-  $("ghToken").value = ""; $("ghForm").hidden = true; applyMode(); setStatus("Conectando…"); await load();
+  closeGhForm(); applyMode(); setStatus("Conectando…"); await load();
 });
 window.addEventListener("beforeunload", e => { if (hasPending() && canWrite()) { e.preventDefault(); e.returnValue = ""; } });
 
