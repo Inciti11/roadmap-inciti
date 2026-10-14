@@ -74,6 +74,17 @@
   .road-pill .chev { width: 20px; height: 20px; background: var(--white); }
   .road-pill.is-open .chev { background: rgba(255, 255, 255, .22); }
   .mini-sheet { max-width: 420px; max-height: min(88vh, 520px); }
+  .sheet.metrics-add-sheet {
+    max-width: min(94vw, 540px);
+    max-height: min(92vh, 720px);
+    overflow-x: hidden;
+    overflow-y: auto;
+    border-radius: 18px;
+  }
+  .metrics-add-sheet .sheet-body {
+    padding: 1.35rem 1.5rem 1.75rem;
+  }
+  .metrics-add-sheet .metrics-add-form { gap: 1rem; }
   .mini-sheet .sheet-head { display: flex; align-items: center; justify-content: space-between; gap: .75rem; padding: 1.1rem 1.25rem; }
   .mini-sheet .close { margin-left: auto; flex: none; }
   .mini-sheet .sheet-head h2 { margin: 0; font-family: var(--ui); font-size: 17px; font-weight: 700; color: var(--navy); }
@@ -296,6 +307,78 @@
     letter-spacing: 0.04em; text-transform: uppercase; color: var(--muted);
   }
   .metrics-front .metrics-empty { margin: 0; padding: .5rem 0 .25rem; }
+  .metrics-add-form {
+    display: grid; gap: .65rem;
+  }
+  .road-fab {
+    position: fixed; z-index: 8;
+    right: clamp(1rem, 3vw, 2.5rem);
+    bottom: clamp(1.25rem, 4vw, 2.5rem);
+    width: 56px; height: 56px; padding: 0; border: 0; border-radius: 50%;
+    background: var(--blue); color: var(--white);
+    font-size: 30px; font-weight: 400; line-height: 1; cursor: pointer;
+    box-shadow: 0 10px 28px rgba(74, 114, 176, 0.42);
+    display: grid; place-items: center;
+    transition: transform .15s ease, box-shadow .15s ease, opacity .2s ease;
+  }
+  .road-fab:hover { transform: scale(1.04); box-shadow: 0 12px 32px rgba(74, 114, 176, 0.5); }
+  body.locked .road-fab { opacity: 0; pointer-events: none; }
+  .metrics-add-label { display: grid; gap: .35rem; }
+  .metrics-add-label span {
+    font-family: var(--ui); font-size: 11px; font-weight: 700; letter-spacing: 0.04em;
+    text-transform: uppercase; color: var(--muted);
+  }
+  .metrics-add-form input[type="text"] {
+    font-family: var(--ui); font-size: 14px; font-weight: 600; color: var(--ink);
+    border: 1px solid var(--line); border-radius: 10px; padding: .55rem .75rem;
+    background: var(--white); width: 100%;
+  }
+  .metrics-pick { --metrics-pick-row: 2.75rem; }
+  .metrics-pick-trigger {
+    width: 100%; display: flex; align-items: center; justify-content: space-between; gap: .75rem;
+    padding: .75rem 1rem; border-radius: 12px; border: 1px solid var(--line);
+    background: var(--white); cursor: pointer; text-align: left;
+    font-family: var(--ui); font-size: 14px; font-weight: 600; color: var(--navy);
+    box-shadow: 0 1px 0 rgba(20, 33, 57, 0.04);
+    transition: border-color .15s ease, box-shadow .15s ease, background .15s ease;
+  }
+  .metrics-pick-trigger:hover { background: var(--hover); border-color: rgba(74, 114, 176, 0.35); }
+  .metrics-pick.open .metrics-pick-trigger,
+  .metrics-pick-trigger:focus-visible {
+    border-color: var(--blue); box-shadow: 0 0 0 3px rgba(74, 114, 176, 0.18); outline: none;
+  }
+  .metrics-pick-value { flex: 1; min-width: 0; }
+  .metrics-pick-chev { width: 22px; height: 22px; background: var(--hover); flex: none; transition: transform .2s ease; }
+  .metrics-pick.open .metrics-pick-chev { transform: rotate(180deg); }
+  .metrics-pick-list {
+    list-style: none; margin: .45rem 0 0; padding: .35rem;
+    max-height: calc(var(--metrics-pick-row) * 5 + 0.7rem);
+    overflow-y: auto; overflow-x: hidden;
+    border-radius: 12px; border: 1px solid var(--line);
+    background: var(--white); box-shadow: 0 8px 24px rgba(20, 33, 57, 0.1);
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+  }
+  .metrics-pick.open .metrics-pick-trigger {
+    border-bottom-left-radius: 6px; border-bottom-right-radius: 6px;
+  }
+  .metrics-pick.open .metrics-pick-list {
+    margin-top: .35rem;
+    border-top-left-radius: 6px; border-top-right-radius: 6px;
+  }
+  .metrics-pick-list::-webkit-scrollbar { width: 0; height: 0; display: none; }
+  .metrics-pick-list[hidden] { display: none; }
+  .metrics-pick-option {
+    min-height: var(--metrics-pick-row);
+    display: flex; align-items: center;
+    padding: 0 .85rem; border-radius: 9px; cursor: pointer; box-sizing: border-box;
+    font-family: var(--ui); font-size: 14px; font-weight: 600; color: var(--ink);
+    transition: background .12s ease, color .12s ease;
+  }
+  .metrics-pick-option:hover { background: var(--hover); }
+  .metrics-pick-option.is-selected { background: rgba(74, 114, 176, 0.14); color: var(--navy); }
+  .metrics-pick-empty { padding: .65rem .85rem; color: var(--muted); font-size: 13px; font-weight: 600; }
+  .metrics-add-actions { display: flex; flex-wrap: wrap; gap: .5rem; align-items: center; }
   .empty { padding: 1rem; border-radius: 12px; background: var(--card); color: var(--muted); }
 
   .sheet-foot { display: flex; justify-content: space-between; gap: .75rem; padding: 1rem 1.5rem 1.25rem; border-top: 1px solid var(--line); }
@@ -587,6 +670,41 @@
   </div>
   </section>
 
+</div>
+
+<button type="button" class="road-fab" id="metricsAddFab" aria-label="Añadir tarea" title="Añadir tarea">+</button>
+
+<div class="overlay" id="metricsAddOverlay" aria-hidden="true">
+  <div class="sheet mini-sheet metrics-add-sheet" role="dialog" aria-modal="true" aria-labelledby="metricsAddTitle">
+    <div class="sheet-head">
+      <h2 id="metricsAddTitle">Añadir tarea</h2>
+      <button type="button" class="close" id="metricsAddClose" aria-label="Cerrar">×</button>
+    </div>
+    <div class="sheet-body">
+      <p class="text-block" style="margin:0 0 .75rem;color:var(--muted);font-size:13px;font-weight:600;line-height:1.45;">La tarea aparecerá en Metas y objetivos, en la sección que elijas.</p>
+      <form class="metrics-add-form" id="metricsAddForm">
+        <label class="metrics-add-label">
+          <span>Tarea</span>
+          <input type="text" id="metricsTaskText" data-metrics-task-text placeholder="Descripción de la tarea" required maxlength="500">
+        </label>
+        <label class="metrics-add-label">
+          <span>Asignar a la tarea</span>
+          <div class="metrics-pick" id="metricsTaskPick">
+            <input type="hidden" id="metricsTaskFront" data-metrics-task-front value="" required>
+            <button type="button" class="metrics-pick-trigger" id="metricsTaskPickBtn" aria-haspopup="listbox" aria-expanded="false" aria-controls="metricsTaskPickList">
+              <span class="metrics-pick-value" id="metricsTaskPickLabel">Elige la sección</span>
+              <span class="chev metrics-pick-chev" aria-hidden="true"></span>
+            </button>
+            <ul class="metrics-pick-list" id="metricsTaskPickList" role="listbox" hidden aria-label="Sección de tareas"></ul>
+          </div>
+        </label>
+        <div class="metrics-add-actions">
+          <button type="submit" class="pill primary">Añadir</button>
+          <button type="button" class="pill ghost" id="metricsAddCancelBtn">Cancelar</button>
+        </div>
+      </form>
+    </div>
+  </div>
 </div>
 
 <div class="overlay" id="overallOverlay" aria-hidden="true">
@@ -1082,6 +1200,78 @@ function renderMetasBlocks(blocks) {
     : "";
   return dock + parts.join("");
 }
+function metricsAssignFronts() {
+  const ids = getMetasFrontIds(content);
+  if (ids.length) return ids.map(id => content.fronts.find(f => f.id === id)).filter(Boolean);
+  return content.fronts.slice();
+}
+function renderMetricsShell() {
+  return `<div class="metrics-by-front"><div id="metricsFronts"></div></div>`;
+}
+function closeMetricsTaskPick() {
+  const pick = $("metricsTaskPick"), list = $("metricsTaskPickList"), btn = $("metricsTaskPickBtn");
+  if (list) list.hidden = true;
+  pick?.classList.remove("open");
+  btn?.setAttribute("aria-expanded", "false");
+}
+function setMetricsTaskPick(frontId, name) {
+  const hid = $("metricsTaskFront"), label = $("metricsTaskPickLabel");
+  if (hid) hid.value = frontId || "";
+  if (label) label.textContent = name || "Elige la sección";
+  $("metricsTaskPickList")?.querySelectorAll(".metrics-pick-option").forEach(el => {
+    const on = el.dataset.value === frontId;
+    el.setAttribute("aria-selected", on ? "true" : "false");
+    el.classList.toggle("is-selected", on);
+  });
+}
+function populateMetricsAddFronts() {
+  const list = $("metricsTaskPickList");
+  if (!list) return;
+  closeMetricsTaskPick();
+  const fronts = metricsAssignFronts();
+  if (!fronts.length) {
+    list.innerHTML = `<li class="metrics-pick-empty">No hay secciones en Metas aún</li>`;
+    setMetricsTaskPick("", "Sin secciones");
+    return;
+  }
+  list.innerHTML = fronts.map(f =>
+    `<li role="option" class="metrics-pick-option" data-value="${esc(f.id)}" aria-selected="false">${esc(f.name)}</li>`
+  ).join("");
+  setMetricsTaskPick(fronts[0].id, fronts[0].name);
+}
+function closeMetricsAddModal() {
+  closeMetricsTaskPick();
+  $("metricsAddOverlay").classList.remove("open");
+  $("metricsAddOverlay").setAttribute("aria-hidden", "true");
+  $("metricsAddForm")?.reset();
+  populateMetricsAddFronts();
+  syncBodyLock();
+}
+function openMetricsAddModal() {
+  if (!canWrite()) { askToken(); return; }
+  closeOverallModal(); closeConnectModal(); closeIntroModal();
+  populateMetricsAddFronts();
+  $("metricsAddOverlay").classList.add("open");
+  $("metricsAddOverlay").setAttribute("aria-hidden", "false");
+  syncBodyLock();
+  setTimeout(() => $("metricsTaskText")?.focus(), 50);
+}
+function updateRoadFab() {
+  const fab = $("metricsAddFab");
+  if (fab) fab.hidden = editing;
+}
+function addTaskFromMetrics(frontId, text) {
+  if (!canWrite()) { askToken(); return false; }
+  const trim = text.trim();
+  if (!trim) return false;
+  const f = content.fronts.find(x => x.id === frontId);
+  if (!f) return false;
+  f.tasks.push({ id: uid("t"), text: trim });
+  saveLocal();
+  dirty.content = true;
+  queueSave();
+  return true;
+}
 function renderListItems(b, deliverableBars) {
   if (deliverableBars) {
     return `<ul class="deliverable-bars">${b.items.map(it => `<li class="deliverable-bar">
@@ -1112,7 +1302,7 @@ function viewBlock(b, blockIndex, opts) {
             <label>Fin <input type="date" data-phase="${esc(p.id)}" data-field="end"></label>
           </div>
         </div>`).join("")}</div><div class="legend">Línea navy: hoy</div>`;
-    case "metrics": return `<div class="metrics-by-front" id="metricsFronts"></div>`;
+    case "metrics": return renderMetricsShell();
   }
   return "";
 }
@@ -1312,6 +1502,7 @@ const overlay = $("overlay");
 function render() {
   const s = content.steps[current];
   $("sheetNum").textContent = current + 1; $("sheetTitle").textContent = s.title; $("sheetSub").textContent = s.sub;
+  updateRoadFab();
   if (editing) { renderEdit(); return; }
   const deliverableBars = s.title === "Entregables" || s.title === "Riesgos y mitigación";
   $("sheetBody").innerHTML = s.title === "Metas y objetivos"
@@ -1377,7 +1568,7 @@ function refresh() {
           })),
         }, true)
         : `<div class="empty metrics-empty">Aún no hay tareas completadas en este frente.</div>`;
-      return `<details class="front-section metrics-front" data-front="${esc(f.id)}">
+      return `<details class="front-section metrics-front">
         <summary class="front-section-head">
           <h3>${esc(f.name)}</h3>
           <span class="front-section-actions">
@@ -1428,6 +1619,40 @@ $("sheetBody").addEventListener("click", e => {
     render(); return;
   }
 });
+$("metricsAddFab").addEventListener("click", () => { if (!editing) openMetricsAddModal(); });
+$("metricsAddClose").addEventListener("click", closeMetricsAddModal);
+$("metricsAddCancelBtn").addEventListener("click", closeMetricsAddModal);
+$("metricsAddOverlay").addEventListener("click", e => { if (e.target === $("metricsAddOverlay")) closeMetricsAddModal(); });
+$("metricsTaskPickBtn").addEventListener("click", e => {
+  e.stopPropagation();
+  const pick = $("metricsTaskPick"), list = $("metricsTaskPickList"), btn = $("metricsTaskPickBtn");
+  if (!list || list.querySelector(".metrics-pick-empty")) return;
+  const willOpen = list.hidden;
+  closeMetricsTaskPick();
+  if (willOpen) {
+    list.hidden = false;
+    pick.classList.add("open");
+    btn.setAttribute("aria-expanded", "true");
+  }
+});
+$("metricsTaskPickList").addEventListener("click", e => {
+  const opt = e.target.closest(".metrics-pick-option");
+  if (!opt) return;
+  setMetricsTaskPick(opt.dataset.value, opt.textContent.trim());
+  closeMetricsTaskPick();
+});
+document.addEventListener("click", e => {
+  if (!e.target.closest("#metricsTaskPick")) closeMetricsTaskPick();
+});
+$("metricsAddForm").addEventListener("submit", e => {
+  e.preventDefault();
+  const text = $("metricsTaskText")?.value ?? "";
+  const frontId = $("metricsTaskFront")?.value ?? "";
+  if (!addTaskFromMetrics(frontId, text)) return;
+  closeMetricsAddModal();
+  if (overlay.classList.contains("open") && !editing) render();
+  else refresh();
+});
 $("saveSectionsBtn").addEventListener("click", () => { if (!editing) saveSectionLayout(); });
 $("sheetBody").addEventListener("change", e => {
   const t = e.target;
@@ -1468,6 +1693,7 @@ document.addEventListener("keydown", e => {
   if (e.key === "Escape" && $("introEditOverlay").classList.contains("open")) { closeIntroModal(); return; }
   if (e.key === "Escape" && $("connectOverlay").classList.contains("open")) { closeConnectModal(); return; }
   if (e.key === "Escape" && $("overallOverlay").classList.contains("open")) { closeOverallModal(); return; }
+  if (e.key === "Escape" && $("metricsAddOverlay").classList.contains("open")) { closeMetricsAddModal(); return; }
   if (!overlay.classList.contains("open")) return;
   if (e.key === "Escape") { editing ? cancelEdit() : closeSheet(); return; }
   if (editing || (e.target.matches && e.target.matches("input, textarea"))) return;
@@ -1578,7 +1804,7 @@ function applyMode() {
   if (!canWrite()) setStatus("Solo lectura · conecta tu token para editar");
 }
 function anyHeaderModalOpen() {
-  return ["overallOverlay", "connectOverlay", "introEditOverlay"].some(id => $(id).classList.contains("open"));
+  return ["overallOverlay", "connectOverlay", "introEditOverlay", "metricsAddOverlay"].some(id => $(id).classList.contains("open"));
 }
 function syncBodyLock() {
   document.body.classList.toggle("locked", anyHeaderModalOpen() || overlay.classList.contains("open"));
@@ -1735,7 +1961,7 @@ window.addEventListener("beforeunload", e => { if (hasPending() && canWrite()) {
 
 function afterRemote() { saveLocal(); buildMap(); if (overlay.classList.contains("open") && !editing) render(); else refresh(); }
 
-loadLocal(); buildMap(); refresh(); applyMode(); load();
+loadLocal(); buildMap(); updateRoadFab(); refresh(); applyMode(); load();
 setInterval(() => { if (document.visibilityState === "visible") load(); }, 45000);
 document.addEventListener("visibilitychange", () => { if (document.visibilityState === "visible") load(); });
 </script>
