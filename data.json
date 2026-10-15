@@ -460,6 +460,10 @@
     "w01": {
       "done": true,
       "doneAt": "2026-10-15T15:03:03.325Z"
+    },
+    "tmv9mx6zhz6gi": {
+      "done": true,
+      "doneAt": "2026-10-15T15:25:53.432Z"
     }
   },
   "schedule": {},
@@ -467,5 +471,5 @@
     "metas-investor-portal-1",
     "metas-plataforma-en-tiendas-2"
   ],
-  "updatedAt": "2026-10-15T15:03:21.245Z"
+  "updatedAt": "2026-10-15T15:25:55.938Z"
 }
