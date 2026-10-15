@@ -459,6 +459,9 @@
     }
   },
   "schedule": {},
-  "hiddenSections": [],
-  "updatedAt": "2026-10-15T15:01:34.693Z"
+  "hiddenSections": [
+    "metas-investor-portal-1",
+    "metas-plataforma-en-tiendas-2"
+  ],
+  "updatedAt": "2026-10-15T15:01:46.633Z"
 }
