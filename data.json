@@ -458,7 +458,8 @@
       "doneAt": "2026-10-13T20:42:00.000Z"
     },
     "w01": {
-      "done": false
+      "done": true,
+      "doneAt": "2026-10-15T15:03:03.325Z"
     }
   },
   "schedule": {},
@@ -466,5 +467,5 @@
     "metas-investor-portal-1",
     "metas-plataforma-en-tiendas-2"
   ],
-  "updatedAt": "2026-10-15T15:02:54.649Z"
+  "updatedAt": "2026-10-15T15:03:05.827Z"
 }
