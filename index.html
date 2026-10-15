@@ -243,7 +243,16 @@
     cursor: pointer;
   }
   .icon-btn:hover { background: var(--hover); color: var(--navy); border-color: rgba(20, 33, 57, 0.18); }
+  .icon-btn.section-pin.is-active { background: var(--blue); color: var(--white); border-color: var(--blue); }
   .icon-btn svg { display: block; }
+  .section-focus-banner {
+    display: flex; align-items: center; justify-content: space-between; gap: .75rem; flex-wrap: wrap;
+    margin: 0 0 1rem; padding: .65rem .85rem; border-radius: 12px;
+    background: rgba(74, 114, 176, 0.12); border: 1px solid rgba(74, 114, 176, 0.28);
+    font-family: var(--ui); font-size: 13px; font-weight: 600; color: var(--navy);
+  }
+  .section-focus-banner .pill { height: 32px; font-size: 12px; padding: 0 14px; }
+  details.front-section.is-pinned-focus { border-color: rgba(74, 114, 176, 0.45); box-shadow: 0 0 0 1px rgba(74, 114, 176, 0.15); }
   details.section-dock {
     margin: 0 0 1rem; padding: .65rem .75rem; border-radius: 12px;
     background: var(--card); border: 1px dashed var(--line);
@@ -968,13 +977,14 @@ const POS = [ [100,220,"up"], [300,400,"down"], [490,90,"up"], [690,330,"down"],
    ========================================================= */
 const clone = o => JSON.parse(JSON.stringify(o));
 let content = clone(DEFAULT_CONTENT);
-const state = { tasks: {}, schedule: {}, hiddenSections: [] };
+const state = { tasks: {}, schedule: {}, hiddenSections: [], pinnedSection: null };
 let draft = null, editing = false, current = 0, opener = null;
 const openFronts = new Set();
 const LS_KEY = "inciti-roadmap-v2";
 let hiddenSectionsPending = null;
 const ICON_EYE = `<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M2 12s3.5-7 10-7 10 7 10 7-3.5 7-10 7-10-7-10-7Z"/><circle cx="12" cy="12" r="3"/></svg>`;
 const ICON_EYE_OFF = `<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9.88 9.88a3 3 0 1 0 4.24 4.24"/><path d="M10.73 5.08A10.43 10.43 0 0 1 12 5c7 0 10 7 10 7a13.16 13.16 0 0 1-1.67 2.68"/><path d="M6.61 6.61A13.526 13.526 0 0 0 2 12s3 7 10 7a9.74 9.74 0 0 0 5.39-1.61"/><path d="M2 2l20 20"/></svg>`;
+const ICON_PIN = `<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 17v5"/><path d="M9 9V4.5a2.5 2.5 0 0 1 6 0V9"/><path d="M8 9h8l-1 7H9L8 9z"/></svg>`;
 
 function validContent(c) { return c && Array.isArray(c.steps) && c.steps.length === 6 && Array.isArray(c.fronts) && Array.isArray(c.phases); }
 function metasStep(c) { return (c || content).steps.find(s => s.title === "Metas y objetivos"); }
@@ -1057,8 +1067,10 @@ function loadLocal() {
   try {
     const s = JSON.parse(localStorage.getItem(LS_KEY) || "{}");
     state.tasks = s.tasks || {}; state.schedule = s.schedule || {};
+    state.pinnedSection = typeof s.pinnedSection === "string" ? s.pinnedSection : null;
     if (validContent(s.content)) content = normalizeContent(s.content);
     applyHiddenSections(s.hiddenSections, content);
+    if (state.pinnedSection && !pinnedSectionHeading()) state.pinnedSection = null;
   } catch (e) {}
 }
 function saveLocal() { try { localStorage.setItem(LS_KEY, JSON.stringify({ ...state, content })); } catch (e) {} }
@@ -1161,7 +1173,29 @@ function discardSectionLayoutIfLeavingMetas() {
   if (content.steps[current]?.title === "Metas y objetivos") revertSectionLayout();
 }
 function isSectionHidden(key) { return hiddenSectionsWorking().includes(key); }
+function pinnedSectionKey() { return state.pinnedSection || null; }
+function pinnedSectionHeading() {
+  const key = pinnedSectionKey(); if (!key) return "";
+  const step = metasStep(content); if (!step) return "";
+  for (let bi = 0; bi < step.blocks.length; bi++) {
+    const b = step.blocks[bi];
+    if (b.type === "fronts" && b.heading && frontsSectionKey(b.heading, bi) === key) return b.heading;
+  }
+  return "";
+}
+function toggleSectionPin(key) {
+  state.pinnedSection = state.pinnedSection === key ? null : key;
+  saveLocal();
+  render();
+}
+function clearSectionPin() {
+  if (!state.pinnedSection) return;
+  state.pinnedSection = null;
+  saveLocal();
+  render();
+}
 function patchSectionLayout(key, hide) {
+  if (hide && state.pinnedSection === key) state.pinnedSection = null;
   if (hiddenSectionsPending === null) hiddenSectionsPending = state.hiddenSections.slice();
   if (hide) { if (!hiddenSectionsPending.includes(key)) hiddenSectionsPending.push(key); }
   else hiddenSectionsPending = hiddenSectionsPending.filter(k => k !== key);
@@ -1188,10 +1222,13 @@ function renderFrontsSection(b, blockIndex) {
   const inner = renderFrontsBody(b);
   if (!b.heading) return inner;
   if (isSectionHidden(key)) return "";
-  return `<details class="front-section" data-section="${esc(key)}">
+  const pinKey = pinnedSectionKey();
+  const isPin = pinKey === key;
+  return `<details class="front-section${isPin ? " is-pinned-focus" : ""}" data-section="${esc(key)}"${isPin ? " open" : ""}>
     <summary class="front-section-head">
       <h3>${esc(b.heading)}</h3>
       <span class="front-section-actions">
+        <button type="button" class="icon-btn section-pin${isPin ? " is-active" : ""}" data-section-pin="${esc(key)}" title="${isPin ? "Quitar enfoque" : "Fijar sección"}" aria-label="${isPin ? "Quitar enfoque de sección" : "Fijar sección para concentrarte"}" aria-pressed="${isPin ? "true" : "false"}">${ICON_PIN}</button>
         <button type="button" class="icon-btn section-hide" data-section-hide="${esc(key)}" title="Ocultar sección" aria-label="Ocultar sección">${ICON_EYE}</button>
         <span class="chev section-chev" aria-hidden="true"></span>
       </span>
@@ -1200,16 +1237,23 @@ function renderFrontsSection(b, blockIndex) {
   </details>`;
 }
 function renderMetasBlocks(blocks) {
+  const pinKey = pinnedSectionKey();
+  const pinLabel = pinKey ? pinnedSectionHeading() : "";
+  const focusBanner = pinKey && pinLabel
+    ? `<div class="section-focus-banner" role="status">Enfocado en «${esc(pinLabel)}»<button type="button" class="pill" data-section-unpin>Ver todas las secciones</button></div>`
+    : "";
   const hidden = [];
   const parts = blocks.map((b, bi) => {
     if (b.type === "fronts" && b.heading) {
       const key = frontsSectionKey(b.heading, bi);
+      if (pinKey && key !== pinKey) return "";
       if (isSectionHidden(key)) {
         hidden.push({ heading: b.heading, key });
         return "";
       }
       return renderFrontsSection(b, bi);
     }
+    if (pinKey) return "";
     return viewBlock(b, bi);
   });
   const dock = hidden.length
@@ -1221,7 +1265,7 @@ function renderMetasBlocks(blocks) {
           <button type="button" class="icon-btn section-restore" data-section-show="${esc(key)}" title="Desocultar" aria-label="Desocultar ${esc(heading)}">${ICON_EYE_OFF}</button>
         </div>`).join("")}</div></details>`
     : "";
-  return dock + parts.join("");
+  return focusBanner + dock + parts.join("");
 }
 function metricsAssignFronts() {
   const ids = getMetasFrontIds(content);
@@ -1626,6 +1670,20 @@ async function setPhase(id, field, value) {
   dirty.schedule.add(id); queueSave();
 }
 $("sheetBody").addEventListener("click", e => {
+  const pinBtn = e.target.closest("[data-section-pin]");
+  if (pinBtn && !editing) {
+    e.preventDefault();
+    e.stopPropagation();
+    const key = pinBtn.dataset.sectionPin;
+    if (key) toggleSectionPin(key);
+    return;
+  }
+  const unpinBtn = e.target.closest("[data-section-unpin]");
+  if (unpinBtn && !editing) {
+    e.preventDefault();
+    clearSectionPin();
+    return;
+  }
   const hideBtn = e.target.closest("[data-section-hide]");
   if (hideBtn && !editing) {
     e.preventDefault();
