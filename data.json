@@ -206,6 +206,10 @@
           {
             "id": "id16",
             "text": "Sección de cada usuario"
+          },
+          {
+            "id": "tmv9mx6zhz6gi",
+            "text": "Entregar leads alrio hubspot"
           }
         ]
       },
@@ -452,5 +456,5 @@
   },
   "schedule": {},
   "hiddenSections": [],
-  "updatedAt": "2026-10-14T22:01:09.927Z"
+  "updatedAt": "2026-10-15T14:29:20.866Z"
 }
