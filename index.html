@@ -977,9 +977,17 @@ const POS = [ [100,220,"up"], [300,400,"down"], [490,90,"up"], [690,330,"down"],
    ========================================================= */
 const clone = o => JSON.parse(JSON.stringify(o));
 let content = clone(DEFAULT_CONTENT);
-const state = { tasks: {}, schedule: {}, hiddenSections: [], pinnedSection: null };
+const state = { tasks: {}, schedule: {}, hiddenSections: [], pinnedSection: null, openFrontIds: [] };
 let draft = null, editing = false, current = 0, opener = null;
 const openFronts = new Set();
+function loadOpenFrontsFromState() {
+  openFronts.clear();
+  (state.openFrontIds || []).forEach(id => { if (id) openFronts.add(id); });
+}
+function persistOpenFronts() {
+  state.openFrontIds = [...openFronts];
+  saveLocal();
+}
 const LS_KEY = "inciti-roadmap-v2";
 let hiddenSectionsPending = null;
 const ICON_EYE = `<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M2 12s3.5-7 10-7 10 7 10 7-3.5 7-10 7-10-7-10-7Z"/><circle cx="12" cy="12" r="3"/></svg>`;
@@ -1071,6 +1079,8 @@ function loadLocal() {
     if (validContent(s.content)) content = normalizeContent(s.content);
     applyHiddenSections(s.hiddenSections, content);
     if (state.pinnedSection && !pinnedSectionHeading()) state.pinnedSection = null;
+    state.openFrontIds = Array.isArray(s.openFrontIds) ? s.openFrontIds.filter(Boolean) : [];
+    loadOpenFrontsFromState();
   } catch (e) {}
 }
 function saveLocal() { try { localStorage.setItem(LS_KEY, JSON.stringify({ ...state, content })); } catch (e) {} }
@@ -1742,8 +1752,18 @@ $("sheetBody").addEventListener("change", e => {
   if (t.matches("input[data-done]") && t.value) setTask(t.dataset.done, { done: true, doneAt: t.value + "T12:00:00" });
 });
 $("sheetBody").addEventListener("toggle", e => {
-  const d = e.target; if (!d.matches || !d.matches("details[data-front]")) return;
-  if (d.open) openFronts.add(d.dataset.front); else openFronts.delete(d.dataset.front);
+  const d = e.target;
+  if (!d.matches) return;
+  if (d.matches("details.front-section[data-section]")) {
+    const key = d.dataset.section;
+    if (pinnedSectionKey() === key && !d.open) d.open = true;
+    return;
+  }
+  if (!d.matches("details.front[data-front]")) return;
+  const id = d.dataset.front;
+  if (d.open) openFronts.add(id);
+  else openFronts.delete(id);
+  persistOpenFronts();
 }, true);
 
 /* =========================================================
@@ -1751,6 +1771,8 @@ $("sheetBody").addEventListener("toggle", e => {
    ========================================================= */
 function openStep(i, from) {
   openFronts.clear();
+  state.openFrontIds = [];
+  saveLocal();
   current = i; opener = from; if (editing) endEdit(); render();
   overlay.classList.add("open"); overlay.setAttribute("aria-hidden", "false");
   syncBodyLock(); $("editBtn").focus();
