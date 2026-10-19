@@ -145,7 +145,7 @@
         "tasks": [
           {
             "id": "id01",
-            "text": "Entregar correo"
+            "text": "Entregar correo TRUCALLER 1"
           },
           {
             "id": "id02",
@@ -226,6 +226,14 @@
           {
             "id": "id19",
             "text": "Informe Malecón 72: revisar y entregar a Pedro"
+          },
+          {
+            "id": "tmvfq7evb3bmj",
+            "text": "Entregar correo TRUCALLER 2"
+          },
+          {
+            "id": "tmvfraq0novl8",
+            "text": "Analytics Ciudad del rio "
           }
         ]
       },
@@ -451,7 +459,7 @@
     },
     "id01": {
       "done": true,
-      "doneAt": "2026-10-13T20:42:00.000Z"
+      "doneAt": "2026-10-19T20:47:20.862Z"
     },
     "id04": {
       "done": true,
@@ -476,12 +484,27 @@
     "tmv9mx6zhz6gi": {
       "done": true,
       "doneAt": "2026-10-15T15:26:17.350Z"
+    },
+    "tmv9o2n4t6w85": {
+      "done": true,
+      "doneAt": "2026-10-19T20:41:56.733Z"
+    },
+    "id13": {
+      "done": true,
+      "doneAt": "2026-10-19T20:44:28.196Z"
+    },
+    "tmvfq7evb3bmj": {
+      "done": true,
+      "doneAt": "2026-10-19T20:47:57.880Z"
+    },
+    "tmvfraq0novl8": {
+      "done": true,
+      "doneAt": "2026-10-19T21:59:26.752Z"
     }
   },
   "schedule": {},
   "hiddenSections": [
-    "metas-investor-portal-1",
     "metas-plataforma-en-tiendas-2"
   ],
-  "updatedAt": "2026-10-15T15:26:19.852Z"
+  "updatedAt": "2026-10-19T21:59:29.261Z"
 }
