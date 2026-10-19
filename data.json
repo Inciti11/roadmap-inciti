@@ -218,6 +218,10 @@
           {
             "id": "tmvfq7evb3bmj",
             "text": "Entregar correo TRUCALLER 2"
+          },
+          {
+            "id": "tmvfraq0novl8",
+            "text": "Analytics"
           }
         ]
       },
@@ -486,5 +490,5 @@
   "hiddenSections": [
     "metas-plataforma-en-tiendas-2"
   ],
-  "updatedAt": "2026-10-19T20:48:01.161Z"
+  "updatedAt": "2026-10-19T21:18:27.579Z"
 }
