@@ -504,11 +504,15 @@
     "id17": {
       "done": true,
       "doneAt": "2026-10-19T22:06:48.804Z"
+    },
+    "id18": {
+      "done": true,
+      "doneAt": "2026-10-19T22:06:51.520Z"
     }
   },
   "schedule": {},
   "hiddenSections": [
     "metas-plataforma-en-tiendas-2"
   ],
-  "updatedAt": "2026-10-19T22:06:51.309Z"
+  "updatedAt": "2026-10-19T22:06:54.025Z"
 }
