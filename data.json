@@ -145,7 +145,7 @@
         "tasks": [
           {
             "id": "id01",
-            "text": "Entregar correo"
+            "text": "Entregar correo TRUCALLER 1"
           },
           {
             "id": "id02",
@@ -439,7 +439,7 @@
     },
     "id01": {
       "done": true,
-      "doneAt": "2026-10-13T20:42:00.000Z"
+      "doneAt": "2026-10-19T20:47:20.862Z"
     },
     "id04": {
       "done": true,
@@ -478,5 +478,5 @@
   "hiddenSections": [
     "metas-plataforma-en-tiendas-2"
   ],
-  "updatedAt": "2026-10-19T20:44:33.507Z"
+  "updatedAt": "2026-10-19T20:47:23.369Z"
 }
