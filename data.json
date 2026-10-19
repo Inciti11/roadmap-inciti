@@ -93,7 +93,7 @@
         "tasks": [
           {
             "id": "aj1",
-            "text": "Crear informe de uso de las plataformas con Malecón 72 (años 2025 y 2026) — por ahora solo el informe"
+            "text": "Informe de uso Malecón 72 (2025–2026) para Pedro, formato similar al informe Aluna — por ahora solo el informe"
           },
           {
             "id": "aj2",
@@ -214,6 +214,18 @@
           {
             "id": "tmv9o2n4t6w85",
             "text": "Subir AlRIO"
+          },
+          {
+            "id": "id17",
+            "text": "Informe Malecón 72 (Pedro): sacar datos de uso de plataforma 2025 y 2026"
+          },
+          {
+            "id": "id18",
+            "text": "Informe Malecón 72: redactar al estilo informe Aluna (resumen, usuarios, uso, referidos)"
+          },
+          {
+            "id": "id19",
+            "text": "Informe Malecón 72: revisar y entregar a Pedro"
           }
         ]
       },
