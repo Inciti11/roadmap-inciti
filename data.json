@@ -500,11 +500,14 @@
     "tmvfraq0novl8": {
       "done": true,
       "doneAt": "2026-10-19T21:59:26.752Z"
+    },
+    "id17": {
+      "done": false
     }
   },
   "schedule": {},
   "hiddenSections": [
     "metas-plataforma-en-tiendas-2"
   ],
-  "updatedAt": "2026-10-19T21:59:29.261Z"
+  "updatedAt": "2026-10-19T22:06:32.533Z"
 }
