@@ -172,10 +172,6 @@
             "text": "Cesar reunión"
           },
           {
-            "id": "id08",
-            "text": "Mora ajuste — ajustes de texto y visualización de la página web"
-          },
-          {
             "id": "id11",
             "text": "Referir fácilmente visualmente"
           },
@@ -521,5 +517,5 @@
   "hiddenSections": [
     "metas-plataforma-en-tiendas-2"
   ],
-  "updatedAt": "2026-10-20T14:05:58.536Z"
+  "updatedAt": "2026-10-20T14:06:10.649Z"
 }
