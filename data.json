@@ -226,6 +226,10 @@
           {
             "id": "tmvfraq0novl8",
             "text": "Analytics Ciudad del rio "
+          },
+          {
+            "id": "tmvgr9jvhkybx",
+            "text": "presentacion de ajustes de texto y comprension"
           }
         ]
       },
@@ -513,5 +517,5 @@
   "hiddenSections": [
     "metas-plataforma-en-tiendas-2"
   ],
-  "updatedAt": "2026-10-20T14:03:11.292Z"
+  "updatedAt": "2026-10-20T14:05:19.149Z"
 }
