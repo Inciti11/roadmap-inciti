@@ -176,10 +176,6 @@
             "text": "Mora ajuste — ajustes de texto y visualización de la página web"
           },
           {
-            "id": "id09",
-            "text": "Olvidaste tu contraseña afuera flowi"
-          },
-          {
             "id": "id10",
             "text": "Creación de usuarios desde el bot"
           },
@@ -518,5 +514,5 @@
   "hiddenSections": [
     "metas-plataforma-en-tiendas-2"
   ],
-  "updatedAt": "2026-10-19T22:06:57.335Z"
+  "updatedAt": "2026-10-20T14:02:23.175Z"
 }
