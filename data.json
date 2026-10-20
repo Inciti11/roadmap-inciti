@@ -230,6 +230,10 @@
           {
             "id": "tmvgr9jvhkybx",
             "text": "presentacion de ajustes de texto y comprension"
+          },
+          {
+            "id": "tmvgra4bgb0ep",
+            "text": "Ajustes de texto y visualización de la página web"
           }
         ]
       },
@@ -517,5 +521,5 @@
   "hiddenSections": [
     "metas-plataforma-en-tiendas-2"
   ],
-  "updatedAt": "2026-10-20T14:05:19.149Z"
+  "updatedAt": "2026-10-20T14:05:58.536Z"
 }
