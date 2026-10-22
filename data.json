@@ -148,6 +148,10 @@
             "text": "presentacion de ajustes de texto y comprension nancy"
           },
           {
+            "id": "id12",
+            "text": "Experiencia de usuario"
+          },
+          {
             "id": "id03",
             "text": "Bancolombia 360"
           },
@@ -182,10 +186,6 @@
           {
             "id": "id07",
             "text": "Cesar reunión"
-          },
-          {
-            "id": "id12",
-            "text": "Experiencia de usuario"
           },
           {
             "id": "id13",
@@ -537,5 +537,5 @@
   "hiddenSections": [
     "metas-plataforma-en-tiendas-2"
   ],
-  "updatedAt": "2026-10-22T15:25:38.554Z"
+  "updatedAt": "2026-10-22T15:25:50.745Z"
 }
