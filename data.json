@@ -144,16 +144,20 @@
         "sub": "Operación y entregas del equipo",
         "tasks": [
           {
+            "id": "tmvgr9jvhkybx",
+            "text": "presentacion de ajustes de texto y comprension nancy"
+          },
+          {
+            "id": "id03",
+            "text": "Bancolombia 360"
+          },
+          {
             "id": "id01",
             "text": "Entregar correo TRUCALLER 1"
           },
           {
             "id": "id02",
             "text": "HubSpot negocios y automatizaciones"
-          },
-          {
-            "id": "id03",
-            "text": "Bancolombia 360"
           },
           {
             "id": "id04",
@@ -218,10 +222,6 @@
           {
             "id": "tmvfraq0novl8",
             "text": "Analytics Ciudad del rio "
-          },
-          {
-            "id": "tmvgr9jvhkybx",
-            "text": "presentacion de ajustes de texto y comprension nancy"
           },
           {
             "id": "tmvgrn4y5vgxd",
@@ -537,5 +537,5 @@
   "hiddenSections": [
     "metas-plataforma-en-tiendas-2"
   ],
-  "updatedAt": "2026-10-22T15:24:20.493Z"
+  "updatedAt": "2026-10-22T15:24:52.996Z"
 }
