@@ -184,10 +184,6 @@
             "text": "URL de apartamentos malecón"
           },
           {
-            "id": "id14",
-            "text": "Requisitos generales para planos y cartera"
-          },
-          {
             "id": "id15",
             "text": "Implementar sección en PI"
           },
@@ -234,6 +230,14 @@
           {
             "id": "tmvgrn4y5vgxd",
             "text": "Entregar planos  pedro"
+          },
+          {
+            "id": "id14",
+            "text": "Requisitos generales para planos , maqueta virtual "
+          },
+          {
+            "id": "tmvjow5rtvj9w",
+            "text": "Requisitos generales para cartera"
           }
         ]
       },
@@ -523,11 +527,15 @@
     "id15": {
       "done": true,
       "doneAt": "2026-10-22T15:19:15.713Z"
+    },
+    "id14": {
+      "done": true,
+      "doneAt": "2026-10-22T15:22:35.377Z"
     }
   },
   "schedule": {},
   "hiddenSections": [
     "metas-plataforma-en-tiendas-2"
   ],
-  "updatedAt": "2026-10-22T15:21:05.079Z"
+  "updatedAt": "2026-10-22T15:22:37.880Z"
 }
