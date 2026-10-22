@@ -239,7 +239,7 @@
       },
       {
         "id": "woobsing",
-        "name": "Woobsing",
+        "name": "segumiento inciti",
         "note": "Legalización de líneas, plantillas y flujo cuando no contestan.",
         "sub": "Líneas, Dapta y HubSpot",
         "tasks": [
@@ -537,5 +537,5 @@
   "hiddenSections": [
     "metas-plataforma-en-tiendas-2"
   ],
-  "updatedAt": "2026-10-22T15:25:50.745Z"
+  "updatedAt": "2026-10-22T15:26:47.216Z"
 }
