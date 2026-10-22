@@ -156,6 +156,10 @@
             "text": "Requisitos generales para cartera"
           },
           {
+            "id": "id11",
+            "text": "Referir fácilmente visualmente"
+          },
+          {
             "id": "id02",
             "text": "HubSpot negocios y automatizaciones"
           },
@@ -178,10 +182,6 @@
           {
             "id": "id07",
             "text": "Cesar reunión"
-          },
-          {
-            "id": "id11",
-            "text": "Referir fácilmente visualmente"
           },
           {
             "id": "id12",
@@ -537,5 +537,5 @@
   "hiddenSections": [
     "metas-plataforma-en-tiendas-2"
   ],
-  "updatedAt": "2026-10-22T15:25:22.765Z"
+  "updatedAt": "2026-10-22T15:25:38.554Z"
 }
