@@ -152,12 +152,12 @@
             "text": "Bancolombia 360"
           },
           {
-            "id": "id01",
-            "text": "Entregar correo TRUCALLER 1"
-          },
-          {
             "id": "id02",
             "text": "HubSpot negocios y automatizaciones"
+          },
+          {
+            "id": "id01",
+            "text": "Entregar correo TRUCALLER 1"
           },
           {
             "id": "id04",
@@ -537,5 +537,5 @@
   "hiddenSections": [
     "metas-plataforma-en-tiendas-2"
   ],
-  "updatedAt": "2026-10-22T15:24:52.996Z"
+  "updatedAt": "2026-10-22T15:25:01.512Z"
 }
