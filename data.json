@@ -515,11 +515,19 @@
     },
     "id11": {
       "done": false
+    },
+    "id16": {
+      "done": true,
+      "doneAt": "2026-10-22T15:19:14.554Z"
+    },
+    "id15": {
+      "done": true,
+      "doneAt": "2026-10-22T15:19:15.713Z"
     }
   },
   "schedule": {},
   "hiddenSections": [
     "metas-plataforma-en-tiendas-2"
   ],
-  "updatedAt": "2026-10-20T14:15:53.588Z"
+  "updatedAt": "2026-10-22T15:19:18.225Z"
 }
