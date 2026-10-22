@@ -152,6 +152,10 @@
             "text": "Bancolombia 360"
           },
           {
+            "id": "tmvjow5rtvj9w",
+            "text": "Requisitos generales para cartera"
+          },
+          {
             "id": "id02",
             "text": "HubSpot negocios y automatizaciones"
           },
@@ -230,10 +234,6 @@
           {
             "id": "id14",
             "text": "Requisitos generales para planos , maqueta virtual "
-          },
-          {
-            "id": "tmvjow5rtvj9w",
-            "text": "Requisitos generales para cartera"
           }
         ]
       },
@@ -537,5 +537,5 @@
   "hiddenSections": [
     "metas-plataforma-en-tiendas-2"
   ],
-  "updatedAt": "2026-10-22T15:25:01.512Z"
+  "updatedAt": "2026-10-22T15:25:22.765Z"
 }
